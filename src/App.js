@@ -1,25 +1,18 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { Layout, Typography } from '@douyinfe/semi-ui';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const { Header, Footer, Content } = Layout;
+    const { Title } = Typography;
+    return (
+        <Layout className="components-layout-demo">
+            <Header>
+                <Title>这是一个一级标题</Title>
+            </Header>
+            <Content>Content</Content>
+            <Footer>Footer</Footer>
+        </Layout>
+    );
 }
 
 export default App;
