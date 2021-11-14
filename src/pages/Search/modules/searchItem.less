@@ -1,0 +1,64 @@
+.search-item {
+  padding: 10px 10px 8px 18px;
+  border: 1px solid rgb(255, 255, 255);
+  display: flex;
+  align-items: center;
+  height: 43px;
+  box-sizing: border-box;
+  font-size: 12px;
+  color: #333;
+
+  .semi-icon {
+    display: inline-block;
+    margin-right: 4px;
+    cursor: pointer;
+  }
+
+  &.even {
+    background: rgb(247, 247, 247);
+    border-color: rgb(247, 247, 247);
+  }
+
+  .name {
+    margin-left: 8px;
+    flex: 1;
+    cursor: pointer;
+  }
+
+  &:hover {
+    border: 1px solid rgb(225, 225, 225);
+    background: rgb(242, 242, 242);
+
+    .operates {
+      display: block;
+    }
+  }
+
+  .operates {
+    display: none;
+  }
+
+  .singers {
+    width: 130px;
+    margin-left: 8px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    span {
+      cursor: pointer;
+    }
+  }
+
+  .album {
+    width: 156px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    cursor: pointer;
+  }
+
+  .duration {
+    margin-left: 8px;
+  }
+}

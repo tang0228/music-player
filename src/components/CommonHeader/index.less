@@ -1,0 +1,72 @@
+.nav-wrapper {
+  padding: 0 85px;
+  box-sizing: border-box;
+  margin: 0 auto;
+  display: flex;
+  height: 70px;
+  line-height: 70px;
+  display: flex;
+  align-items: center;
+  color: #ccc;
+  background-color: #242424;
+  border-bottom: 1px solid rgb(0, 0, 0);
+  position: relative;
+
+  .nav-logo {
+    background: url("https://s2.music.126.net/style/web2/img/frame/topbar.png?0dfeb036213959048a6290e4dc744f78")
+      no-repeat 0 9999px;
+    width: 176px;
+    height: 69px;
+
+    a {
+        font-size: 34px;
+        display: inline-block;
+        height: 100%;
+        text-decoration: none;
+        font-family: "PingFang SC", "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei", "WenQuanYi Micro Hei";
+        color: #ccc;
+
+        &:hover {
+            color: #fff;
+        }
+    }
+  }
+
+  .nav-list {
+    display: flex;
+    align-items: center;
+    flex: 1;
+
+    .nav-link {
+      text-decoration: none;
+      color: inherit;
+
+      .nav-item {
+        padding: 0 19px;
+      }
+
+      &.active {
+        color: #fff;
+        background-color: #000;
+      }
+
+      &:hover {
+          color: #fff;
+          background: #000;
+      }
+    }
+  }
+
+  .nav-user {
+      margin-left: 24px;
+  }
+}
+
+.sub-nav {
+    height: 5px;
+    background: #c20c0c;
+}
+
+.semi-spin-wrapper {
+    color: #c20c0c;
+}
