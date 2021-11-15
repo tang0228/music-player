@@ -18,10 +18,10 @@ export default function SearchItem(props) {
                 <IconDownload />
             </div>
             <div className="singers">
-                {props.ar.map((item, i) => <span key={item.id}>{i === 0 ? item.name : `/${item.name}`}</span>)}
+                {props.artists.map((item, i) => <span key={item.id}>{i === 0 ? item.name : `/${item.name}`}</span>)}
             </div>
-            <div className="album">《{props.al.name}》</div>
-            <div className="duration">{utils.formatTime(props.dt)}</div>
+            <div className="album">《{props.album.name}》</div>
+            <div className="duration">{utils.formatTime(props.duration)}</div>
         </div>
     )
 }

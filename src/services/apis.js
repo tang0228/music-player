@@ -1,7 +1,7 @@
 import ins from "./request";
 
 // 搜索
-export async function search({keywords = "", type = 1, limit = 20, offset = "0"}) {
+export async function search({keywords = "", type = 1, limit = 20, offset = 0}) {
     const res = await ins.get("/search", {
         params: {
             keywords,

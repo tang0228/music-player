@@ -21,14 +21,7 @@ function CommonHeader() {
     )
 
     const searchMusic = useCallback(async () => {
-        setLoading(true);
-        const res = await search({
-            keywords: keyword,
-        });
-        if(res.code === 200) {
-            setLoading(false);
-            history.push("/search", res.result);
-        }
+        history.push(`/search?keywords=${keyword}`);
     }, [keyword])
     
   const lis = navList.map((nav) => (

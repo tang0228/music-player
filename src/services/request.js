@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const ins = axios.create({
-    baseURL: "/v1",
+    baseURL: "",
 });
 
 ins.interceptors.response.use(res => {
