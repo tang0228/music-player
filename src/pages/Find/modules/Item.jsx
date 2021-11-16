@@ -1,4 +1,5 @@
 import React from 'react';
+import LazyLoad from 'react-lazyload';
 
 import { IconSong, IconPlayCircle} from "@douyinfe/semi-icons";
 import "./item.less";
@@ -7,7 +8,9 @@ export default function Item(props) {
     return (
         <li className="item-wrapper">
             <div className="item-content">
-                <img src={props.coverImgUrl} alt="" />
+                <LazyLoad height={200}>
+                    <img src={props.coverImgUrl} alt="" />
+                </LazyLoad>
                 <div className="bottom">
                     <IconSong />
                     <span className="play-nums">{ parseInt(props.playCount / 10000)}万</span>

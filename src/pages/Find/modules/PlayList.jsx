@@ -39,7 +39,7 @@ export default function PlayList() {
     setLimit(val);
   }, []);
   // 每一个歌单元素
-  const lis = list.map((l) => <Item key={l.coverImgId_str} {...l}></Item>);
+  const lis = list.map((l) => <Item key={l.id} {...l}></Item>);
   return (
     <div className="playlist-container">
       <Category />
