@@ -1,0 +1,61 @@
+.video-container {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 30px 0 0 -27px;
+
+    .video-item {
+        padding: 0 0 40px 26px;
+        width: 159px;
+        
+        .video-img {
+            position: relative;
+            width: 159px;
+            font-size: 12px;
+            background-color: #000;
+
+            img {
+                width: 159px;
+                height: 90px;
+                object-fit: cover;
+                opacity: 0.6;
+                filter: alpha(opacity=60);
+            }
+
+            .play-nums {
+                position: absolute;
+                color: #fff;
+                top: 4px;
+                right: 4px;
+                display: flex;
+                align-items: center;
+
+                .nums {
+                    margin-left: 4px;
+                }
+            }
+
+            .video-duration {
+                position: absolute;
+                color: #fff;
+                bottom: 4px;
+                left: 4px;
+            }
+        }
+
+        .video-name {
+            margin: 7px 0;
+            font-size: 14px;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+        .singer-name {
+            font-size: 12px;
+            column-rule: #666;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+    }
+}

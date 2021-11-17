@@ -1,0 +1,83 @@
+.words-container {
+    font-size: 12px;
+    .words-item {
+
+        .words-header {
+            display: flex;
+            color: #666;
+            align-items: center;
+            height: 43px;
+            box-sizing: border-box;
+            padding: 0 24px;
+
+            .name {
+                display: flex;
+                flex: 1;
+                align-items: center;
+
+                .ml8 {
+                    margin-left: 8px;
+                }
+            }
+
+            &.even {
+                background: rgb(247, 247, 247);
+            }
+
+            .operates {
+                display: none;
+                .semi-icon {
+                    display: inline-block;
+                    margin-right: 4px;
+                    cursor: pointer;
+                }
+            }
+
+            &:hover {
+                background: rgb(242, 242, 242);
+
+                .operates {
+                    display: block;
+                }
+            }
+
+            .singers {
+                width: 15%;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                margin-left: 16px;
+
+                span {
+                    cursor: pointer;
+                }
+                
+            }
+
+            .alnum {
+                margin-left: 72px;
+                width: 18%;
+                cursor: pointer;
+            }
+
+            .duration {
+                margin-left: 36px;
+            }
+        }
+
+        .words-lyric {
+            margin: 10px 0 18px 52px;
+            color: #666;
+            line-height: 23px;
+            white-space: pre-wrap; // 识别\n换行
+
+            .arrow {
+                display: flex;
+                align-items: center;
+                cursor: pointer;
+            }
+        }
+    }
+
+    
+}

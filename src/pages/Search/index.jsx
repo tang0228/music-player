@@ -4,13 +4,15 @@ import { useLocation } from "react-router-dom";
 import MusicItem from "./modules/MusicItem";
 import SingerItem from "./modules/SingerItem";
 import AlbumItem from "./modules/AlbumItem";
+import VideoItem from "./modules/VideoItem";
+import WordsItem from "./modules/WordsItem";
 import { Pagination, Input, Spin, Tabs, TabPane } from "@douyinfe/semi-ui";
 import { IconSearch } from "@douyinfe/semi-icons";
 import "./index.less";
 import { search } from "../../services/apis";
 import tabs from "../../common/tabs";
+import SearchNote from "./modules/SearchNote";
 
-import LazyLoad from "react-lazyload";
 
 export default function Search() {
   const [limit, setLimit] = useState(35); // 页容量
@@ -20,7 +22,16 @@ export default function Search() {
   const location = useLocation();
   const query = qs.parse(location.search);
   const keywords = query.keywords; // 传递来的关键词
-  const [list, setList] = useState([]); // 歌曲列表
+  const [songs, setSongs] = useState([]); // 歌曲列表
+  const [singers, setSingers] = useState([]); // 歌手列表
+  const [albums, setAlbums] = useState([]); // 专辑列表
+  const [videos, setVideos] = useState([]); // 视频列表
+  const [words, setWords] = useState([]); // 歌词列表
+  const [playlist, setPlaylist] = useState([]); // 歌单列表
+  const [djs, setDjs] = useState([]); // 主播列表
+  const [users, setUsers] = useState([]); // 用户列表
+
+
   const [total, setTotal] = useState(0); // 歌曲总数
   // 页码变化
   const handlePageChange = useCallback((val) => {
@@ -32,7 +43,7 @@ export default function Search() {
   }, []);
   // tab切换
   const tabChange = useCallback((key) => {
-    // setType(key);
+    setType(key);
   }, []);
   // 搜索
   useEffect(() => {
@@ -47,36 +58,36 @@ export default function Search() {
       if (res.code === 200) {
         switch (type) {
           case "1":
-            setList(res.result.songs);
+            setSongs(res.result.songs);
             setTotal(res.result.songCount);
             break;
           case "100":
-            setList(res.result.artists);
+            setSingers(res.result.artists);
             setTotal(res.result.artistCount);
             break;
           case "10":
-            setList(res.result.albums);
+            setAlbums(res.result.albums);
             setTotal(res.result.albumCount);
             break;
           case "1014":
-            setList(res.result.artists);
-            setTotal(res.result.artistCount);
+            setVideos(res.result.videos);
+            setTotal(res.result.videoCount);
             break;
           case "1006":
-            setList(res.result.artists);
-            setTotal(res.result.artistCount);
+            setWords(res.result.songs);
+            setTotal(res.result.songCount);
             break;
           case "1000":
-            setList(res.result.artists);
-            setTotal(res.result.artistCount);
+            setPlaylist(res.result.playlist);
+            setTotal(res.result.playlistCount);
             break;
           case "1009":
-            setList(res.result.artists);
-            setTotal(res.result.artistCount);
+            setDjs(res.result.djRadios);
+            setTotal(res.result.djRadiosCount);
             break;
           case "1002":
-            setList(res.result.artists);
-            setTotal(res.result.artistCount);
+            setUsers(res.result.userprofiles);
+            setTotal(res.result.userprofileCount);
             break;
           default:
             break;
@@ -84,7 +95,6 @@ export default function Search() {
         setLoading(false);
       }
     })();
-    return () => {};
   }, [keywords, limit, page, type]);
 
   const tabpanes = tabs.map((tab) => (
@@ -100,10 +110,12 @@ export default function Search() {
             color: "#000",
             border: "1px solid #ddd",
           }}
+          value={keywords}
           size="large"
           showClear
         ></Input>
       </div>
+      {<SearchNote keyword={keywords} type={type} total={total}/>}
       <div className="search-tabs">
         <Tabs
           type="card"
@@ -115,9 +127,12 @@ export default function Search() {
           {tabpanes}
         </Tabs>
       </div>
-      {type === "1" && list ? <MusicItem songs={list} /> : null}
-      {type === "100" && list ? <SingerItem singers={list} /> : null}
-      {type === "10" && list ? <AlbumItem albums={list} /> : null}
+      {type === "1" && songs ? <MusicItem songs={songs} /> : null}
+      {type === "100" && singers ? <SingerItem singers={singers} /> : null}
+      {type === "10" && albums ? <AlbumItem albums={albums} /> : null}
+      {type === "1014" && videos ? <VideoItem videos={videos} /> : null}
+      {type === "1006" && words ? <WordsItem words={words} /> : null}
+
       <div className="pagination-ontainer">
         <Pagination
           total={total}
