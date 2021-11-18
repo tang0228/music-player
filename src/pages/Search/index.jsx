@@ -5,14 +5,26 @@ import MusicItem from "./modules/MusicItem";
 import SingerItem from "./modules/SingerItem";
 import AlbumItem from "./modules/AlbumItem";
 import VideoItem from "./modules/VideoItem";
-import WordsItem from "./modules/WordsItem";
-import { Pagination, Input, Spin, Tabs, TabPane } from "@douyinfe/semi-ui";
+import Words from "./modules/Words";
+import PlayList from "./modules/PlayList";
+import UserProfile from "./modules/UserProfile";
+import {
+  Pagination,
+  Input,
+  Spin,
+  Tabs,
+  TabPane,
+  Empty,
+} from "@douyinfe/semi-ui";
+import {
+  IllustrationNoResult,
+  IllustrationNoResultDark,
+} from "@douyinfe/semi-illustrations";
 import { IconSearch } from "@douyinfe/semi-icons";
 import "./index.less";
 import { search } from "../../services/apis";
 import tabs from "../../common/tabs";
 import SearchNote from "./modules/SearchNote";
-
 
 export default function Search() {
   const [limit, setLimit] = useState(35); // 页容量
@@ -30,7 +42,6 @@ export default function Search() {
   const [playlist, setPlaylist] = useState([]); // 歌单列表
   const [djs, setDjs] = useState([]); // 主播列表
   const [users, setUsers] = useState([]); // 用户列表
-
 
   const [total, setTotal] = useState(0); // 歌曲总数
   // 页码变化
@@ -78,7 +89,7 @@ export default function Search() {
             setTotal(res.result.songCount);
             break;
           case "1000":
-            setPlaylist(res.result.playlist);
+            setPlaylist(res.result.playlists);
             setTotal(res.result.playlistCount);
             break;
           case "1009":
@@ -115,7 +126,7 @@ export default function Search() {
           showClear
         ></Input>
       </div>
-      {<SearchNote keyword={keywords} type={type} total={total}/>}
+      {<SearchNote keyword={keywords} type={type} total={total || 0} />}
       <div className="search-tabs">
         <Tabs
           type="card"
@@ -131,19 +142,31 @@ export default function Search() {
       {type === "100" && singers ? <SingerItem singers={singers} /> : null}
       {type === "10" && albums ? <AlbumItem albums={albums} /> : null}
       {type === "1014" && videos ? <VideoItem videos={videos} /> : null}
-      {type === "1006" && words ? <WordsItem words={words} /> : null}
+      {type === "1006" && words ? <Words words={words} /> : null}
+      {type === "1000" && playlist ? <PlayList playlist={playlist} /> : null}
+      {type === "1002" && users ? <UserProfile users={users} /> : null}
 
-      <div className="pagination-ontainer">
-        <Pagination
-          total={total}
-          currentPage={page}
-          onPageChange={handlePageChange}
-          showSizeChanger
-          pageSize={limit}
-          pageSizeOpts={[15, 35, 70]}
-          onPageSizeChange={handleLimitChange}
-        ></Pagination>
-      </div>
+      {total > 0 ? (
+        <div className="pagination-ontainer">
+          <Pagination
+            total={total}
+            currentPage={page}
+            onPageChange={handlePageChange}
+            showSizeChanger
+            pageSize={limit}
+            pageSizeOpts={[15, 35, 70]}
+            onPageSizeChange={handleLimitChange}
+          ></Pagination>
+        </div>
+      ) : (
+        <Empty
+          image={<IllustrationNoResult style={{ width: 150, height: 150 }} />}
+          darkModeImage={
+            <IllustrationNoResultDark style={{ width: 150, height: 150 }} />
+          }
+          description={"搜索无结果"}
+        />
+      )}
       <Spin
         spinning={loading}
         tip="loading..."

@@ -2,17 +2,16 @@ import React, {useState, useCallback } from "react";
 import { withRouter, useHistory } from "react-router-dom";
 import navList from "../../common/navList";
 import "./index.less";
-import { search } from "../../services/apis"
+import { Toast } from "@douyinfe/semi-ui";
 
 import { NavLink } from "react-router-dom";
 
-import { Dropdown, Avatar, Input, Spin } from "@douyinfe/semi-ui";
+import { Dropdown, Avatar, Input } from "@douyinfe/semi-ui";
 import { IconSearch, IconUser, IconMailStroked1, IconSetting, IconQuit, IconVerify, IconShield, IconCrown } from '@douyinfe/semi-icons';
 
 function CommonHeader() {
     const history = useHistory();
     const [keyword, setKeyword] = useState(""); // 搜索的关键词
-    const [loading, setLoading] = useState(false); // 是否显示加载中
     const keywordChange = useCallback(
         (val) => {
             setKeyword(val);
@@ -21,6 +20,13 @@ function CommonHeader() {
     )
 
     const searchMusic = useCallback(async () => {
+        if(!keyword) {
+            Toast.warning({
+                content: '请输入 音乐/视频/电台/用户 等关键字',
+                duration: 2,
+            })
+            return;
+        }
         history.push(`/search?keywords=${keyword}`);
     }, [keyword])
     
@@ -67,13 +73,7 @@ function CommonHeader() {
       </div>
     </div>
     <div className="sub-nav"></div>
-    <Spin spinning={loading} tip="loading..." size='large' style={{
-        position: "fixed",
-        top: "50%",
-        left: "50%",
-        transform: "translate(-50%, -50%)",
-        zIndex: "9999",
-    }} ></Spin>
+    
       </>
   );
 };

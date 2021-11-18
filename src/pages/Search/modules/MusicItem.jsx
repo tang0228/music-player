@@ -1,5 +1,5 @@
 import React from 'react';
-import {IconPlayCircle, IconDownload, IconFolder, IconPlus, IconFeishuLogo } from "@douyinfe/semi-icons"
+import {IconPlayCircle, IconDownload, IconFolder, IconPlus, IconForward } from "@douyinfe/semi-icons"
 
 import "./musicItem.less";
 
@@ -14,7 +14,7 @@ export default function MusicItem(props) {
             <div className="operates">
                 <IconPlus />
                 <IconFolder />
-                <IconFeishuLogo />
+                <IconForward />
                 <IconDownload />
             </div>
             <div className="singers">
