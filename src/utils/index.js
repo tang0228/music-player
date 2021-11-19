@@ -1,3 +1,5 @@
+import Cookie from "js-cookie";
+
 const utils = {
     /**
      * 判断一个数是否是偶数
@@ -47,6 +49,14 @@ const utils = {
             default:
               break;
           }
+    },
+    // 设置cookie
+    setCookie(key, value) {
+        Cookie.set(key, value);
+    },
+    // 获取cookie
+    getCookie(key) {
+        return Cookie.get(key);
     }
 };
 

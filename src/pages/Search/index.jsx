@@ -7,6 +7,7 @@ import AlbumItem from "./modules/AlbumItem";
 import VideoItem from "./modules/VideoItem";
 import Words from "./modules/Words";
 import PlayList from "./modules/PlayList";
+import DjItem from "./modules/DjItem";
 import UserProfile from "./modules/UserProfile";
 import {
   Pagination,
@@ -144,6 +145,7 @@ export default function Search() {
       {type === "1014" && videos ? <VideoItem videos={videos} /> : null}
       {type === "1006" && words ? <Words words={words} /> : null}
       {type === "1000" && playlist ? <PlayList playlist={playlist} /> : null}
+      {type === "1009" && djs ? <DjItem djs={djs} /> : null}
       {type === "1002" && users ? <UserProfile users={users} /> : null}
 
       {total > 0 ? (

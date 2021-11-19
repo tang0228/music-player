@@ -1,0 +1,51 @@
+.dj-container {
+  margin: 16px 0 0 -37px;
+  display: flex;
+  flex-wrap: wrap;
+
+  .dj-item {
+    width: 150px;
+    margin: 0 0 40px 37px;
+
+    img {
+      width: 150px;
+      height: 150px;
+      cursor: pointer;
+    }
+
+    .dj-content {
+      .desc {
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+        font-size: 14px;
+        line-height: 16px;
+        margin: 13px 0 6px;
+        cursor: pointer;
+      }
+
+      .info {
+        font-size: 12px;
+        color: #999;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+        .name {
+          color: #333;
+          margin-left: 4px;
+          cursor: pointer;
+        }
+
+        .pink {
+          vertical-align: middle;
+          color: pink;
+        }
+
+        .blue {
+          vertical-align: middle;
+          color: skyblue;
+        }
+      }
+    }
+  }
+}

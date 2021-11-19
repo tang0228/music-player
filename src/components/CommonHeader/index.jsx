@@ -3,13 +3,26 @@ import { withRouter, useHistory } from "react-router-dom";
 import navList from "../../common/navList";
 import "./index.less";
 import { Toast } from "@douyinfe/semi-ui";
-
 import { NavLink } from "react-router-dom";
-
 import { Dropdown, Avatar, Input } from "@douyinfe/semi-ui";
 import { IconSearch, IconUser, IconMailStroked1, IconSetting, IconQuit, IconVerify, IconShield, IconCrown } from '@douyinfe/semi-icons';
+import { delUserAction } from "../../store/actions/user";
+import { connect } from "react-redux";
+const mapStateToProps = (state) => {
+    return {
+        user: state.user
+    }
+};
 
-function CommonHeader() {
+const mapDispatchToProps = (dispatch) => {
+    return {
+        delUser: (...args) => dispatch(delUserAction(...args)),
+    }
+}
+
+function CommonHeader(props) {
+    console.log(props, 'header')
+    const {user} = props;
     const history = useHistory();
     const [keyword, setKeyword] = useState(""); // 搜索的关键词
     const keywordChange = useCallback(
@@ -28,7 +41,7 @@ function CommonHeader() {
             return;
         }
         history.push(`/search?keywords=${keyword}`);
-    }, [keyword])
+    }, [keyword, history])
     
   const lis = navList.map((nav) => (
     <NavLink to={nav.url} key={nav.url} className="nav-link">
@@ -67,7 +80,7 @@ function CommonHeader() {
           }
         >
           <Avatar
-            src="https://sf6-cdn-tos.douyinstatic.com/obj/eden-cn/ptlz_zlp/ljhwZthlaukjlkulzlp/root-web-sites/avatarDemo.jpeg"
+            src={user.avatarUrl}
         />
         </Dropdown>
       </div>
@@ -78,6 +91,7 @@ function CommonHeader() {
   );
 };
 
-export default withRouter(CommonHeader);
+
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(CommonHeader));
 
 

@@ -1,33 +1,49 @@
 import React, {useState, useCallback} from 'react';
-
-import { Modal, Button, Form, Row } from '@douyinfe/semi-ui';
-
+import { Modal, Button, Form, Row, Toast } from '@douyinfe/semi-ui';
 import { phoneLogin } from "../../services/apis"
-export default function Login(props) {
-    // const [formApi, setFormApi] = useState(null);
+import { connect } from "react-redux";
+import { addUserAction } from "../../store/actions/user";
+import utils from '../../utils';
+import qs from "query-string";
+
+const mapStateToProps = (state) => {
+    return {
+        user: state.user
+    }
+};
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        addUser: (...args) => dispatch(addUserAction(...args)),
+    }
+}
+function Login(props) {
+    const {addUser} = props;
     const [phone, setPhone] = useState("");
     const [password, setPassword] = useState("");
     const closeModal = useCallback(
         () => {
             props.closeModal && props.closeModal(false);
         },
-        [],
+        [props],
     );
-
-    // const getFormApi = useCallback(
-    //     (formApi) => {
-    //         setFormApi(formApi);
-    //     },
-        
-    // );
 
     const handleOk = useCallback(
         async () => {
             const res = await phoneLogin({
                 phone,
                 password
-            })
-            console.log(res);
+            });
+            if(res.code === 200) {
+                Toast.success({
+                    content: `欢迎${res.profile.nickname}回家`,
+                    duration: 2000,
+                })
+                addUser(res.profile);
+                localStorage.setItem('user', JSON.stringify(res.profile));
+                utils.setCookie('token', JSON.stringify(res.token));
+                utils.setCookie('login', res.cookie);
+            }
         },
         [password, phone],
     );
@@ -90,5 +106,7 @@ export default function Login(props) {
             </Modal>
         </div>
     )
-}
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);
 
