@@ -1,97 +1,164 @@
-import React, {useState, useCallback } from "react";
+import React, { useState, useCallback } from "react";
 import { withRouter, useHistory } from "react-router-dom";
 import navList from "../../common/navList";
 import "./index.less";
-import { Toast } from "@douyinfe/semi-ui";
 import { NavLink } from "react-router-dom";
-import { Dropdown, Avatar, Input } from "@douyinfe/semi-ui";
-import { IconSearch, IconUser, IconMailStroked1, IconSetting, IconQuit, IconVerify, IconShield, IconCrown } from '@douyinfe/semi-icons';
+import { Dropdown, Avatar, Input, Toast, Button } from "@douyinfe/semi-ui";
+import {
+  IconSearch,
+  IconUser,
+  IconMailStroked1,
+  IconSetting,
+  IconQuit,
+  IconVerify,
+  IconShield,
+  IconCrown,
+} from "@douyinfe/semi-icons";
 import { delUserAction } from "../../store/actions/user";
 import { connect } from "react-redux";
+import { logout } from "../../services/apis";
+import Login from "../Login";
 const mapStateToProps = (state) => {
-    return {
-        user: state.user
-    }
+  return {
+    user: state.user,
+  };
 };
 
 const mapDispatchToProps = (dispatch) => {
-    return {
-        delUser: (...args) => dispatch(delUserAction(...args)),
-    }
-}
+  return {
+    delUser: (...args) => dispatch(delUserAction(...args)),
+  };
+};
 
 function CommonHeader(props) {
-    console.log(props, 'header')
-    const {user} = props;
-    const history = useHistory();
-    const [keyword, setKeyword] = useState(""); // 搜索的关键词
-    const keywordChange = useCallback(
-        (val) => {
-            setKeyword(val);
-        },
-        [],
-    )
+  const { user, delUser } = props;
+  const history = useHistory();
+  const [keyword, setKeyword] = useState(""); // 搜索的关键词
+  const [visible, setVisible] = useState(false);
+  const keywordChange = useCallback((val) => {
+    setKeyword(val);
+  }, []);
 
-    const searchMusic = useCallback(async () => {
-        if(!keyword) {
-            Toast.warning({
-                content: '请输入 音乐/视频/电台/用户 等关键字',
-                duration: 2,
-            })
-            return;
-        }
-        history.push(`/search?keywords=${keyword}`);
-    }, [keyword, history])
-    
+  const searchMusic = useCallback(async () => {
+    if (!keyword) {
+      Toast.warning({
+        content: "请输入 音乐/视频/电台/用户 等关键字",
+        duration: 2,
+      });
+      return;
+    }
+    history.push(`/search?keywords=${keyword}`);
+  }, [keyword, history]);
+
+  const handleLogout = useCallback(async () => {
+    const res = await logout();
+    if (res.code === 200) {
+      delUser();
+      localStorage.removeItem("user");
+      Toast.success({
+        content: "退出登录成功，欢迎下次再来",
+        duration: 2,
+      });
+    } else {
+      Toast.error({
+        content: "操作失败",
+        duration: 2,
+      });
+    }
+  }, []);
+
   const lis = navList.map((nav) => (
     <NavLink to={nav.url} key={nav.url} className="nav-link">
       <li className="nav-item">{nav.text}</li>
     </NavLink>
   ));
   return (
-      <>
-        <div className="nav-wrapper">
-      <div className="nav-logo">
-        <a href="/">网易云音乐</a>
+    <>
+      <div className="nav-wrapper">
+        <div className="nav-logo">
+          <a href="/">网易云音乐</a>
+        </div>
+        <ul className="nav-list">{lis}</ul>
+        <div className="nav-search">
+          <Input
+            style={{
+              background: "#fff",
+              outline: "none",
+            }}
+            inputStyle={{
+              background: "#fff",
+            }}
+            onEnterPress={searchMusic}
+            placeholder="音乐/视频/电台/用户"
+            prefix={<IconSearch />}
+            value={keyword}
+            onChange={keywordChange}
+            showClear
+          ></Input>
+        </div>
+        {user ? (
+          <div className="nav-user">
+            <Dropdown
+              trigger={"hover"}
+              position={"bottom"}
+              render={
+                <Dropdown.Menu>
+                  <Dropdown.Item>
+                    <IconUser />
+                    我的主页
+                  </Dropdown.Item>
+                  <Dropdown.Item>
+                    <IconMailStroked1 />
+                    我的消息
+                  </Dropdown.Item>
+                  <Dropdown.Item>
+                    <IconCrown />
+                    我的等级
+                  </Dropdown.Item>
+                  <Dropdown.Item>
+                    <IconShield />
+                    VIP会员
+                  </Dropdown.Item>
+                  <Dropdown.Item>
+                    <IconSetting />
+                    个人设置
+                  </Dropdown.Item>
+                  <Dropdown.Item>
+                    <IconVerify />
+                    实名认证
+                  </Dropdown.Item>
+                  <Dropdown.Item onClick={handleLogout}>
+                    <IconQuit />
+                    退出
+                  </Dropdown.Item>
+                </Dropdown.Menu>
+              }
+            >
+              <Avatar src={user.avatarUrl} />
+            </Dropdown>
+          </div>
+        ) : (
+          <Button
+            onClick={() => {
+              setVisible(true);
+            }}
+          >
+            登录
+          </Button>
+        )}
       </div>
-      <ul className="nav-list">{lis}</ul>
-      <div className="nav-search">
-        <Input style={{
-            background: "#fff",
-            outline: "none",
-        }} inputStyle={{
-            background: "#fff"
-        }} onEnterPress={searchMusic} placeholder="音乐/视频/电台/用户" prefix={<IconSearch />} value={keyword} onChange={keywordChange} showClear></Input>
-      </div>
-      <div className="nav-user">
-        <Dropdown
-          trigger={"hover"}
-          position={"bottom"}
-          render={
-            <Dropdown.Menu>
-              <Dropdown.Item><IconUser />我的主页</Dropdown.Item>
-              <Dropdown.Item><IconMailStroked1 />我的消息</Dropdown.Item>
-              <Dropdown.Item><IconCrown />我的等级</Dropdown.Item>
-              <Dropdown.Item><IconShield />VIP会员</Dropdown.Item>
-              <Dropdown.Item><IconSetting />个人设置</Dropdown.Item>
-              <Dropdown.Item><IconVerify />实名认证</Dropdown.Item>
-              <Dropdown.Item><IconQuit />退出</Dropdown.Item>
-            </Dropdown.Menu>
-          }
-        >
-          <Avatar
-            src={user.avatarUrl}
-        />
-        </Dropdown>
-      </div>
-    </div>
-    <div className="sub-nav"></div>
-    
-      </>
+      <div className="sub-nav"></div>
+      <Login
+        visible={visible}
+        closeModal={() => {
+          setVisible(false);
+        }}
+      ></Login>
+    </>
   );
-};
+}
 
-
-export default connect(mapStateToProps, mapDispatchToProps)(withRouter(CommonHeader));
-
-
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withRouter(CommonHeader));

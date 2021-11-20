@@ -57,7 +57,7 @@ const utils = {
     // 获取cookie
     getCookie(key) {
         return Cookie.get(key);
-    }
+    },
 };
 
 export default utils;

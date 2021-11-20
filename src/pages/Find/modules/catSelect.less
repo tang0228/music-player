@@ -1,29 +1,86 @@
 .select-wrapper {
-    position: relative;
-    margin-left: 24px;
+  position: relative;
+  margin-left: 24px;
 
-    .select-btn {
-        padding: 5px 15px;
-        border: 1px solid #ddd;
-        border-radius: 4px;
-        font-size: 12px;
-        color: #0c73c2;
-        display: flex;
-        align-items: center;
+  .select-btn {
+    padding: 5px 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 12px;
+    color: #0c73c2;
+    display: flex;
+    align-items: center;
+    width: 70px;
+    cursor: pointer;
+
+    .select-title {
+      margin-right: 4px;
+    }
+  }
+
+  .select-content {
+    width: 700px;
+    padding: 16px 0;
+    position: absolute;
+    z-index: 666;
+    background-color: #fff;
+    box-shadow: 1px 1px 1px #ddd, 1px -1px 1px #ddd, -1px 1px 1px #ddd,
+      -1px -1px 1px #ddd;
+
+    .all {
+      border-bottom: 1px solid #e6e6e6;
+      padding: 0 0 16px 16px;
+    }
+
+    .select-row {
+      display: flex;
+      font-size: 12px;
+      padding: 0 16px;
+
+      .title {
+        flex-shrink: 0;
+        color: #333;
+        padding-top: 15px;
+        border-right: 1px solid #e6e6e6;
         width: 70px;
-        cursor: pointer;
+        font-weight: bold;
+        display: flex;
+        align-items: flex-start;
 
-        .select-title {
-            margin-right: 4px;
+        .semi-icon-default {
+          font-size: 24px;
         }
 
-    }
+        .text {
+          margin-left: 8px;
+          padding-top: 8px;
+        }
+      }
 
-    .select-content {
-        width: 700px;
-        padding: 0 10px;
-        position: absolute;
-        z-index: 666;
-        background-color: #fff;
+      .item {
+        padding: 16px 15px 0 15px;
+        line-height: 24px;
+
+        .cat {
+          cursor: pointer;
+
+          &.selected {
+            background: #a7a7a7;
+            color: #fff;
+            padding: 2 px 6 px;
+          }
+
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+
+        .line {
+          display: inline-block;
+          margin: 0 8px 0 10px;
+          color: #d8d8d8;
+        }
+      }
     }
+  }
 }

@@ -4,7 +4,6 @@ import { phoneLogin } from "../../services/apis"
 import { connect } from "react-redux";
 import { addUserAction } from "../../store/actions/user";
 import utils from '../../utils';
-import qs from "query-string";
 
 const mapStateToProps = (state) => {
     return {
@@ -37,12 +36,12 @@ function Login(props) {
             if(res.code === 200) {
                 Toast.success({
                     content: `欢迎${res.profile.nickname}回家`,
-                    duration: 2000,
+                    duration: 2,
                 })
+                closeModal();
                 addUser(res.profile);
                 localStorage.setItem('user', JSON.stringify(res.profile));
                 utils.setCookie('token', JSON.stringify(res.token));
-                utils.setCookie('login', res.cookie);
             }
         },
         [password, phone],

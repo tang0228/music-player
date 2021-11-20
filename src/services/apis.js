@@ -13,7 +13,7 @@ export async function search({keywords = "", type = 1, limit = 20, offset = 0}) 
     return res;
 };
 
-// 邮箱登录
+// 手机号登录
 export async function phoneLogin({phone, password}) {
     const res = await ins.get("/login/cellphone", {
         params: {
@@ -24,12 +24,18 @@ export async function phoneLogin({phone, password}) {
     return res;
 };
 
+// 退出登录
+export async function logout() {
+    const res = await ins.get("/logout");
+    return res;
+}
+
 /**
  * offset, 第二页的话，offset是 1 * limit
  * @param {cat} param0 分类
  * @returns 
  */
-export async function getPlaylist({cat = "", limit = 20, offset, order}) {
+export async function getPlaylist({cat = "", limit = 20, offset, order = "hot"}) {
     const res = await ins.get("/top/playlist", {
         params: {
             cat,
@@ -57,9 +63,10 @@ export async function getFriend({offset = "0", limit = 20}) {
 };
 
 /**
- * 歌单类型列表
+ * 网友 歌单类型列表
  */
 export async function getPlayListCat() {
-    const res = await ins.get("/playlist/catlist");
+    const res = await ins.get("/playlist/catlist", );
     return res;
 }
+
