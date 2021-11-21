@@ -9,6 +9,9 @@ import Search from "./pages/Search";
 import PlayList from "./pages/Find/modules/PlayList";
 import Find from "./pages/Find";
 import Friend from "./pages/Friend";
+import User from "./pages/User"
+import UserHome from "./pages/User/modules/user-home/UserHome";
+import UserUpdate from "./pages/User/modules/user-update/UserUpdate";
 
 function App() {
     const { Header, Footer, Content } = Layout;
@@ -23,7 +26,6 @@ function App() {
                         <Route exact path="/" component={Index}></Route>
                         <Route path="/find" render={() =>(
                             <Find>  
-                                <Redirect to="/find/playlist"></Redirect>
                                 <Route exact path="/find/playlist" component={PlayList}></Route>
                             </Find>
                         )}>
@@ -34,14 +36,18 @@ function App() {
                         <Route exact path="/musicians"></Route>
                         <Route exact path="/download"></Route>
                         <Route exact path="/search" component={Search}></Route>
+                        <Route path="/user" render={() => (
+                            <User>
+                                <Route exact path="/user/home" component={UserHome} ></Route>
+                                <Route exact path="/user/update" component={UserUpdate} ></Route>
+                            </User>
+                        )}></Route>
                     </Switch>
                 </Content>
                 <Footer><CommonFooter /></Footer>
                 <BackTop />
             </Layout>
-
         </Router>
-
     );
 }
 

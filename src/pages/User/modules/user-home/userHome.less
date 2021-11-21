@@ -1,0 +1,180 @@
+.user-home-container {
+  .user-info {
+    display: flex;
+    color: #666;
+    margin-bottom: 43px;
+
+    .img {
+      width: 188px;
+      margin-right: 40px;
+
+      img {
+        width: 180px;
+        height: 180px;
+        padding: 3px;
+        border: 1px solid #d5d5d5;
+      }
+    }
+
+    .info-content {
+      flex: 1;
+
+      .name-wrap {
+        display: flex;
+        align-items: center;
+        padding-bottom: 16px;
+        border-bottom: 1px solid #ddd;
+
+        .name {
+          font-size: 24px;
+          line-height: 30px;
+          margin-top: 3px;
+          margin-right: 16px;
+          color: #000;
+        }
+
+        .level {
+          flex: 1;
+          font-style: italic;
+          color: #e03a24;
+          display: flex;
+          align-items: center;
+        }
+
+        .blue {
+          .semi-icon {
+            color: skyblue;
+          }
+        }
+
+        .pink {
+          .semi-icon {
+            color: pink;
+          }
+        }
+      }
+
+      .user-nums {
+          display: flex;
+          margin-bottom: 5px;
+          margin-top: 5px;
+
+          .box {
+              display: flex;
+              flex-direction: column;
+              margin-right: 20px;
+              padding: 0 40px 0 20px;
+              border-right: 1px solid #ddd;
+              line-height: 30px;
+              cursor: pointer;
+
+              &:hover {
+                  color: skyblue;
+              }
+          }
+
+          .box:last-child {
+              border-right: none;
+          }
+
+          .box:first-child {
+              padding-left: 0;
+          }
+      }
+
+      .item {
+          margin-bottom: 5px;
+          line-height: 21px;
+          font-size: 12px;
+
+          .semi-icon {
+              vertical-align: text-bottom;
+          }
+      }
+
+      .user-city {
+          line-height: 21px;
+          margin-bottom: 5px;
+
+          .item {
+              margin-right: 32px;
+          }
+      }
+    }
+  }
+
+  .record-header {
+      display: flex;
+      color: #666;
+      position: relative;
+      align-items: center;
+      border-bottom: 2px solid #c20c0c;
+
+      h3 {
+          font-size: 20px;
+      }
+
+      h4 {
+          display: inline;
+          margin: 5px 10px 0;
+          line-height: 25px;
+          font-weight: 400;
+          font-size: 12px;
+      }
+
+      .nav {
+          position: absolute;
+          right: 0;
+          font-size: 12px;
+
+          .item {
+              cursor: pointer;
+          }
+
+          .active {
+              font-weight: 700;
+              color: #333;
+          }
+
+          .line {
+              margin: 0 8px;
+          }
+      }
+  }
+
+  .more {
+      font-size: 12px;
+      color: #666;
+      height: 32px;
+      line-height: 32px;
+      text-align: right;
+      cursor: pointer;
+      margin-bottom: 36px;
+
+      .semi-icon {
+          vertical-align: text-bottom;
+      }
+  }
+  .playlist {
+      position: relative;
+      font-size: 20px;
+      color: #333;
+      height: 33px;
+      border-bottom: 2px solid #c20c0c;
+      .r {
+          position: absolute;
+          top: 1px;
+          margin-right: 4px;
+          width: 12px;
+          display: inline-block;
+          height: 12px;
+          background: url("https://s2.music.126.net/style/web2/img/black-r-icon@3x.png?b67cdd7b7fc911c7c268add7da5d5dc1") no-repeat;
+      }
+  }
+
+  .list-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      margin: 20px 0 0 -50px;
+  }
+}

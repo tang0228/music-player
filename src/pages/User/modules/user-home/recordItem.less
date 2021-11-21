@@ -1,0 +1,87 @@
+.record-item {
+    display: flex;
+    padding-left: 16px;
+    box-sizing: border-box;
+    height: 38px;
+    color: #666;
+    line-height: 38px;
+
+    &.even {
+        background: rgb(247, 247, 247);
+    }
+
+    &:hover {
+        background: rgb(247, 247, 247);
+
+        .operates {
+            display: block;
+        }
+    }
+
+    .hd {
+        display: flex;
+        align-items: center;
+        .hd-index {
+            font-size: 16px;
+            width: 50px;
+        }
+
+        margin-right: 12px;
+    }
+
+    .singer {
+        flex: 1;
+        .music-name {
+            font-size: 12px;
+            color: #333;
+            font-weight: bold;
+            margin-right: 12px;
+        }
+
+        .divider {
+            color: #eaeaea;
+            font-size: 12px;
+            margin-right: 4px;
+        }
+
+        .singer-name {
+            font-size: 12px;
+            color: #aeaeae;
+            cursor: pointer;
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+
+    .operates {
+        margin-right: 6px;
+        display: none;
+        .semi-icon {
+            display: inline-block;
+            margin-right: 6px;
+            cursor: pointer;
+            
+        }
+    }
+
+    .tops {
+        width: 319px;
+        font-size: 12px;
+        color: #666;
+        position: relative;
+
+        .bg {
+            position: absolute;
+            background-color: #4eb4f5;
+            opacity: .1;
+            z-index: 1;
+            height: 38px;
+        }
+
+        .text {
+            margin-left: 12px;
+        }
+    }
+}

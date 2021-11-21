@@ -132,9 +132,6 @@ export default function Search() {
         <Tabs
           type="card"
           onChange={tabChange}
-          onTabClick={(key, e) => {
-            setType(key);
-          }}
         >
           {tabpanes}
         </Tabs>

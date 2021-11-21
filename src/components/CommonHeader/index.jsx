@@ -49,7 +49,7 @@ function CommonHeader(props) {
     }
     history.push(`/search?keywords=${keyword}`);
   }, [keyword, history]);
-
+//   退出登录
   const handleLogout = useCallback(async () => {
     const res = await logout();
     if (res.code === 200) {
@@ -66,6 +66,13 @@ function CommonHeader(props) {
       });
     }
   }, []);
+  // 去用户主页
+  const toUserHome = useCallback(
+      () => {
+          history.push(`/user/home?uid=${user.userId}`)
+      },
+      [],
+  )
 
   const lis = navList.map((nav) => (
     <NavLink to={nav.url} key={nav.url} className="nav-link">
@@ -103,7 +110,7 @@ function CommonHeader(props) {
               position={"bottom"}
               render={
                 <Dropdown.Menu>
-                  <Dropdown.Item>
+                  <Dropdown.Item onClick={toUserHome}>
                     <IconUser />
                     我的主页
                   </Dropdown.Item>
