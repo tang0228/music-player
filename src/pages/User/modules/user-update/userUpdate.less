@@ -20,6 +20,9 @@
       }
     }
   }
+  .user-box {
+      display: flex;
+  }
   .update-wrap {
       width: 340px;
       margin-right: 30px;
@@ -48,6 +51,35 @@
       .btn-wrap {
           margin-top: 40px;
           padding-left: 38px;
+      }
+  }
+
+  .user-avatar {
+      position: relative;
+      width: 140px;
+      height: 140px;
+      img {
+          height: 140px;
+          width: 140px;
+      }
+
+      .bg {
+          background-color: #8e8e8e;
+          opacity: .8;
+          color: #fff;
+          line-height: 26px;
+          text-align: center;
+          width: 140px;
+          height: 26px;
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          font-size: 12px;
+          cursor: pointer;
+
+          &:hover {
+              text-decoration: underline;
+          }
       }
   }
 }

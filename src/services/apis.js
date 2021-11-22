@@ -133,3 +133,19 @@ export async function updateUserInfo({gender,birthday,nickname, province, city, 
     });
     return res;
 };
+
+// 刷新登录
+export async function loginRefresh() {
+    const res = await ins.get("/login/refresh");
+    return res;
+};
+
+// 获取用户绑定信息
+export async function getUserBindInfo({uid}) {
+    const res = await ins.get("/user/binding", {
+        params: {
+            uid
+        }
+    });
+    return res;
+}
