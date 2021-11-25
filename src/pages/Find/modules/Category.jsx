@@ -3,6 +3,8 @@ import "./category.less";
 import { getPlayListCat } from "../../../services/apis";
 import CatSelect from './CatSelect';
 import { Button } from "@douyinfe/semi-ui";
+import qs from "query-string";
+import { useLocation } from "react-router-dom";
 
 function transferCat(cat, sub) {
     let newCat = [];
@@ -20,8 +22,9 @@ function transferCat(cat, sub) {
 }
 
 export default function Category() {
+    const location = useLocation();
     const [categories, setCategories] = useState();
-    const [cat, setCat] = useState("");
+    const [cat, setCat] = useState(qs.parse(location.search).cat);
     useEffect(() => {
         (async () => {
             const res = await getPlayListCat();
@@ -41,7 +44,7 @@ export default function Category() {
     return (
         <div className="cat-container">
             <div className="cat-select">
-                <span>{cat ? cat : '全部'}</span>
+                <span className="cat-title">{cat ? cat : '全部'}</span>
                 <CatSelect categories={categories} catChange={catChange} />
             </div>
             <Button type="danger">热门</Button>

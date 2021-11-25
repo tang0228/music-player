@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from "react";
-import { withRouter, useHistory } from "react-router-dom";
+import { withRouter, useHistory, useLocation } from "react-router-dom";
 import navList from "../../common/navList";
 import "./index.less";
 import { NavLink } from "react-router-dom";
@@ -18,6 +18,7 @@ import { delUserAction } from "../../store/actions/user";
 import { connect } from "react-redux";
 import { logout } from "../../services/apis";
 import Login from "../Login";
+import SubNav from "../SubNav";
 const mapStateToProps = (state) => {
   return {
     user: state.user,
@@ -33,6 +34,8 @@ const mapDispatchToProps = (dispatch) => {
 function CommonHeader(props) {
   const { user, delUser } = props;
   const history = useHistory();
+  const location = useLocation();
+  let showSubNav = location.pathname.startsWith('/find'); // 路径是否以 /find 开头
   const [keyword, setKeyword] = useState(""); // 搜索的关键词
   const [visible, setVisible] = useState(false);
   const keywordChange = useCallback((val) => {
@@ -154,7 +157,7 @@ function CommonHeader(props) {
           </Button>
         )}
       </div>
-      <div className="sub-nav"></div>
+      {showSubNav ? <SubNav /> : <div className="sub-nav"></div>}
       <Login
         visible={visible}
         closeModal={() => {

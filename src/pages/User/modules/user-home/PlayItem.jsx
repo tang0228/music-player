@@ -5,7 +5,7 @@ import { IconCustomerSupport, IconPlayCircle } from "@douyinfe/semi-icons";
 export default function PlayItem(props) {
     const item = props.item;
   return (
-    <div className="play-item">
+    <div className="play-item-wrap">
       <div className="img-wrap" title={item.name}>
         <img src={item.coverImgUrl} alt="" />
         <div className="bottom">
