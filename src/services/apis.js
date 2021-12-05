@@ -148,4 +148,24 @@ export async function getUserBindInfo({uid}) {
         }
     });
     return res;
+};
+
+// 获取歌曲播放链接
+export async function getMusicPlayUrl({id}) {
+    const res = await ins.get("/song/url", {
+        params: {
+            id,
+        }
+    });
+    return res;
+};
+
+// 检查歌曲是否可以播放
+export async function checkMusic({id}) {
+    const res = await ins.get("/check/music", {
+        params: {
+            id
+        }
+    });
+    return res;
 }

@@ -23,7 +23,7 @@ export default function PlayList() {
       const res = await getPlaylist({
         offset: (page - 1) * limit,
         limit,
-        cat
+        cat,
       });
       if (res.code === 200) {
         // 去重
