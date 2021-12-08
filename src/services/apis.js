@@ -168,4 +168,14 @@ export async function checkMusic({id}) {
         }
     });
     return res;
+};
+
+// 获取歌单详情
+export async function getPlayListDetail({id}) {
+    const res = await ins.get("/playlist/detail", {
+        params: {
+            id
+        }
+    });
+    return res;
 }

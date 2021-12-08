@@ -1,5 +1,5 @@
 import React from "react";
-import { Switch, BrowserRouter as Router, Route, Redirect } from "react-router-dom"
+import { Switch, BrowserRouter as Router, Route } from "react-router-dom"
 import "./app.less";
 import { Layout, BackTop } from '@douyinfe/semi-ui';
 import CommonHeader from "./components/CommonHeader";
@@ -12,6 +12,7 @@ import Friend from "./pages/Friend";
 import User from "./pages/User"
 import UserHome from "./pages/User/modules/user-home/UserHome";
 import UserUpdate from "./pages/User/modules/user-update/UserUpdate";
+import PlaylistDetail from "./pages/Find/modules/components/PlaylistDetail.tsx";
 
 function App() {
     const { Header, Footer, Content } = Layout;
@@ -27,6 +28,7 @@ function App() {
                         <Route path="/find" render={() =>(
                             <Find>  
                                 <Route exact path="/find/playlist" component={PlayList}></Route>
+                                <Route exact path="/find/playlist/detail" component={PlaylistDetail}></Route>
                             </Find>
                         )}>
                         </Route>

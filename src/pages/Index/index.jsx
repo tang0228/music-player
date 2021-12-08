@@ -1,10 +1,10 @@
 import React, {} from 'react';
-import "./index.less";
+import style from  "./index.module.less";
 
 export default function Index() {
     return (
-        <div className="main-container">
-            index
+        <div className={style.main_container}>
+            <span className="text">hhh</span>
         </div>
     )
 }
