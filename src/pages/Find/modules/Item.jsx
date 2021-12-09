@@ -7,7 +7,7 @@ import { useHistory } from "react-router-dom";
 export default function Item(props) {
   const history = useHistory();
   const toPlayListDetail = useCallback(async (id) => {
-    history.push(`/find/playlist/detail`, id);
+    history.push(`/find/playlist/detail?id=${id}`);
   }, []);
   return (
     <li className="item-wrapper">

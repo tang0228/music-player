@@ -1,4 +1,5 @@
 import Cookie from "js-cookie";
+import day from "dayjs";
 
 const utils = {
     /**
@@ -58,6 +59,9 @@ const utils = {
     getCookie(key) {
         return Cookie.get(key);
     },
+    formatDate(time) {
+        return day(time).format('YYYY-MM-DD')
+    }
 };
 
 export default utils;

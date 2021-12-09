@@ -10,5 +10,6 @@ module.exports = {
     ],
     'rules': {
         'consistent-return': 'off',
-    }
+    },
+    "parser": "babel-eslint",
 }

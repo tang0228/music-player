@@ -12,7 +12,7 @@ import Friend from "./pages/Friend";
 import User from "./pages/User"
 import UserHome from "./pages/User/modules/user-home/UserHome";
 import UserUpdate from "./pages/User/modules/user-update/UserUpdate";
-import PlaylistDetail from "./pages/Find/modules/components/PlaylistDetail.tsx";
+import PlaylistDetail from "./pages/Find/modules/components/PlaylistDetail.jsx";
 
 function App() {
     const { Header, Footer, Content } = Layout;
