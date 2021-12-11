@@ -21,7 +21,7 @@ const utils = {
         var h = parseInt((mss / (1000 * 60 * 60)) % 60);
         var m = parseInt((mss / (1000 * 60)) % 60);
         var s = parseInt((mss / 1000) % 60);
-        return `${h > 0 ? this.paddingLeft(h) + ':' : ''}${m > 0 ? this.paddingLeft(m) + ':' : ""}${s > 0 ? this.paddingLeft(s) + '' : ""}`;
+        return `${h > 0 ? this.paddingLeft(h) + ':' : ''}${m > 0 ? this.paddingLeft(m) + ':' : "00"}${s > 0 ? this.paddingLeft(s) + '' : "00"}`;
     },
     // 对象数组去重
     unique(arr) {

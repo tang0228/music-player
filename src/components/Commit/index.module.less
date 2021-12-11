@@ -1,0 +1,45 @@
+.commit {
+    :global {
+        .commit-header {
+            height: 33px;
+            border-bottom: 2px solid #c20c0c;
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            .title {
+                font-size: 20px;
+                color: #333;
+            }
+            .nums {
+                color: #666;
+                font-size: 12px;
+                margin: 9px 0 0 20px;
+            }
+        }
+        .commit-wrap {
+            display: flex;
+            img {
+                width: 50px;
+                height: 50px;
+                margin-right: 16px;
+            }
+            .commit-content {
+                position: relative;
+                flex: 1;
+                .commit-opearte {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    margin-top: 10px;
+                    .semi-icon {
+                        cursor: pointer;
+                    }
+                }
+                .emoji-box {
+                    position: absolute;
+                    z-index: 999;
+                }
+            }
+        }
+    }
+}

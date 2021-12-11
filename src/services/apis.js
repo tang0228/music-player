@@ -178,4 +178,20 @@ export async function getPlayListDetail({id}) {
         }
     });
     return res;
+};
+
+//  获取热门歌单
+export async function getHotPlayList() {
+    const res = await ins.get("/playlist/hot");
+    return res;
+};
+
+// 歌单评论列表
+export async function getPlayListCommit({id, limit, offset, before}) {
+    const res = await ins.get("/comment/playlist", {
+        params: {
+            id, limit, offset, before
+        }
+    });
+    return res;
 }

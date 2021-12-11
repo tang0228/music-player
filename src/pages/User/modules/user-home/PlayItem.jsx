@@ -1,12 +1,16 @@
 import React from "react";
 import "./playItem.less";
 import { IconCustomerSupport, IconPlayCircle } from "@douyinfe/semi-icons";
+import { useHistory } from "react-router-dom";
 
 export default function PlayItem(props) {
     const item = props.item;
+    const history = useHistory();
   return (
     <div className="play-item-wrap">
-      <div className="img-wrap" title={item.name}>
+      <div className="img-wrap" title={item.name} onClick={() => {
+          history.push("/find/playlist/detail?id=" + item.id)
+      }}>
         <img src={item.coverImgUrl} alt="" />
         <div className="bottom">
           <IconCustomerSupport />
@@ -16,7 +20,9 @@ export default function PlayItem(props) {
           <IconPlayCircle />
         </div>
       </div>
-      <div className="name">{item.name}</div>
+      <div className="name" onClick={() => {
+          history.push("/find/playlist/detail?id=" + item.id)
+      }}>{item.name}</div>
     </div>
   );
 }

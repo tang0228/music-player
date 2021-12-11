@@ -2,7 +2,7 @@
     :global {
         .top-content {
             display: flex;
-            padding-right: 30px;
+            margin-bottom: 27px;
             .img {
                 width: 208px;
                 height: 208px;
@@ -15,7 +15,6 @@
                     height: 200px;
                 }
             }
-            
             .list-content {
                 .list-name {
                     font-size: 20px;
@@ -38,6 +37,10 @@
                         font-size: 12px;
                         color: #0c73c2;
                         margin-left: 16px;
+                        text-decoration: none;
+                        &:hover {
+                            text-decoration: underline;
+                        }
                     }
                     .create-time {
                         color: #999;
@@ -47,6 +50,10 @@
                 }
                 .operates {
                     margin-bottom: 25px;
+                    .toComment {
+                        color: #1c1f32;
+                        text-decoration: none;
+                    }
                 }
                 .tags {
                     display: flex;
@@ -54,12 +61,82 @@
                     margin-bottom: 5px;
                     color: #666;
                     font-size: 12px;
+                    .semi-tag {
+                        border: 1px solid #ddd;
+                        &:hover {
+                            background-color: #fff;
+                        }
+                    }
+                    .item {
+                        color: #1c1f32;
+                        text-decoration: none;
+                    }
                 }
                 .desc {
                     color: #666;
                     font-size: 12px;
                     white-space: pre-wrap;
                     line-height: 20px;
+                }
+            }
+        }
+        .music-list {
+            margin-bottom: 40px;
+            .list-header {
+                display: flex;
+                border-bottom: 2px solid #c20c0c;
+                height: 33px;
+                align-items: center;
+                .title {
+                    color: #333;
+                    font-size: 20px;
+                    margin-right: 20px;
+                }
+                .total {
+                    color: #666;
+                    font-size: 12px;
+                    margin-top: 9px;
+                    flex: 1;
+                }
+                .play-num {
+                    font-size: 12px;
+                    color: #666;
+                    .num {
+                        color: #c20c0c;
+                    }
+                }
+            }
+            .list-wrap {
+                .table-header {
+                    display: flex;
+                    color: #666;
+                    font-size: 12px;
+                    height: 38.5px;
+                    align-items: center;
+                    background-color: #f7f7f7;
+                    border: 1px solid #ddd;
+                    .bd {
+                        border-left: 1px solid #ddd;
+                        height: 100%;
+                        line-height: 38.5px;
+                        padding-left: 10px;
+                        box-sizing: border-box;
+                    }
+                    .play-num {
+                        width: 74px;
+                    }
+                    .title {
+                        flex: 1;
+                    }
+                    .duration {
+                        width: 111px;
+                    }
+                    .name {
+                        width: 14%;
+                    }
+                    .album {
+                        width: 20%;
+                    }
                 }
             }
         }

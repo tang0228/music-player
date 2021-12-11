@@ -55,7 +55,6 @@ export default function PlayList() {
             total={total}
             currentPage={page}
             onPageChange={handlePageChange}
-            ƒ
             showSizeChanger
             pageSize={limit}
             pageSizeOpts={[15, 35, 70]}
