@@ -31,11 +31,17 @@
 
     .singer {
         flex: 1;
+        display: flex;
+        align-items: center;
         .music-name {
             font-size: 12px;
             color: #333;
             font-weight: bold;
             margin-right: 12px;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+            width: 200px;
         }
 
         .divider {
@@ -48,6 +54,10 @@
             font-size: 12px;
             color: #aeaeae;
             cursor: pointer;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+            width: 100px;
 
             &:hover {
                 text-decoration: underline;

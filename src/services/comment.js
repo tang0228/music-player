@@ -19,4 +19,16 @@ export async function getCommentList({id, type, pageNo = 1, pageSize = 20}) {
         }
     });
     return res;
+};
+
+/**
+ * 发送（回复）评论
+ */
+export async function comment({t, type, id, content, commentId}) {
+    const res = await ins.get("/comment", {
+        params: {
+            t, type, id, content, commentId
+        }
+    });
+    return res;
 }

@@ -4,10 +4,18 @@ import "./userHome.less";
 import qs from "query-string";
 import { getUserDetail, getUserRecord, getUserPlayList } from "../../../../services/apis";
 import { Button, Popover } from "@douyinfe/semi-ui";
-import { IconFemale, IconMale, IconWeibo, IconInfoCircle, IconChevronRight } from "@douyinfe/semi-icons";
+import { IconPlus, IconFemale, IconMale, IconComment, IconWeibo, IconInfoCircle, IconChevronRight } from "@douyinfe/semi-icons";
 import RecordItem from './RecordItem';
 import PlayItem from './PlayItem';
-export default function UserHome(props) {
+import { connect } from "react-redux";
+
+const mapStateToProps = (state) => {
+    return {
+        user: state.user
+    }
+};
+function UserHome(props) {
+    const {user} = props;
     const location = useLocation();
     const history = useHistory();
     const uid = qs.parse(location.search).uid; // 用户id
@@ -62,7 +70,6 @@ export default function UserHome(props) {
         return () => {
         }
     }, [uid])
-
     return (
         <div className="user-home-container">
             { userInfo ? <div className="user-info">
@@ -73,9 +80,12 @@ export default function UserHome(props) {
                     <div className="name-wrap">
                         <span className="name">{userInfo.profile.nickname}</span>
                         <span className={userInfo.profile.gender === 1 ? 'level blue' : 'level pink'}>LV. {userInfo.level} {userInfo.profile.gender === 1 ? <IconMale /> : <IconFemale /> }</span>
-                        <Button type="tertiary" onClick={() => {
+                        {user.userId === uid ? <Button type="tertiary" onClick={() => {
                             history.push(`/user/update?uid=${uid}`)
-                        }}>编辑个人资料</Button>
+                        }}>编辑个人资料</Button> : <div className="btns">
+                            <Button icon={<IconComment />} type="tertiary">发私信</Button>
+                            <Button icon={<IconPlus />} >关注</Button>
+                        </div>}
                     </div>
                     <div className="user-nums">
                         <div className="box">
@@ -92,10 +102,10 @@ export default function UserHome(props) {
                         </div>
                     </div>
                     <div className="item">个人介绍：{userInfo.profile.signature}</div>
-                    <div className="user-city">
+                    {/* <div className="user-city">
                         <span className="item">所在地区：浙江省 - 杭州市</span>
                         <span className="item">年龄：00后</span>
-                    </div>
+                    </div> */}
                     <div className="item">社交网络：<IconWeibo /></div>
                 </div>
             </div> : null}
@@ -124,7 +134,7 @@ export default function UserHome(props) {
             </ul>
             <div className="more">查看更多<IconChevronRight /></div>
             <div className="playlist">
-                我创建的歌单
+                {userInfo ? (user.userId === uid ? '我' : userInfo.profile.nickname) : null}创建的歌单
                 <span className="r"></span>
                 （{playList.length}）
             </div>
@@ -133,4 +143,6 @@ export default function UserHome(props) {
             </div>
         </div>
     )
-}
+};
+
+export default connect(mapStateToProps)(UserHome);

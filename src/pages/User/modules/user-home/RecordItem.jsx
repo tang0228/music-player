@@ -20,11 +20,11 @@ export default function RecordItem(props) {
       <div className="singer">
         <span className="music-name">{record.song.name}</span>
         <span className="divider">-</span>
-        {record.song.ar.map((a, i) => (
-          <span key={a.id} className="singer-name">
-            {i === 0 ? a.name : "/" + a.name}
-          </span>
-        ))}
+        <span className="singer-name">
+          {record.song.ar.map((a, i) => (
+            <span key={a.name}>{i === 0 ? a.name : "/" + a.name}</span>
+          ))}
+        </span>
       </div>
       <div className="operates">
         <IconPlus />
@@ -33,9 +33,12 @@ export default function RecordItem(props) {
         <IconDownload />
       </div>
       <div className="tops">
-        <span className="bg" style={{
-            width: `${record.score}%`
-        }}></span>
+        <span
+          className="bg"
+          style={{
+            width: `${record.score}%`,
+          }}
+        ></span>
         <span className="text">{record.playCount}次</span>
       </div>
     </li>

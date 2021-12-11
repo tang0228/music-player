@@ -25,7 +25,7 @@ export default function DetailRight(props) {
         <h3 className="title">喜欢这个歌单的人</h3>
         <div className="like-wrap">
           {detail.subscribers.map((s) => (
-              <Link key={s.userId} to={'/user/home?id=' + s.userId }><Avatar src={s.avatarUrl} shape="square" /></Link>
+              <Link key={s.userId} to={'/user/home?uid=' + s.userId }><Avatar src={s.avatarUrl} shape="square" /></Link>
           ))}
         </div>
       </div>
@@ -36,7 +36,7 @@ export default function DetailRight(props) {
                   <img src={l.coverImgUrl} alt="" />
                   <div className="desc">
                       <Link to={'/find/playlist/detail?id=' + l.id} className="sub-title">{l.name}</Link>
-                      <span className="text">by <Link to={'/user/home?id=' + l.creator.userId} className="name">{l.creator.nickname}</Link></span>
+                      <span className="text">by <Link to={'/user/home?uid=' + l.creator.userId} className="name">{l.creator.nickname}</Link></span>
                   </div>
               </div>) : null}
               

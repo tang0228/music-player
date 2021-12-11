@@ -27,7 +27,7 @@ function Commit(props) {
   const showEmojiSelect = () => {
     setShowEmoji(!showEmoji);
   };
-  const commit = async () => {
+  const commit = () => {
     // 回传给父组件
       props.commit && props.commit(commitText)
   }
