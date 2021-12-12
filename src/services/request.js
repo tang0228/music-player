@@ -11,7 +11,7 @@ ins.interceptors.response.use(res => {
         return Promise.reject(res);
     }
 }, error => {
-    console.log(error);
+    
 })
 
 export default ins;

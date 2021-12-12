@@ -8,6 +8,7 @@ import {
   IconDownload,
 } from "@douyinfe/semi-icons";
 import utils from "../../../../utils";
+import { Link } from "react-router-dom";
 
 export default function RecordItem(props) {
   const { record, index } = props;
@@ -18,11 +19,11 @@ export default function RecordItem(props) {
         <IconPlayCircle />
       </div>
       <div className="singer">
-        <span className="music-name">{record.song.name}</span>
+        <Link to={'/song?id=' + record.song.id} className="music-name">{record.song.name}</Link>
         <span className="divider">-</span>
         <span className="singer-name">
           {record.song.ar.map((a, i) => (
-            <span key={a.name}>{i === 0 ? a.name : "/" + a.name}</span>
+            <Link className="name" to={'/artist?id=' + a.id} key={a.name}>{i === 0 ? a.name : "/" + a.name}</Link>
           ))}
         </span>
       </div>

@@ -12,12 +12,17 @@ import Friend from "./pages/Friend";
 import User from "./pages/User"
 import UserHome from "./pages/User/modules/user-home/UserHome";
 import UserUpdate from "./pages/User/modules/user-update/UserUpdate";
-import PlaylistDetail from "./pages/Find/modules/components/PlaylistDetail.jsx";
+import PlaylistDetail from "./pages/Find/modules/playListDetail/PlaylistDetail.jsx";
+import SongDetail from "./pages/Song/SongDetail";
+import ArtistDetail from "./pages/Artist/ArtistDetail";
+import AlbumDetail from "./pages/Album/AlbumDetail";
 
 function App() {
     const { Header, Footer, Content } = Layout;
     return (
-        <Router>
+        <Router getUserConfirmation={(msg, cb) => {
+            console.log(msg)
+        }}>
             <Layout className="components-layout-demo">
                 <Header>
                     <CommonHeader />
@@ -32,6 +37,9 @@ function App() {
                             </Find>
                         )}>
                         </Route>
+                        <Route exact path="/song" component={SongDetail}></Route>
+                        <Route exact path="/artist" component={ArtistDetail}></Route>
+                        <Route exact path="/album" component={AlbumDetail}></Route>
                         <Route exact path="/mymusic"></Route>
                         <Route exact path="/friend" component={Friend}></Route>
                         <Route exact path="/mall"></Route>

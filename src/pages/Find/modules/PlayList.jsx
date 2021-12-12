@@ -20,7 +20,6 @@ export default function PlayList() {
   useEffect(() => {
     (async () => {
       setLoading(true);
-      console.log(123)
       const res = await getPlaylist({
         offset: (page - 1) * limit,
         limit,

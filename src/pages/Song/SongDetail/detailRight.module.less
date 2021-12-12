@@ -1,0 +1,97 @@
+.detail-right {
+    padding-left: 30px;
+    box-sizing: border-box;
+    :global {
+        .play-simi {
+            .title {
+                font-size: 12px;
+                color: #333;
+                font-weight: bold;
+                border-bottom: 1px solid #ccc;
+                height: 23px;
+                margin-bottom: 20px;
+            }
+            .simi-content {
+                .simi-item {
+                    height: 50px;
+                    display: flex;
+                    margin-bottom: 15px;
+                    &.song-item {
+                        height: 32px;
+                        margin-bottom: 10px;
+                        line-height: 16px;
+                        align-items: center;
+                        .content {
+                            flex: 1;
+                        }
+                        .semi-icon {
+                            cursor: pointer;
+                        }
+                        .semi-icon:last-child {
+                            margin-left: 16px;
+                        }
+                    }
+                    img {
+                        width: 50px;
+                        height: 50px;
+                        cursor: pointer;
+                    }
+                    .desc {
+                        margin-left: 10px;
+                        line-height: 24px;
+                        display: flex;
+                        flex-direction: column;
+                        .sub-title {
+                            overflow: hidden;
+                            text-overflow: ellipsis;
+                            white-space: nowrap;
+                            font-size: 14px;
+                            width: 140px;
+                            display: inline-block;
+                            color: #000;
+                            text-decoration: none;
+                            &:hover {
+                                text-decoration: underline;
+                            }
+                        }
+                        .text {
+                            font-size: 12px;
+                            color: #999;
+                            .name {
+                                color: #666;
+                                display: inline-block;
+                                text-decoration: none;
+                                &:hover {
+                                    text-decoration: underline;
+                                }
+                            }
+                        }
+                    }
+                    .content {
+                        display: flex;
+                        flex-direction: column;
+                        font-size: 12px;
+                        .song-name {
+                            color: #333;
+                            font-size: 12px;
+                            text-decoration: none;
+                            &:hover {
+                                text-decoration: underline;
+                            }
+                        }
+                        .artists {
+                            .item {
+                                font-size: 12px;
+                                color: #999;
+                                text-decoration: none;
+                                &:hover {
+                                    text-decoration: underline;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

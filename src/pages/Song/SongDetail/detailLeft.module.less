@@ -1,0 +1,153 @@
+.detail-left {
+    :global {
+        .top-content {
+            display: flex;
+            margin-bottom: 27px;
+            .img {
+                width: 208px;
+                height: 208px;
+                border: 30px solid #000;
+                box-sizing: border-box;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin-right: 24px;
+                overflow: hidden;
+                flex-shrink: 0;
+                img {
+                    width: 200px;
+                    height: 200px;
+                    border-radius: 50%;
+                }
+            }
+            .list-content {
+                .list-name {
+                    font-size: 24px;
+                    color: #333;
+                    font-weight: bold;
+                }
+                .sub-name {
+                    margin-bottom: 22px;
+                    font-size: 14px;
+                    color: #bababa;
+                    margin-top: 5px;
+                }
+                .row {
+                    display: flex;
+                    font-size: 12px;
+                    align-items: center;
+                    margin-bottom: 20px;
+                    .wrap {
+                        .divider {
+                            color: #666;
+                            margin: 0 4px;
+                        }
+                        .item {
+                            color: #0c73c2;
+                            text-decoration: none;
+                            margin-left: 4px;
+                            &:hover {
+                                text-decoration: underline;
+                            }
+                        }
+                    }
+                }
+                
+                .operates {
+                    margin-bottom: 25px;
+                    .toComment {
+                        color: #1c1f32;
+                        text-decoration: none;
+                    }
+                }
+                .lyric {
+                    white-space: pre-wrap;
+                    color: #000;
+                    font-size: 12px;
+                    line-height: 20px;
+                    word-break: break-all;
+                }
+                .arrow {
+                    margin-top: 5px;
+                    font-size: 12px;
+                    color: #0c73c2;
+                    display: flex;
+                    align-items: center;
+                    cursor: pointer;
+                    &:hover {
+                        .text {
+                            text-decoration: underline;
+                        }
+                    }
+                }
+            }
+        }
+        .music-list {
+            margin-bottom: 40px;
+            .list-header {
+                display: flex;
+                border-bottom: 2px solid #c20c0c;
+                height: 33px;
+                align-items: center;
+                .title {
+                    color: #333;
+                    font-size: 20px;
+                    margin-right: 20px;
+                }
+                .total {
+                    color: #666;
+                    font-size: 12px;
+                    margin-top: 9px;
+                    flex: 1;
+                }
+                .play-num {
+                    font-size: 12px;
+                    color: #666;
+                    .num {
+                        color: #c20c0c;
+                    }
+                }
+            }
+            .list-wrap {
+                .table-header {
+                    display: flex;
+                    color: #666;
+                    font-size: 12px;
+                    height: 38.5px;
+                    align-items: center;
+                    background-color: #f7f7f7;
+                    border: 1px solid #ddd;
+                    .bd {
+                        border-left: 1px solid #ddd;
+                        height: 100%;
+                        line-height: 38.5px;
+                        padding-left: 10px;
+                        box-sizing: border-box;
+                    }
+                    .play-num {
+                        width: 74px;
+                    }
+                    .title {
+                        flex: 1;
+                    }
+                    .duration {
+                        width: 111px;
+                    }
+                    .name {
+                        width: 14%;
+                    }
+                    .album {
+                        width: 20%;
+                    }
+                }
+            }
+        }
+        .pagination-wrapper {
+            margin-top: 24px;
+            display: flex;
+            justify-content: center;
+        }
+    }
+    
+}

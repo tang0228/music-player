@@ -16,13 +16,13 @@ export default function CommitList(props) {
           {hotComments.map((c) => (
             <li className="comment-item" key={c.commentId}>
               <LazyLoad height={200}>
-                <Link to={"/user/home?uid=" + c.userId}>
+                <Link to={"/user/home?uid=" + c.user.userId}>
                   <img src={c.user.avatarUrl} alt="" />
                 </Link>
               </LazyLoad>
               <div className="comment-desc">
                 <p className="comment-content">
-                  <Link className="name" to={"/user/home?uid=" + c.userId}>
+                  <Link className="name" to={"/user/home?uid=" + c.user.userId}>
                     {c.user.nickname}
                   </Link>
                   <span className="divider">:</span>
@@ -54,7 +54,7 @@ export default function CommitList(props) {
           {comments.map((c) => (
             <li className="comment-item" key={c.commentId}>
               <LazyLoad height={200}>
-                <Link to={"/user/home?uid=" + c.userId}>
+                <Link to={"/user/home?uid=" + c.user.userId}>
                   <img src={c.user.avatarUrl} alt="" />
                 </Link>
               </LazyLoad>

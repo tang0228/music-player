@@ -18,11 +18,12 @@ function UserHome(props) {
     const {user} = props;
     const location = useLocation();
     const history = useHistory();
-    const uid = qs.parse(location.search).uid; // 用户id
+    const uid = +qs.parse(location.search).uid; // 用户id
     const [userInfo, setUserInfo] = useState(null); // 用户信息
     const [type, setType] = useState(1); // week or all
     const [recordList, setRecordList] = useState([]); // 播放记录
-    const [playList, setPlayList] = useState([]); // 我的歌单
+    const [playList, setPlayList] = useState([]); // 用户的歌单
+    const [likePlayList, setLikePlayList] = useState([]); // 用户收藏的歌单
 
     //获取用户信息
     useEffect(() => {
@@ -45,12 +46,14 @@ function UserHome(props) {
                 uid,
                 type,
             });
-            if(res.code === 200) {
+            if(res && res.code === 200) {
                 if(type === 1) {
                     setRecordList(res.weekData);
                 } else if(type === 0) {
                     setRecordList(res.allData);
                 }
+            } else {
+                setRecordList([]);
             }
         })();
         return () => {
@@ -64,7 +67,10 @@ function UserHome(props) {
                 uid,
             });
             if(res.code === 200) {
-                setPlayList(res.playlist);
+                let playList = res.playlist.filter(p => p.userId === uid);
+                let likePlayList = res.playlist.filter(p => p.userId !== uid);
+                setPlayList(playList);
+                setLikePlayList(likePlayList);
             }
         })();
         return () => {
@@ -109,31 +115,39 @@ function UserHome(props) {
                     <div className="item">社交网络：<IconWeibo /></div>
                 </div>
             </div> : null}
-            <div className="record-header">
-                <h3>听歌排行</h3>
-                <h4>累计听歌{recordList.length}首</h4>
-                <Popover content={
-                    <div style={{
-                        padding: 12,
-                    }}>实际播放时间过短的歌曲将不纳入计算。</div>
-                }>
-                    <IconInfoCircle />
-                </Popover>
-                <div className="nav">
-                    <span className={type === 1 ? 'item active' : 'item'} onClick={()=>{
-                        setType(1);
-                    }}>最近一周</span>
-                    <span className="line">|</span>
-                    <span className={type === 0 ? 'item active' : 'item'} onClick={() => {
-                        setType(0);
-                    }}>所有时间</span>
+            {/* 用户的播放记录，当前用户才可以访问 */}
+            {
+                recordList && recordList.length ? <>
+                <div className="record-header">
+                    <h3>听歌排行</h3>
+                    <h4>累计听歌{recordList.length}首</h4>
+                    <Popover content={
+                        <div style={{
+                            padding: 12,
+                        }}>实际播放时间过短的歌曲将不纳入计算。</div>
+                    }>
+                        <IconInfoCircle />
+                    </Popover>
+                    <div className="nav">
+                        <span className={type === 1 ? 'item active' : 'item'} onClick={()=>{
+                            setType(1);
+                        }}>最近一周</span>
+                        <span className="line">|</span>
+                        <span className={type === 0 ? 'item active' : 'item'} onClick={() => {
+                            setType(0);
+                        }}>所有时间</span>
+                    </div>
                 </div>
-            </div>
-            <ul className="record-list">
-                {recordList ? recordList.slice(0, 10).map((r, i) => <RecordItem key={r.song.id} record={r} index={i + 1}></RecordItem>) : null}
-            </ul>
-            <div className="more">查看更多<IconChevronRight /></div>
-            <div className="playlist">
+                <ul className="record-list">
+                    {recordList ? recordList.slice(0, 10).map((r, i) => <RecordItem key={r.song.id} record={r} index={i + 1}></RecordItem>) : null}
+                </ul>
+                <div className="more">查看更多<IconChevronRight /></div>
+                </> : null
+            }
+            {/* 用户创建的歌单 */}
+            {
+                playList && playList.length ? <>
+                <div className="playlist">
                 {userInfo ? (user.userId === uid ? '我' : userInfo.profile.nickname) : null}创建的歌单
                 <span className="r"></span>
                 （{playList.length}）
@@ -141,6 +155,19 @@ function UserHome(props) {
             <div className="list-wrap">
                 {playList ? playList.map(p => <PlayItem item={p} key={p.id}></PlayItem>) : null}
             </div>
+                </> : null
+            }
+            
+            {/* 用户收藏的歌单 */}
+            {likePlayList && likePlayList.length ? <>
+                <div className="playlist">
+                {userInfo ? (user.userId === uid ? '我' : userInfo.profile.nickname) : null}收藏的歌单
+                <span className="r"></span>
+                （{likePlayList.length}）
+            </div>
+            <div className="list-wrap">
+                {likePlayList ? likePlayList.map(p => <PlayItem item={p} key={p.id}></PlayItem>) : null}
+            </div></> : null}
         </div>
     )
 };

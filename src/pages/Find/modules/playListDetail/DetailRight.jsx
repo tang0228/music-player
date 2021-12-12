@@ -21,14 +21,14 @@ export default function DetailRight(props) {
   }, []);
   return (
     <div className={style["detail-right"]}>
-      <div className="play-like">
+        {detail.subscribers.length ? <div className="play-like">
         <h3 className="title">喜欢这个歌单的人</h3>
         <div className="like-wrap">
           {detail.subscribers.map((s) => (
               <Link key={s.userId} to={'/user/home?uid=' + s.userId }><Avatar src={s.avatarUrl} shape="square" /></Link>
           ))}
         </div>
-      </div>
+      </div> : null}
       <div className="play-hot">
           <h3 className="title">热门歌单</h3>
           <div className="hot-content">

@@ -194,4 +194,52 @@ export async function getPlayListCommit({id, limit, offset, before}) {
         }
     });
     return res;
+};
+
+// 获取歌曲详情
+export async function getSongDetail({ids}) {
+    const res = await ins.get("/song/detail", {
+        params: { ids }
+    });
+    return res;
+};
+
+// 获取歌词
+export async function getLyric({id}) {
+    const res = await ins.get("/lyric", {
+        params: {
+            id
+        }
+    });
+    return res;
+};
+
+// 获取相似歌单（包含此歌曲的歌单)
+export async function getSimiPlayList({id}) {
+    const res = await ins.get("/simi/playlist", {
+        params: {
+            id
+        }
+    });
+    return res;
+};
+
+// 获取相似音乐
+export async function getSimiSong({id}) {
+    const res = await ins.get("/simi/song", {
+        params: {
+            id,
+        }
+    });
+    return res;
+};
+
+// 获取歌曲评论
+export async function getSongComment({id, limit, offset}) {
+    const res = await ins.get("/comment/music", {
+        params: {
+            id, limit, offset
+        }
+    });
+    return res;
 }

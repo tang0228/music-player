@@ -22,7 +22,11 @@
   .name {
     margin-left: 8px;
     flex: 1;
-    cursor: pointer;
+    color: #333;
+    text-decoration: none;
+    &:hover {
+        text-decoration: underline;
+    }
   }
 
   &:hover {
@@ -45,8 +49,12 @@
     overflow: hidden;
     text-overflow: ellipsis;
 
-    span {
-      cursor: pointer;
+    .singer-name {
+        color: #333;
+        text-decoration: none;
+        &:hover {
+            text-decoration: underline;
+        }
     }
   }
 
@@ -56,6 +64,11 @@
     overflow: hidden;
     text-overflow: ellipsis;
     cursor: pointer;
+    text-decoration: none;
+    color: #333;
+    &:hover {
+        text-decoration: underline;
+    }
   }
 
   .duration {
