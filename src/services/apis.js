@@ -242,4 +242,58 @@ export async function getSongComment({id, limit, offset}) {
         }
     });
     return res;
+};
+
+// 获取歌手详情
+export async function getArtistDetail({id}) {
+    const res = await ins.get("/artist/detail", {
+        params: {
+            id,
+        }
+    });
+    return res;
+};
+
+// 获取相似歌手
+export async function getSimiArtist({id}) {
+    const res = await ins.get("/simi/artist", {
+        params: {
+            id,
+        }
+    });
+    return res;
+};
+
+// 获取歌手热门作品已经歌手部分信息
+export async function getArtistSongs({id}) {
+    const res = await ins.get("/artists", {
+        params: {id}
+    });
+    return res;
+};
+
+// 获取歌手专辑
+export async function getArtistAlbums({id}) {
+    const res = await ins.get("/artist/album", {
+        params: {id}
+    });
+    return res;
+};
+
+// 获取歌手mv
+export async function getArtistMv({id}) {
+    const res = await ins.get("/artist/mv", {
+        params: {
+            id
+        }
+    });
+    return res;
+};
+
+// 获取歌手描述
+export async function getArtistDesc({id}) {
+    const res = await ins.get("/artist/desc", {
+        params: {id}
+    });
+    return res;
 }

@@ -16,6 +16,7 @@ export default function SongDetail() {
             const res = await getSongDetail({
                 ids,
             });
+            console.log(res)
             if(res.code === 200) {
                 setSongDetail(res.songs);
             }

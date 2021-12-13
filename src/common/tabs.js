@@ -1,5 +1,5 @@
 // 搜索的tabs
-const tabs = [
+export const searchTabs = [
     {text: "单曲", key: "1"},
     {text: "歌手", key: "100"},
     {text: "专辑", key: "10"},
@@ -10,4 +10,9 @@ const tabs = [
     {text: "用户", key: "1002"},
 ];
 
-export default tabs;
+export const artistTabs = [
+    {text: "热门作品", key: "song"},
+    {text: "所有专辑", key: "album"},
+    {text: "相关MV", key: "mv"},
+    {text: "艺人介绍", key: "desc"},
+]

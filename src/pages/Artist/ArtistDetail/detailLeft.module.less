@@ -1,0 +1,46 @@
+.detail-left {
+    :global {
+        .detail-header {
+            .name {
+                font-size: 24px;
+                color: #333;
+                height: 34px;
+                display: inline-block;
+            }
+            .alias {
+                font-size: 14px;
+                color: #999;
+                padding-left: 10px;
+                line-height: 32px;
+                display: inline-block;
+            }
+            .nav-wrap {
+                .img-wrap {
+                    img {
+                       width: 640px;
+                       height: 300px; 
+                       object-fit: cover;
+                    }
+                }
+                .artist-tabs {
+                    .semi-tabs {
+
+                        .semi-tabs-bar {
+                            display: flex;
+                
+                            .semi-tabs-tab {
+                                flex: 1;
+                                text-align: center;
+            
+                                &.semi-tabs-tab-active {
+                                    border-top: 2px solid #c20c0c;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            
+        }
+    }
+}

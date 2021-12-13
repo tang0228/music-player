@@ -24,7 +24,7 @@ import {
 import { IconSearch } from "@douyinfe/semi-icons";
 import "./index.less";
 import { search } from "../../services/apis";
-import tabs from "../../common/tabs";
+import {searchTabs} from "../../common/tabs";
 import SearchNote from "./modules/SearchNote";
 
 export default function Search() {
@@ -109,7 +109,7 @@ export default function Search() {
     })();
   }, [keywords, limit, page, type]);
 
-  const tabpanes = tabs.map((tab) => (
+  const tabpanes = searchTabs.map((tab) => (
     <TabPane key={tab.key} tab={tab.text} itemKey={tab.key}></TabPane>
   ));
   return (
