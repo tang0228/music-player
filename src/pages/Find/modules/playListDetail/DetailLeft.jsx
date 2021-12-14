@@ -122,8 +122,8 @@ function DetailLeft(props) {
           <div className="tags">
             标签：
             <Space>
-              {detail.tags.map((t, i) => (
-                <Tag key={i}>
+              {detail.tags.map((t) => (
+                <Tag key={t}>
                   <Link className="item" to={"/find/playlist?cat=" + t}>
                     {t}
                   </Link>

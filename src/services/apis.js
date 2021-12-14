@@ -273,18 +273,18 @@ export async function getArtistSongs({id}) {
 };
 
 // 获取歌手专辑
-export async function getArtistAlbums({id}) {
+export async function getArtistAlbums({id, limit, offset}) {
     const res = await ins.get("/artist/album", {
-        params: {id}
+        params: {id, limit, offset}
     });
     return res;
 };
 
 // 获取歌手mv
-export async function getArtistMv({id}) {
+export async function getArtistMv({id, limit, offset}) {
     const res = await ins.get("/artist/mv", {
         params: {
-            id
+            id, limit, offset
         }
     });
     return res;

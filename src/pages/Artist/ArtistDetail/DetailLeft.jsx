@@ -1,40 +1,25 @@
 import React, { useCallback, useEffect, useState } from "react";
 import style from "./detailLeft.module.less";
-import { Tabs, TabPane } from "@douyinfe/semi-ui";
+import { Tabs, TabPane, Empty } from "@douyinfe/semi-ui";
 import { artistTabs } from "../../../common/tabs";
-import {
-  getArtistSongs,
-  getArtistMv,
-  getArtistAlbums,
-  getArtistDesc,
-} from "../../../services/apis";
+import { getArtistSongs, getArtistDesc } from "../../../services/apis";
 import Desc from "./Desc";
+import Songs from "./Songs";
+import Mvs from "./Mvs";
+import Albums from "./Albums";
+import {
+  IllustrationConstruction,
+  IllustrationConstructionDark,
+} from "@douyinfe/semi-illustrations";
 
 export default function DetailLeft(props) {
   const { id } = props;
   const [tab, setTab] = useState("song");
   const [artistDetail, setArtistDetail] = useState(null);
   const [songs, setSongs] = useState([]); // 热门歌曲
-  const [albums, setAlbums] = useState([]); // 专辑
-  const [mvs, setMvs] = useState([]); // MV
   const [desc, setDesc] = useState(""); // 描述
   const [intro, setIntro] = useState([]); // 介绍
 
-  // 获取歌手MV
-  const getMvs = async () => {
-    const res = await getArtistMv({ id });
-    if(res.code === 200) {
-    console.log(res);
-        setMvs(res.mvs);
-    }
-  };
-  // 获取歌手专辑
-  const getAlbums = async () => {
-    const res = await getArtistAlbums({ id });
-    if(res.code === 200) {
-        setAlbums(res.hotAlbums);
-    }
-  };
   // 获取歌手歌曲（个人信息）
   const getDetail = async () => {
     const res = await getArtistSongs({ id });
@@ -46,25 +31,16 @@ export default function DetailLeft(props) {
   // 获取歌手描述
   const getDesc = async () => {
     const res = await getArtistDesc({ id });
-    if(res.code === 200) {
-        setDesc(res.briefDesc);
-        setIntro(res.introduction);
+    if (res.code === 200) {
+      setDesc(res.briefDesc);
+      setIntro(res.introduction);
     }
   };
   useEffect(() => {
     (async () => {
+      await getDetail();
       switch (tab) {
-        case "song":
-          await getDetail();
-          break;
-        case "album":
-          await getAlbums();
-          break;
-        case "mv":
-          await getMvs();
-          break;
         case "desc":
-          await getDetail();
           await getDesc();
           break;
         default:
@@ -72,7 +48,8 @@ export default function DetailLeft(props) {
       }
     })();
     return () => {};
-  }, [tab]);
+  }, [tab, id]);
+  // 切花tab
   const tabChange = useCallback((val) => {
     setTab(val);
   }, []);
@@ -98,12 +75,28 @@ export default function DetailLeft(props) {
             </div>
           </div>
           <div className="detail-content">
-            {
-                tab === 'desc' ? <Desc desc={desc} intro={intro} name={artistDetail.name} /> : null
-            }
+            {tab === "desc" ? (
+              <Desc desc={desc} intro={intro} name={artistDetail.name} />
+            ) : null}
+            {tab === "song" ? <Songs songs={songs} /> : null}
+            {tab === "mv" ? <Mvs total={artistDetail.mvSize} id={id} /> : null}
+            {tab === "album" ? (
+              <Albums total={artistDetail.albumSize} id={id} />
+            ) : null}
           </div>
         </div>
-      ) : null}
+      ) : (
+        <Empty
+          image={
+            <IllustrationConstruction style={{ width: 150, height: 150 }} />
+          }
+          darkModeImage={
+            <IllustrationConstructionDark style={{ width: 150, height: 150 }} />
+          }
+          description={"信息丢失"}
+          style={{ padding: 30 }}
+        />
+      )}
     </>
   );
 }

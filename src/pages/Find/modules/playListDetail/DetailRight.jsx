@@ -33,7 +33,7 @@ export default function DetailRight(props) {
           <h3 className="title">热门歌单</h3>
           <div className="hot-content">
               {list ? list.map(l => <div key={l.id} className="hot-item">
-                  <img src={l.coverImgUrl} alt="" />
+                <Link to={'/find/playlist/detail?id=' + l.id}><img src={l.coverImgUrl} alt="" /></Link>
                   <div className="desc">
                       <Link to={'/find/playlist/detail?id=' + l.id} className="sub-title">{l.name}</Link>
                       <span className="text">by <Link to={'/user/home?uid=' + l.creator.userId} className="name">{l.creator.nickname}</Link></span>

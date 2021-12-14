@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from "react";
 import style from "./detailRight.module.less";
-import { Avatar } from "@douyinfe/semi-ui";
 import {IconPlay, IconPlus} from "@douyinfe/semi-icons";
 import { Link } from "react-router-dom";
 import { getSimiPlayList, getSimiSong } from "../../../services/apis";
 
 export default function DetailRight(props) {
-  const {detail, id} = props;
+  const {id} = props;
   const [simiList, setSimiList] = useState([]); // 相似歌单
   const [simiSongs, setSimiSongs] = useState([]); // 相似歌曲
   // 获取相似歌单
