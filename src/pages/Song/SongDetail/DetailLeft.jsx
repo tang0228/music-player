@@ -101,8 +101,8 @@ function DetailLeft(props) {
           <div className="row">
               <span className="label">歌手：</span>
               <div className="wrap">
-                  {detail.ar.map((a, i) => (i === 0 ? <Link key={a.id} className="item" to={'/artist?uid=' + a.id}>{a.name}</Link> : 
-                    <span key={a.id} className="divider">/<Link className="item" to={'/artist?uid=' + a.id}>{a.name}</Link></span>
+                  {detail.ar.map((a, i) => (i === 0 ? <Link key={a.id} className="item" to={'/artist?id=' + a.id}>{a.name}</Link> : 
+                    <span key={a.id} className="divider">/<Link className="item" to={'/artist?id=' + a.id}>{a.name}</Link></span>
                 ))}
               </div>
           </div>

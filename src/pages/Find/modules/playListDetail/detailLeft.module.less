@@ -16,6 +16,7 @@
                 }
             }
             .list-content {
+                position: relative;
                 .list-name {
                     font-size: 20px;
                     color: #333;
@@ -77,6 +78,20 @@
                     font-size: 12px;
                     white-space: pre-wrap;
                     line-height: 20px;
+                    .arrow {
+                        display: flex;
+                        align-items: center;
+                        justify-content: flex-end;
+                        cursor: pointer;
+                        .text {
+                            color: #0c73c2;
+                        }
+                        &:hover {
+                            .text {
+                                text-decoration: underline;
+                            }
+                        }
+                    }
                 }
             }
         }

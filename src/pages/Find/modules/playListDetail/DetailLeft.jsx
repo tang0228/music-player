@@ -8,6 +8,8 @@ import {
   IconForward,
   IconDownload,
   IconComment,
+  IconChevronUp,
+  IconChevronDown,
 } from "@douyinfe/semi-icons";
 import utils from "../../../../utils";
 import TableItem from "./TableItem";
@@ -22,6 +24,7 @@ function DetailLeft(props) {
   const [limit, setLimit] = useState(20); // 页容量
   const [total, setTotal] = useState(0); // 总评论数
   const [loading, setLoading] = useState(false); // loading
+  const [open, setOpen] = useState(false);// 是否展开
   const detail = props.detail;
   // 提交评论
   const playListCommit = useCallback(async (val) => {
@@ -131,7 +134,15 @@ function DetailLeft(props) {
               ))}
             </Space>
           </div>
-          <div className="desc">介绍：{detail.description}</div>
+          <div className="desc">
+              介绍：{open ? detail.description : detail.description.split("\n").splice(0, 5).join("\n") + '...'}
+                <div className="arrow" onClick={() => {
+                    setOpen(!open);
+                }}>
+                    <span className="text">{open ? '收起' : '展开'}</span>
+                    {open ? <IconChevronUp /> : <IconChevronDown />}
+                </div>
+          </div>
         </div>
       </div>
       <div className="music-list">
