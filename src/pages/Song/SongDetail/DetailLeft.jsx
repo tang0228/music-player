@@ -40,9 +40,9 @@ function DetailLeft(props) {
       })();
       return () => {
       }
-  }, [])
+  }, [id])
   // 提交评论
-  const playListCommit = useCallback(async (val) => {
+  const songCommit = useCallback(async (val) => {
     const res = await comment({
       t: 1,
       type: 0,
@@ -136,7 +136,7 @@ function DetailLeft(props) {
       </div>
        <Commit
         commitNum={total}
-        commit={playListCommit}
+        commit={songCommit}
         commitLength={140}
       />
       <CommitList total={total} comments={comments} hotComments={hotComments} />

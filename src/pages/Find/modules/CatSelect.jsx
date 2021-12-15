@@ -38,7 +38,7 @@ export default function CatSelect(props) {
             history.push(`/find/playlist`)
           } else {
             props.catChange && props.catChange(name);
-            history.push(`/find/playlist?cat=${name}`)
+            history.push(`/find/playlist?cat=${window.encodeURIComponent(name)}`)
           }
       },
       [],

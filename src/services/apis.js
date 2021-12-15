@@ -296,4 +296,20 @@ export async function getArtistDesc({id}) {
         params: {id}
     });
     return res;
+};
+
+// 获取专辑内容
+export async function getAlbum({id}) {
+    const res = await ins.get("/album", {
+        params: {id}
+    });
+    return res;
+};
+
+// 获取专辑评论
+export async function getAlbumCommit({id, limit, offset}) {
+    const res = await ins.get("/comment/album", {
+        params: {id, limit, offset}
+    });
+    return res;
 }
