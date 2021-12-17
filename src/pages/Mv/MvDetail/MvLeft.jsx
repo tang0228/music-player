@@ -1,11 +1,11 @@
-import React, { useEffect, useState, useCallback } from "react";
+import React, { useEffect, useState } from "react";
 import style from "./mvLeft.module.less";
 import { Link } from "react-router-dom";
 import { IconLikeThumb, IconForward, IconPlus } from "@douyinfe/semi-icons";
-import { Button, Space, Spin, Pagination } from "@douyinfe/semi-ui";
+import { Button, Space, Spin, Pagination, Toast } from "@douyinfe/semi-ui";
 import { getMvNumInfo, getMvCommit } from "../../../services/mv";
 import Commit from "../../../components/Commit";
-import CommitList from "../../Find/modules/playListDetail/CommitList";
+import CommitList from "../../../components/CommitList/CommitList";
 import { comment } from "../../../services/comment";
 
 export default function MvLeft(props) {
@@ -60,7 +60,7 @@ export default function MvLeft(props) {
       id,
       limit,
       offset: (page - 1) * limit,
-    //   timestamp: Date.now(),
+      timestamp: Date.now(),
     });
     if (res.code === 200) {
       setLoading(false);

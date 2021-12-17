@@ -26,7 +26,7 @@ import {
   IllustrationConstructionDark,
 } from "@douyinfe/semi-illustrations";
 import Commit from "../../../components/Commit";
-import CommitList from "../../Find/modules/playListDetail/CommitList";
+import CommitList from "../../../components/CommitList/CommitList";
 import TableItem from "../../Find/modules/playListDetail/TableItem";
 
 export default function DetailLeft(props) {

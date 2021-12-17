@@ -13,7 +13,7 @@ import {
   IconChevronDown,
 } from "@douyinfe/semi-icons";
 import { getSongComment } from "../../../services/apis";
-import CommitList from "../../Find/modules/playListDetail/CommitList";
+import CommitList from "../../../components/CommitList/CommitList";
 import Commit from "../../../components/Commit";
 import { comment } from "../../../services/comment";
 
@@ -72,6 +72,7 @@ function DetailLeft(props) {
         id,
         limit,
         offset: (page - 1) * limit,
+        timestamp: Date.now(),
       });
       if (res.code === 200) {
         setLoading(false);

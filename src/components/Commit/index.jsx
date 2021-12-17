@@ -29,6 +29,7 @@ function Commit(props) {
   };
   const commit = () => {
     // 回传给父组件
+      setCommitText(""); // 输入框清空
       props.commit && props.commit(commitText)
   }
   return (
@@ -38,7 +39,7 @@ function Commit(props) {
         <span className="nums">共{props.commitNum}条评论</span>
       </div>
       <div className="commit-wrap">
-        <img src={user.avatarUrl} alt="" />
+        <img src={user ? user.avatarUrl : 'http://s4.music.126.net/style/web2/img/default/default_avatar.jpg?param=50y50'} alt="" />
         <div className="commit-content">
           <TextArea placeholder="评论" value={commitText} onChange={handleValueChange} maxCount={props.commitLength}></TextArea>
           <div className="commit-opearte">

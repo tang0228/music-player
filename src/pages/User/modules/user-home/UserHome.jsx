@@ -8,6 +8,7 @@ import { IconPlus, IconFemale, IconMale, IconComment, IconWeibo, IconInfoCircle,
 import RecordItem from './RecordItem';
 import PlayItem from './PlayItem';
 import { connect } from "react-redux";
+import LazyLoad from 'react-lazyload';
 
 const mapStateToProps = (state) => {
     return {
@@ -80,13 +81,15 @@ function UserHome(props) {
         <div className="user-home-container">
             { userInfo ? <div className="user-info">
                 <div className="img">
-                    <img src={userInfo.profile.avatarUrl} alt="" />
+                    <LazyLoad height={200}>
+                        <img src={userInfo.profile.avatarUrl} alt="" />
+                    </LazyLoad>
                 </div>
                 <div className="info-content">
                     <div className="name-wrap">
                         <span className="name">{userInfo.profile.nickname}</span>
                         <span className={userInfo.profile.gender === 1 ? 'level blue' : 'level pink'}>LV. {userInfo.level} {userInfo.profile.gender === 1 ? <IconMale /> : <IconFemale /> }</span>
-                        {user.userId === uid ? <Button type="tertiary" onClick={() => {
+                        {user && user.userId === uid ? <Button type="tertiary" onClick={() => {
                             history.push(`/user/update?uid=${uid}`)
                         }}>编辑个人资料</Button> : <div className="btns">
                             <Button icon={<IconComment />} type="tertiary">发私信</Button>
@@ -148,7 +151,7 @@ function UserHome(props) {
             {
                 playList && playList.length ? <>
                 <div className="playlist">
-                {userInfo ? (user.userId === uid ? '我' : userInfo.profile.nickname) : null}创建的歌单
+                {userInfo ? (user && user.userId === uid ? '我' : userInfo.profile.nickname) : null}创建的歌单
                 <span className="r"></span>
                 （{playList.length}）
             </div>
@@ -161,7 +164,7 @@ function UserHome(props) {
             {/* 用户收藏的歌单 */}
             {likePlayList && likePlayList.length ? <>
                 <div className="playlist">
-                {userInfo ? (user.userId === uid ? '我' : userInfo.profile.nickname) : null}收藏的歌单
+                {userInfo ? (user && user.userId === uid ? '我' : userInfo.profile.nickname) : null}收藏的歌单
                 <span className="r"></span>
                 （{likePlayList.length}）
             </div>

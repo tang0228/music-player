@@ -2,6 +2,7 @@ import React from "react";
 import "./playItem.less";
 import { IconCustomerSupport, IconPlayCircle } from "@douyinfe/semi-icons";
 import { useHistory } from "react-router-dom";
+import LazyLoad from "react-lazyload";
 
 export default function PlayItem(props) {
     const item = props.item;
@@ -11,7 +12,9 @@ export default function PlayItem(props) {
       <div className="img-wrap" title={item.name} onClick={() => {
           history.push("/find/playlist/detail?id=" + item.id)
       }}>
-        <img src={item.coverImgUrl} alt="" />
+          <LazyLoad>
+            <img src={item.coverImgUrl} alt="" />
+          </LazyLoad>
         <div className="bottom">
           <IconCustomerSupport />
           <span className="play-nums">

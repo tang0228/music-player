@@ -187,10 +187,10 @@ export async function getHotPlayList() {
 };
 
 // 歌单评论列表
-export async function getPlayListCommit({id, limit, offset, before}) {
+export async function getPlayListCommit({id, limit, offset, timestamp}) {
     const res = await ins.get("/comment/playlist", {
         params: {
-            id, limit, offset, before
+            id, limit, offset, timestamp
         }
     });
     return res;
@@ -235,10 +235,10 @@ export async function getSimiSong({id}) {
 };
 
 // 获取歌曲评论
-export async function getSongComment({id, limit, offset}) {
+export async function getSongComment({id, limit, offset, timestamp}) {
     const res = await ins.get("/comment/music", {
         params: {
-            id, limit, offset
+            id, limit, offset, timestamp
         }
     });
     return res;

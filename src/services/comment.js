@@ -31,4 +31,12 @@ export async function comment({t, type, id, content, commentId}) {
         }
     });
     return res;
+};
+
+// 给评论点赞
+export async function likeComment({id, cid, t, type, threadId }) {
+    const res = await ins.get("/comment/like", {
+        params: {id, cid, t, type, threadId}
+    });
+    return res;
 }

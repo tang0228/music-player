@@ -14,8 +14,8 @@ import {
 import utils from "../../../../utils";
 import TableItem from "./TableItem";
 import Commit from "../../../../components/Commit";
-import CommitList from "./CommitList";
-import { comment } from "../../../../services/comment";
+import CommitList from "../../../../components/CommitList/CommitList";
+import { comment, likeComment } from "../../../../services/comment";
 import { getPlayListCommit } from "../../../../services/apis";
 function DetailLeft(props) {
   const [comments, setComments] = useState([]); // 评论列表
@@ -25,13 +25,13 @@ function DetailLeft(props) {
   const [total, setTotal] = useState(0); // 总评论数
   const [loading, setLoading] = useState(false); // loading
   const [open, setOpen] = useState(false);// 是否展开
-  const detail = props.detail;
+  const {detail, id} = props;
   // 提交评论
   const playListCommit = useCallback(async (val) => {
     const res = await comment({
       t: 1,
       type: 2,
-      id: props.id,
+      id: id,
       content: val,
     });
     if (res.code === 200) {
@@ -52,9 +52,10 @@ function DetailLeft(props) {
   }, []);
   const getComments = async () => {
     const res = await getPlayListCommit({
-        id: props.id,
+        id: id,
         limit,
         offset: (page - 1) * limit,
+        timestamp: Date.now(),
       });
       if (res.code === 200) {
         setTotal(res.total);
@@ -65,11 +66,32 @@ function DetailLeft(props) {
   }
   // 获取评论列表
   useEffect(() => {
-    (async () => {
-      await getComments();
-    })();
+     getComments();
     return () => {};
-  }, [props.id, limit, page]);
+  }, [id, limit, page]);
+
+  // 评论
+  const like = useCallback(
+      async (cid) => {
+          const res = await likeComment({
+              id,
+              cid,
+              t: 1,
+              type: 2,
+          });
+          if(res.code === 200) {
+            Toast.success({
+                content: "赞成功",
+                duration: 2,
+            })
+          } else {
+              Toast.error({
+                  content: "赞失败"
+              })
+          }
+      },
+      [],
+  )
   return (
     <div className={style["detail-left"]}>
       <div className="top-content">
@@ -134,7 +156,8 @@ function DetailLeft(props) {
               ))}
             </Space>
           </div>
-          <div className="desc">
+          {
+            detail.description ?<div className="desc">
               介绍：{open ? detail.description : detail.description.split("\n").splice(0, 5).join("\n") + '...'}
                 <div className="arrow" onClick={() => {
                     setOpen(!open);
@@ -142,7 +165,9 @@ function DetailLeft(props) {
                     <span className="text">{open ? '收起' : '展开'}</span>
                     {open ? <IconChevronUp /> : <IconChevronDown />}
                 </div>
-          </div>
+          </div> : null
+          }
+          
         </div>
       </div>
       <div className="music-list">
@@ -171,7 +196,7 @@ function DetailLeft(props) {
         commit={playListCommit}
         commitLength={140}
       />
-      <CommitList total={total} comments={comments} hotComments={hotComments} />
+      <CommitList like={like} total={total} comments={comments} hotComments={hotComments} />
       {total > 0 ? (
         <div className="pagination-wrapper">
           <Pagination

@@ -17,9 +17,9 @@ export async function getMvNumInfo({mvid}) {
 };
 
 // 获取mv评论
-export async function getMvCommit({id, limit, offset}) {
+export async function getMvCommit({id, limit, offset, timestamp}) {
     const res = await ins.get("/comment/mv", {
-        params: {id, limit, offset}
+        params: {id, limit, offset, timestamp}
     });
     return res;
 }
