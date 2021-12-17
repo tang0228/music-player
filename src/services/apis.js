@@ -307,9 +307,17 @@ export async function getAlbum({id}) {
 };
 
 // 获取专辑评论
-export async function getAlbumCommit({id, limit, offset}) {
+export async function getAlbumCommit({id, limit, offset, timestamp}) {
     const res = await ins.get("/comment/album", {
-        params: {id, limit, offset}
+        params: {id, limit, offset, timestamp}
+    });
+    return res;
+};
+
+// 
+export async function getAlbumDynamic({id}) {
+    const res = await ins.get("/album/detail/dynamic", {
+        params: {id}
     });
     return res;
 }

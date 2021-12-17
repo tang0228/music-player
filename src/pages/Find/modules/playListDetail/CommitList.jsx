@@ -1,7 +1,7 @@
 import React from "react";
 import style from "./commitList.module.less";
 import LazyLoad from "react-lazyload";
-import { IconLikeHeart } from "@douyinfe/semi-icons";
+import { IconLikeThumb } from "@douyinfe/semi-icons";
 import { Link } from "react-router-dom";
 
 export default function CommitList(props) {
@@ -31,7 +31,7 @@ export default function CommitList(props) {
                 <div className="comment-points">
                   <span className="time">{c.timeStr}</span>
                   <div className="operate">
-                    <IconLikeHeart />
+                    <IconLikeThumb />
                     {c.likedCount ? (
                       <span className="num">({c.likedCount})</span>
                     ) : null}
@@ -86,7 +86,7 @@ export default function CommitList(props) {
                 <div className="comment-points">
                   <span className="time">{c.timeStr}</span>
                   <div className="operate">
-                    <IconLikeHeart />
+                    <IconLikeThumb />
                     {c.likedCount ? (
                       <span className="num">({c.likedCount})</span>
                     ) : null}

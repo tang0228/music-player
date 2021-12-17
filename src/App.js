@@ -16,6 +16,7 @@ import PlaylistDetail from "./pages/Find/modules/playListDetail/PlaylistDetail.j
 import SongDetail from "./pages/Song/SongDetail";
 import ArtistDetail from "./pages/Artist/ArtistDetail";
 import AlbumDetail from "./pages/Album/AlbumDetail";
+import MvDetail from "./pages/Mv/MvDetail";
 
 function App() {
     const { Header, Footer, Content } = Layout;
@@ -40,6 +41,7 @@ function App() {
                         <Route exact path="/song" component={SongDetail}></Route>
                         <Route exact path="/artist" component={ArtistDetail}></Route>
                         <Route exact path="/album" component={AlbumDetail}></Route>
+                        <Route exact path="/mv" component={MvDetail}></Route>
                         <Route exact path="/mymusic"></Route>
                         <Route exact path="/friend" component={Friend}></Route>
                         <Route exact path="/mall"></Route>

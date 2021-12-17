@@ -162,7 +162,7 @@ function DetailLeft(props) {
             <div className="album bd">专辑</div>
           </li>
           {detail.tracks.map((t, i) => (
-            <TableItem key={t.id} index={i + 1} item={t} />
+            <TableItem showAlbum={true} key={t.id} index={i + 1} item={t} />
           ))}
         </ul>
       </div>

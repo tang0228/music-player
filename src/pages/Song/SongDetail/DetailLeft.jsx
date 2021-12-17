@@ -120,7 +120,7 @@ function DetailLeft(props) {
               <Button type="tertiary" icon={<IconDownload />}>下载</Button>
               <Button type="tertiary" icon={<IconComment />}>
                 <a className="toComment" href="#comment">
-                  ({detail.commentCount})
+                  ({total})
                 </a>
               </Button>
             </Space>

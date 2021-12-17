@@ -33,6 +33,12 @@
             white-space: nowrap;
             text-overflow: ellipsis;
             overflow: hidden;
+            text-decoration: none;
+            color: #333;
+            font-size: 12px;
+            &:hover {
+                text-decoration: underline;
+            }
         }
 
         .operates {
@@ -54,10 +60,19 @@
             text-overflow: ellipsis;
             white-space: nowrap;
             overflow: hidden;
+
+            .name {
+                text-decoration: none;
+                color: #333;
+
+                &:hover {
+                    text-decoration: underline;
+                }
+            }
         }
 
         .book {
-            width: 78px;
+            width: 10%;
         }
 
         .listens {

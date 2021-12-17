@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useCallback } from "react";
 import style from "./detailLeft.module.less";
-import { getAlbum, getAlbumCommit } from "../../../services/apis";
+import { getAlbumCommit } from "../../../services/apis";
+import { comment } from "../../../services/comment";
 import utils from "../../../utils";
 import { Link } from "react-router-dom";
 import {
@@ -26,31 +27,33 @@ import {
 } from "@douyinfe/semi-illustrations";
 import Commit from "../../../components/Commit";
 import CommitList from "../../Find/modules/playListDetail/CommitList";
+import TableItem from "../../Find/modules/playListDetail/TableItem";
 
 export default function DetailLeft(props) {
-  const { id } = props;
+  const { id, albumDetail, songs } = props;
   const [open, setOpen] = useState(false); // 是否收起
-  const [albumDetail, setAlbumDetail] = useState(null); // 专辑内容
-  const [songs, setSongs] = useState([]); // 专辑的歌曲
   const [page, setPage] = useState(1); // 评论列表
   const [limit, setLimit] = useState(20); // 页容量
   const [total, setTotal] = useState(0); // 总评论数
   const [comments, setComments] = useState([]); // 评论列表
   const [hotComments, setHotComments] = useState([]); // 热门评论列表
   const [loading, setLoading] = useState(false); // loading
-  // 获取专辑相关内容
-  useEffect(() => {
-    (async () => {
-      const res = await getAlbum({ id });
-      if (res.code === 200) {
-        setAlbumDetail(res.album);
-        setSongs(res.songs);
-      }
-    })();
-    return () => {};
-  }, [id]);
   //评论专辑
-  const albumCommit = useCallback((val) => {}, []);
+  const albumCommit = useCallback(async (val) => {
+    const res = await comment({
+        t: 1,
+        type: 3,
+        content: val,
+        id: id
+    });
+    if (res.code === 200) {
+        Toast.success({
+          content: "评论成功",
+          duration: 2,
+        });
+        getCommits();
+      }
+  }, []);
   // 页码变化
   const handlePageChange = useCallback((page) => {
     setPage(page);
@@ -66,19 +69,19 @@ export default function DetailLeft(props) {
       id,
       limit,
       offset: (page - 1) * limit,
+      timestamp: Date.now()
     });
     if (res.code === 200) {
-        setLoading(false);
-        setTotal(res.total);
-        setComments(res.comments);
-        setHotComments(res.hotComments);
+      setLoading(false);
+      setTotal(res.total);
+      setComments(res.comments);
+      setHotComments(res.hotComments);
     }
   };
   useEffect(() => {
-      getCommits();
-      return () => {
-      }
-  }, [id, page, limit])
+    getCommits();
+    return () => {};
+  }, [id, page, limit]);
   return (
     <div className={style["detail-left"]}>
       {albumDetail ? (
@@ -185,6 +188,23 @@ export default function DetailLeft(props) {
           style={{ padding: 30 }}
         />
       )}
+      <div className="music-list">
+        <div className="list-header">
+          <h3 className="title">歌曲列表</h3>
+          <span className="total">{albumDetail.size}首歌</span>
+        </div>
+        <ul className="list-wrap">
+          <li className="table-header">
+            <div className="play-num"></div>
+            <div className="title bd">歌曲标题</div>
+            <div className="duration bd">时长</div>
+            <div className="name bd">歌手</div>
+          </li>
+          {songs.map((t, i) => (
+            <TableItem key={t.id} index={i + 1} item={t} />
+          ))}
+        </ul>
+      </div>
       <Commit commitNum={total} commit={albumCommit} commitLength={140} />
       <CommitList total={total} comments={comments} hotComments={hotComments} />
       {total > 0 ? (
@@ -200,6 +220,18 @@ export default function DetailLeft(props) {
           ></Pagination>
         </div>
       ) : null}
+      <Spin
+        spinning={loading}
+        tip="loading..."
+        size="large"
+        style={{
+          position: "fixed",
+          top: "50%",
+          left: "50%",
+          transform: "translate(-50%, -50%)",
+          zIndex: "9999",
+        }}
+      ></Spin>
     </div>
   );
 }

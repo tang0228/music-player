@@ -4,6 +4,7 @@ import { Button } from "@douyinfe/semi-ui";
 import { IconPlus, IconFemale, IconMale } from "@douyinfe/semi-icons";
 import "./userProfile.less";
 import LazyLoad from "react-lazyload";
+import { Link } from "react-router-dom";
 
 export default function UserProfile(props) {
   const users = props.users;
@@ -13,12 +14,15 @@ export default function UserProfile(props) {
       className={utils.isEven(i + 1) ? "user-item" : "user-item even"}
     >
       <div className="user-info">
-        <LazyLoad height={200}>
-          <img src={u.avatarUrl} alt="" />
-        </LazyLoad>
+        <Link to={"/user/home?uid=" + u.userId}>
+          <LazyLoad height={200}>
+            <img src={u.avatarUrl} alt="" />
+          </LazyLoad>
+        </Link>
         <div className="user-desc">
           <span className={u.gender === 2 ? "name pink" : "name blue"}>
-            {u.nickname} {u.gender === 2 ? <IconFemale /> : <IconMale />}{" "}
+            <Link to={"/user/home?uid=" + u.userId}>{u.nickname} </Link>{" "}
+            {u.gender === 2 ? <IconFemale /> : <IconMale />}{" "}
           </span>
           <span className="desc">{u.signature}</span>
         </div>
