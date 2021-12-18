@@ -12,13 +12,27 @@ import {
   IconChevronUp,
   IconChevronDown,
 } from "@douyinfe/semi-icons";
-import { getSongComment } from "../../../services/apis";
+import { getSongComment, getSongUrl, getMusicPlayUrl } from "../../../services/apis";
 import CommitList from "../../../components/CommitList/CommitList";
 import Commit from "../../../components/Commit";
-import { comment } from "../../../services/comment";
+import { comment, likeComment } from "../../../services/comment";
+import { addSongAction } from "../../../store/actions/song";
+import { connect } from "react-redux";
+
+const mapStateToProps = (state) => {
+    return {
+        song: state.song
+    }
+};
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+      addSong: (...args) => dispatch(addSongAction(...args)),
+    };
+  };
 
 function DetailLeft(props) {
-    const id = props.id; // 歌曲ID
+    const {id, addSong} = props; // 歌曲ID
     const [lyric, setLyric] = useState(""); // 歌词
     const [open, setOpen] = useState(false); // 是否展开歌词
   const [comments, setComments] = useState([]); // 评论列表
@@ -27,6 +41,7 @@ function DetailLeft(props) {
   const [limit, setLimit] = useState(20); // 页容量
   const [total, setTotal] = useState(0); // 总评论数
   const [loading, setLoading] = useState(false); // loading
+  const [url, setUrl] = useState(""); //url
   const detail = props.detail;
   // 获取歌词
   useEffect(() => {
@@ -48,6 +63,7 @@ function DetailLeft(props) {
       type: 0,
       id,
       content: val,
+      timestamp: Date.now(),
     });
     if (res.code === 200) {
       Toast.success({
@@ -83,11 +99,71 @@ function DetailLeft(props) {
   }
   // 获取评论列表
   useEffect(() => {
-    (async () => {
-      await getComments();
-    })();
+      getComments();
     return () => {};
   }, [id, limit, page]);
+
+  // 对评论 点赞/取消
+  const like = async (cid, liked) => {
+    const res = await likeComment({
+        id,
+        cid,
+        t: liked ? 0 : 1,
+        type: 0,
+        timestamp: Date.now(),
+    });
+    if(res.code === 200) {
+        if(liked) {
+          Toast.success({
+              content: "取消赞成功",
+              duration: 2,
+          })
+        } else {
+          Toast.success({
+              content: "赞成功",
+              duration: 2,
+          })
+        }
+        getComments();
+    } else {
+        Toast.error({
+            content: "操作失败",
+        })
+    }
+  };
+
+  // 删除评论
+  const del = async (cid) => {
+      const res = await comment({
+          t: 0,
+          type: 0,
+          id: id,
+          commentId: cid,
+          timestamp: Date.now(),
+      });
+      if(res.code === 200) {
+        Toast.success({
+            content: "删除成功",
+            duration: 2,
+        });
+        getComments();
+      }
+  };
+
+  // 播放歌曲
+  const play = async () => {
+    const res = await getMusicPlayUrl({id});
+    if(res.code === 200) {
+        setUrl(res.data[0].url);
+        addSong(url);
+    }
+  };
+
+  // 下载歌曲
+  const download = async () => {
+    const res = await getSongUrl({id});
+    console.log(res);
+  };
   return (
     <div className={style["detail-left"]}>
       <div className="top-content">
@@ -115,10 +191,10 @@ function DetailLeft(props) {
           </div>
           <div className="operates">
             <Space>
-              <Button type="danger" icon={<IconPlayCircle />}>播放</Button>
+              <Button onClick={play} type="danger" icon={<IconPlayCircle />}>播放</Button>
               <Button type="tertiary" icon={<IconPlus />}>收藏</Button>
               <Button type="tertiary" icon={<IconForward />}>分享</Button>
-              <Button type="tertiary" icon={<IconDownload />}>下载</Button>
+              <Button onClick={download} type="tertiary" icon={<IconDownload />}>下载</Button>
               <Button type="tertiary" icon={<IconComment />}>
                 <a className="toComment" href="#comment">
                   ({total})
@@ -140,7 +216,7 @@ function DetailLeft(props) {
         commit={songCommit}
         commitLength={140}
       />
-      <CommitList total={total} comments={comments} hotComments={hotComments} />
+      <CommitList like={like} del={del} total={total} comments={comments} hotComments={hotComments} />
       {total > 0 ? (
         <div className="pagination-wrapper">
           <Pagination
@@ -166,8 +242,9 @@ function DetailLeft(props) {
           zIndex: "9999",
         }}
       ></Spin>
+      <audio autoPlay src={url}>audio</audio>
     </div>
   );
 }
 
-export default DetailLeft;
+export default connect(mapStateToProps, mapDispatchToProps)(DetailLeft);

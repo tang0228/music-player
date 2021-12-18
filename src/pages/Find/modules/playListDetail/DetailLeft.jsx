@@ -33,6 +33,7 @@ function DetailLeft(props) {
       type: 2,
       id: id,
       content: val,
+      timestamp: Date.now(),
     });
     if (res.code === 200) {
       Toast.success({
@@ -70,28 +71,55 @@ function DetailLeft(props) {
     return () => {};
   }, [id, limit, page]);
 
-  // 评论
+  // 点赞评论
   const like = useCallback(
-      async (cid) => {
+      async (cid, liked) => {
           const res = await likeComment({
               id,
               cid,
-              t: 1,
+              t: liked ? 0 : 1,
               type: 2,
+              timestamp: Date.now(),
           });
           if(res.code === 200) {
-            Toast.success({
-                content: "赞成功",
-                duration: 2,
-            })
+              if(liked) {
+                Toast.success({
+                    content: "取消赞成功",
+                    duration: 2,
+                })
+              } else {
+                Toast.success({
+                    content: "赞成功",
+                    duration: 2,
+                })
+              }
+              getComments();
           } else {
               Toast.error({
-                  content: "赞失败"
+                  content: "操作失败"
               })
           }
       },
       [],
-  )
+  );
+
+  // 删除评论
+  const del = async (cid) => {
+    const res = await comment({
+        t: 0,
+        type: 2,
+        id: id,
+        commentId: cid,
+        timestamp: Date.now(),
+    });
+    if(res.code === 200) {
+      Toast.success({
+          content: "删除成功",
+          duration: 2,
+      });
+      getComments();
+    }
+}
   return (
     <div className={style["detail-left"]}>
       <div className="top-content">
@@ -196,7 +224,7 @@ function DetailLeft(props) {
         commit={playListCommit}
         commitLength={140}
       />
-      <CommitList like={like} total={total} comments={comments} hotComments={hotComments} />
+      <CommitList like={like} del={del} total={total} comments={comments} hotComments={hotComments} />
       {total > 0 ? (
         <div className="pagination-wrapper">
           <Pagination

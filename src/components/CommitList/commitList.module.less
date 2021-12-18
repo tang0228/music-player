@@ -67,6 +67,15 @@
                     }
                     
                 }
+                &:hover {
+                    .comment-points {
+                        .operate {
+                            .del-wrap {
+                                display: block;
+                            }
+                        }
+                    }
+                }
                 .comment-points {
                     margin-top: 15px;
                     font-size: 12px;
@@ -79,9 +88,15 @@
                     .operate {
                         display: flex;
                         align-items: center;
+                        .del-wrap {
+                            display: none;
+                        }
                         .like {
                             display: flex;
                             align-items: center;
+                            &.liked {
+                                color: #c20c0c;
+                            }
                         }
                         .semi-icon {
                             cursor: pointer;

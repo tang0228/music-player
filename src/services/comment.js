@@ -9,13 +9,14 @@ import ins from "./request";
  * sortType: 排序方式, 1:按推荐排序, 2:按热度排序, 3:按时间排序
  * cursor: 当sortType为 3 时且页数不是第一页时需传入,值为上一条数据的 time
  */
-export async function getCommentList({id, type, pageNo = 1, pageSize = 20}) {
+export async function getCommentList({id, type, pageNo = 1, pageSize = 20, timestamp}) {
     const res = await ins.get("/comment/new", {
         params: {
             id,
             type, 
             pageNo, 
-            pageSize
+            pageSize,
+            timestamp
         }
     });
     return res;
@@ -24,19 +25,17 @@ export async function getCommentList({id, type, pageNo = 1, pageSize = 20}) {
 /**
  * 发送（回复）评论
  */
-export async function comment({t, type, id, content, commentId}) {
-    const res = await ins.get("/comment", {
-        params: {
-            t, type, id, content, commentId
-        }
+export async function comment({t, type, id, content, commentId, timestamp}) {
+    const res = await ins.post("/comment", {
+            t, type, id, content, commentId, timestamp
     });
     return res;
 };
 
 // 给评论点赞
-export async function likeComment({id, cid, t, type, threadId }) {
-    const res = await ins.get("/comment/like", {
-        params: {id, cid, t, type, threadId}
+export async function likeComment({id, cid, t, type, threadId, timestamp }) {
+    const res = await ins.post("/comment/like", {
+        id, cid, t, type, threadId, timestamp
     });
     return res;
-}
+};

@@ -22,4 +22,10 @@ export async function getMvCommit({id, limit, offset, timestamp}) {
         params: {id, limit, offset, timestamp}
     });
     return res;
+};
+
+// 获取推荐MV
+export async function getPersonalizedMv() {
+    const res = await ins.get("/personalized/mv");
+    return res;
 }

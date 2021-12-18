@@ -160,6 +160,14 @@ export async function getMusicPlayUrl({id}) {
     return res;
 };
 
+// 获取歌曲下载url
+export async function getSongUrl({id}) {
+    const res = await ins.get("/song/download/url", {
+        params: {id}
+    });
+    return res;
+}
+
 // 检查歌曲是否可以播放
 export async function checkMusic({id}) {
     const res = await ins.get("/check/music", {

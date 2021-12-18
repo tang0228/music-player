@@ -42,6 +42,11 @@ function Login(props) {
                 addUser(res.profile);
                 localStorage.setItem('user', JSON.stringify(res.profile));
                 utils.setCookie('token', JSON.stringify(res.token));
+            } else {
+                Toast.error({
+                    content: "手机号或密码错误",
+                    duration: 2
+                });
             }
         },
         [password, phone],

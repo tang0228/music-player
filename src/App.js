@@ -4,6 +4,7 @@ import "./app.less";
 import { Layout, BackTop } from '@douyinfe/semi-ui';
 import CommonHeader from "./components/CommonHeader";
 import CommonFooter from "./components/CommonFooter";
+import SongPlay from "./components/SongPlay";
 import Index from "./pages/Index";
 import Search from "./pages/Search";
 import PlayList from "./pages/Find/modules/PlayList";
@@ -58,6 +59,7 @@ function App() {
                 </Content>
                 <Footer><CommonFooter /></Footer>
                 <BackTop />
+                <SongPlay />
             </Layout>
         </Router>
     );

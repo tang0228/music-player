@@ -6,7 +6,7 @@ import { Button, Space, Spin, Pagination, Toast } from "@douyinfe/semi-ui";
 import { getMvNumInfo, getMvCommit } from "../../../services/mv";
 import Commit from "../../../components/Commit";
 import CommitList from "../../../components/CommitList/CommitList";
-import { comment } from "../../../services/comment";
+import { comment, likeComment } from "../../../services/comment";
 
 export default function MvLeft(props) {
   const { mvDetail, id } = props;
@@ -35,6 +35,7 @@ export default function MvLeft(props) {
       type: 1,
       content: val,
       id: id,
+      timestamp: Date.now(),
     });
     if (res.code === 200) {
       Toast.success({
@@ -73,6 +74,53 @@ export default function MvLeft(props) {
     getCommits();
     return () => {};
   }, [id, limit, page]);
+
+  // 对评论 点赞/取消
+  const like = async (cid, liked) => {
+    const res = await likeComment({
+        id,
+        cid,
+        t: liked ? 0 : 1,
+        type: 1,
+        timestamp: Date.now(),
+    });
+    if(res.code === 200) {
+        if(liked) {
+          Toast.success({
+              content: "取消赞成功",
+              duration: 2,
+          })
+        } else {
+          Toast.success({
+              content: "赞成功",
+              duration: 2,
+          })
+        }
+        getCommits();
+    } else {
+        Toast.error({
+            content: "操作失败",
+        })
+    }
+  };
+
+  // 删除评论
+  const del = async (cid) => {
+      const res = await comment({
+          t: 0,
+          type: 1,
+          id: id,
+          commentId: cid,
+          timestamp: Date.now(),
+      });
+      if(res.code === 200) {
+        Toast.success({
+            content: "删除成功",
+            duration: 2,
+        });
+        getCommits();
+      }
+  }
 
   return (
     <div className={style["mv-left"]}>
@@ -122,7 +170,7 @@ export default function MvLeft(props) {
         ) : null}
       </div>
       <Commit commitNum={total} commit={mvCommit} commitLength={140} />
-      <CommitList total={total} comments={comments} hotComments={hotComments} />
+      <CommitList like={like} del={del} total={total} comments={comments} hotComments={hotComments} />
       {total > 0 ? (
         <div className="pagination-wrapper">
           <Pagination

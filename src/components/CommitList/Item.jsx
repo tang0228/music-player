@@ -2,9 +2,16 @@ import React from "react";
 import LazyLoad from "react-lazyload";
 import { Link } from "react-router-dom";
 import { IconLikeThumb } from "@douyinfe/semi-icons";
+import { connect } from "react-redux";
 
-export default function Item(props) {
-  const c = props.c;
+const mapStateToProps = (state) => {
+    return {
+        user: state.user
+    }
+};
+
+function Item(props) {
+  const {c, user} = props;
   return (
     <li className="comment-item" key={c.commentId}>
       <LazyLoad height={200}>
@@ -40,8 +47,16 @@ export default function Item(props) {
         <div className="comment-points">
           <span className="time">{c.timeStr}</span>
           <div className="operate">
-            <span className="like" onClick={() => {
-                props.commentLike && props.commentLike(c.commentId)
+              {
+                  c.user.userId === user.userId ? <span className="del-wrap">
+                  <span className="reback" onClick={() => {
+                      props.delComment && props.delComment(c.commentId)
+                  }}>删除</span>
+                  <span className="line">|</span>
+                  </span> : null
+              }
+            <span className={c.liked ? 'like liked' : 'like'} onClick={() => {
+                props.commentLike && props.commentLike(c.commentId, c.liked)
             }}>
               <IconLikeThumb />
               {c.likedCount ? (
@@ -56,3 +71,5 @@ export default function Item(props) {
     </li>
   );
 }
+
+export default connect(mapStateToProps)(Item);
