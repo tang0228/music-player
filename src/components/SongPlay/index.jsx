@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 
 
 const mapStateToProps = (state) => {
-    console.log(state)
     return {
       song: state.song,
     };
@@ -11,7 +10,7 @@ const mapStateToProps = (state) => {
 
 function SongPlay(props) {
     return (
-        <audio autoPlay src={props.song}></audio>
+        <audio autoPlay controls src={props.song}></audio>
     )
 }
 

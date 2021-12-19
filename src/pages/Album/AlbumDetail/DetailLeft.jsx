@@ -29,7 +29,7 @@ import Commit from "../../../components/Commit";
 import CommitList from "../../../components/CommitList/CommitList";
 import TableItem from "../../Find/modules/playListDetail/TableItem";
 
-export default function DetailLeft(props) {
+function DetailLeft(props) {
   const { id, albumDetail, songs } = props;
   const [open, setOpen] = useState(false); // 是否收起
   const [page, setPage] = useState(1); // 评论列表
@@ -82,6 +82,7 @@ export default function DetailLeft(props) {
     getCommits();
     return () => {};
   }, [id, page, limit]);
+  
   return (
     <div className={style["detail-left"]}>
       {albumDetail ? (
@@ -153,6 +154,7 @@ export default function DetailLeft(props) {
               </div>
             </div>
           </div>
+          {albumDetail.description ? 
           <div className="desc">
             <h3 className="title">专辑介绍：</h3>
             <p className="content">
@@ -175,6 +177,7 @@ export default function DetailLeft(props) {
               {open ? <IconChevronUp /> : <IconChevronDown />}
             </div>
           </div>
+           : null}
         </>
       ) : (
         <Empty
@@ -235,3 +238,5 @@ export default function DetailLeft(props) {
     </div>
   );
 }
+
+export default DetailLeft;

@@ -155,7 +155,8 @@ function DetailLeft(props) {
     const res = await getMusicPlayUrl({id});
     if(res.code === 200) {
         setUrl(res.data[0].url);
-        addSong(url);
+        addSong(res.data[0].url);
+        localStorage.setItem("song_url", JSON.stringify(res.data[0].url));
     }
   };
 

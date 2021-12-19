@@ -5,8 +5,23 @@ import "./musicItem.less";
 import utils from '../../../utils';
 import { getMusicPlayUrl, checkMusic } from "../../../services/apis";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import { addSongAction } from '../../../store/actions/song';
 
-export default function MusicItem(props) {
+const mapStateToProps = (state) => {
+    return {
+        song: state.song
+    }
+};
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+      addSong: (...args) => dispatch(addSongAction(...args)),
+    };
+  };
+
+function MusicItem(props) {
+    const {addSong} = props;
     const checkCanPlay = useCallback(
         async (id) => {
             const res = await checkMusic({
@@ -16,20 +31,13 @@ export default function MusicItem(props) {
         },
         [],
     )
-    const playMusic = useCallback(
-        async (id) => {
-            const canPlay = await checkCanPlay(id);
-            if(canPlay) {
-                const res = await getMusicPlayUrl({
-                    id,
-                });
-                console.log(res);
-            } else {
-
-            }
-        },
-        [],
-    );
+    const playMusic = async (id) => {
+        const res = await getMusicPlayUrl({id});
+        if(res.code === 200) {
+            addSong(res.data[0].url);
+            localStorage.setItem("song_url", JSON.stringify(res.data[0].url));
+        }
+    };
 
     // const closeModal = useCallback(
     //     () => {
@@ -39,7 +47,7 @@ export default function MusicItem(props) {
     const songs = props.songs;
     const items = songs.map((song, index) =>(
         <li key={song.id} className={`${utils.isEven(index + 1) ? 'search-item' : 'search-item even'}`}>
-            <IconPlayCircle id={song.id} onClick={() => {
+            <IconPlayCircle onClick={() => {
                 playMusic(song.id);
             }}/>
             <Link to={'/song?id=' + song.id} className="name">{song.name}</Link>
@@ -69,5 +77,7 @@ export default function MusicItem(props) {
         </ul>
     )
 }
+
+export default connect(mapStateToProps, mapDispatchToProps)(MusicItem);
 
 

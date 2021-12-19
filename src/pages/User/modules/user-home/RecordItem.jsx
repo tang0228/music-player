@@ -9,14 +9,38 @@ import {
 } from "@douyinfe/semi-icons";
 import utils from "../../../../utils";
 import { Link } from "react-router-dom";
+import { getMusicPlayUrl } from "../../../../services/apis";
+import { connect } from "react-redux";
+import { addSongAction } from "../../../../store/actions/song";
 
-export default function RecordItem(props) {
-  const { record, index } = props;
+const mapStateToProps = (state) => {
+    return {
+        song: state.song,
+    }
+};
+const mapDispatchToProps = (dispatch) => {
+    return {
+        addSong: (...args) => dispatch(addSongAction(...args)),
+    }
+}
+
+function RecordItem(props) {
+  const { record, index, addSong } = props;
+  // 播放歌曲
+  const play = async (id) => {
+      const res = await getMusicPlayUrl({id});
+      if(res.code === 200) {
+          addSong(res.data[0].url);
+          localStorage.setItem("song_url", JSON.stringify(res.data[0].url));
+      }
+  }
   return (
     <li className={utils.isEven(index) ? "record-item even" : "record-item"}>
       <div className="hd">
         <span className="hd-index">{index}.</span>
-        <IconPlayCircle />
+        <IconPlayCircle onClick={() => {
+            play(record.song.id)
+        }} />
       </div>
       <div className="singer">
         <Link to={'/song?id=' + record.song.id} className="music-name">{record.song.name}</Link>
@@ -44,4 +68,6 @@ export default function RecordItem(props) {
       </div>
     </li>
   );
-}
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(RecordItem);

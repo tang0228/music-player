@@ -17,6 +17,8 @@ import Commit from "../../../../components/Commit";
 import CommitList from "../../../../components/CommitList/CommitList";
 import { comment, likeComment } from "../../../../services/comment";
 import { getPlayListCommit } from "../../../../services/apis";
+
+
 function DetailLeft(props) {
   const [comments, setComments] = useState([]); // 评论列表
   const [hotComments, setHotComments] = useState([]); // 热门评论列表

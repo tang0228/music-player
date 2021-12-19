@@ -4,6 +4,21 @@ import { Button, Space, Select } from "@douyinfe/semi-ui";
 import { IconPlayCircle, IconPlus, IconCopyAdd, IconDownload, IconForward, IconFolder, IconVideo } from "@douyinfe/semi-icons";
 import utils from "../../../utils";
 import { Link } from "react-router-dom";
+import { getMusicPlayUrl } from '../../../services/apis';
+import { connect } from 'react-redux';
+import { addSongAction } from '../../../store/actions/song';
+
+const mapStateToProps = (state) => {
+    return {
+        song: state.song
+    }
+};
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        addSong: (...args) => dispatch(addSongAction(...args))
+    }
+}
 
 const list = [
     { value: '1', label: '热门单曲', otherKey:0 },
@@ -11,8 +26,16 @@ const list = [
     { value: '3', label: '作曲作品', disabled: true, otherKey: 2 },
 ]
 
-export default function Songs(props) {
-    const {songs} = props;
+function Songs(props) {
+    const {songs, addSong} = props;
+    // 播放歌曲
+    const play = async (id) => {
+        const res = await getMusicPlayUrl({id});
+        if(res.code === 200) {
+            addSong(res.data[0].url);
+            localStorage.setItem("song_url", JSON.stringify(res.data[0].url))
+        }
+    }
     return (
         <div className={style['songs-wrap']}>
             <div className="songs-header">
@@ -32,7 +55,9 @@ export default function Songs(props) {
                 {songs.map((s, i) => <li className={utils.isEven(i) ? 'item even' : 'item'} key={s.id}>
                     <div className="li-index">
                         <span className="index">{i+1}</span>
-                        <IconPlayCircle />
+                        <IconPlayCircle onClick={() => {
+                            play(s.id)
+                        }}/>
                     </div>
                     <div className="name">
                         <Link to={'/song?id=' + s.id} className="singer-name">{s.name}</Link>
@@ -56,3 +81,5 @@ export default function Songs(props) {
         </div>
     )
 }
+
+export default connect(mapStateToProps, mapDispatchToProps)(Songs);
