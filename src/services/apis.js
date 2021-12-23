@@ -328,4 +328,18 @@ export async function getAlbumDynamic({id}) {
         params: {id}
     });
     return res;
+};
+
+// 获取banner数据
+export async function getBanner() {
+    const res = await ins.get("/banner");
+    return res;
+};
+
+// 获取推荐歌单
+export async function getPersonalized({limit}) {
+    const res = await ins.get("/personalized", {
+        params: {limit}
+    });
+    return res;
 }
