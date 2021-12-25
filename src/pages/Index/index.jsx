@@ -1,23 +1,18 @@
-import React, { useEffect } from 'react';
-import style from  "./index.module.less";
-import { getBanner } from '../../services/apis';
-import Banner from './Modules/Banner';
-import RecommendPlaylist from './Modules/RecommendPlaylist';
+import React from "react";
+import style from "./index.module.less";
+import Banner from "./Modules/Banner";
+import RecommendPlaylist from "./Modules/RecommendPlaylist";
 
 export default function Index() {
-    useEffect(() => {
-        (async () => {
-            const res = await getBanner();
-            console.log(res);
-        })();
-        return () => {
-        }
-    }, [])
-    return (
-        <div className={style.main_container}>
-            
-            <Banner />
-            <RecommendPlaylist />
+  return (
+    <div className={style.main_container}>
+      <Banner />
+      <div className="content">
+        <div className="left">
+          <RecommendPlaylist />
         </div>
-    )
+        <div className="right"></div>
+      </div>
+    </div>
+  );
 }

@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { getBanner } from "../../../services/apis";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from 'react-responsive-carousel';
+import "./banner.less";
+import {Link} from "react-router-dom";
 
 export default function Banner() {
   const [banners, setBanners] = useState([]); // banner数据
@@ -15,7 +17,8 @@ export default function Banner() {
     return () => {};
   }, []);
   return (
-      <Carousel autoPlay={true} showThumbs={false} showStatus={false} infiniteLoop={true}>
+      <div className="banner-wrap">
+          <Carousel autoPlay={false} showThumbs={false} showStatus={false} infiniteLoop={false}>
           {banners ? banners.map(b => <div key={b.targetId} style={{
               position: "relative",
           }}>
@@ -29,11 +32,18 @@ export default function Banner() {
               <img src={b.imageUrl} alt="" style={{
                   position: "absolute",
                   height: 285,
-                  objectFit: "contain",
+                  width: 728,
+                  objectFit: "cover",
                   position: "relative",
                   zIndex: 1000
               }} />
           </div>) : null}
-      </Carousel>
+        </Carousel>
+        <div className="download">
+            <Link className="download-btn" to="/download">下载客户端</Link>
+            <p className="download-text">PC 安卓 iPhone WP iPad Mac 六大客户端</p>
+        </div>
+      </div>
+      
   );
 }

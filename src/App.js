@@ -31,9 +31,10 @@ function App() {
                 </Header>
                 <Content>
                     <Switch>
-                        <Route exact path="/" component={Index}></Route>
+                        {/* <Route exact path="/" component={Index}></Route> */}
                         <Route path="/find" render={() =>(
                             <Find>  
+                                <Route exact path="/find" component={Index}></Route>
                                 <Route exact path="/find/playlist" component={PlayList}></Route>
                                 <Route exact path="/find/playlist/detail" component={PlaylistDetail}></Route>
                             </Find>
