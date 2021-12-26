@@ -343,3 +343,9 @@ export async function getPersonalized({limit}) {
     });
     return res;
 }
+
+// 获取每日推荐歌单
+export async function getDayPlsyList() {
+    const res = await ins.get("/recommend/resource");
+    return res;
+}

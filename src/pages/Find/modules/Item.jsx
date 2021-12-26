@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React from "react";
 import LazyLoad from "react-lazyload";
 import { IconCustomerSupport, IconPlayCircle } from "@douyinfe/semi-icons";
 import "./item.less";

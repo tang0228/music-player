@@ -1,0 +1,49 @@
+.item-nav {
+    display: flex;
+    height: 33px;
+    padding: 0 10px 0 34px;
+    border-bottom: 2px solid #C10D0C;
+    position: relative;
+    align-items: center;
+    &::before {
+        content: "";
+        display: block;
+        position: absolute;
+        width: 6px;
+        height: 6px;
+        border: 5px solid #C10D0C;
+        border-radius: 50%;
+        left: 10px;
+        top: 10px;
+    }
+    :global {
+        .item-title{ 
+            font-size: 20px;
+            color: #333;
+            &:hover {
+                text-decoration: none;
+            }
+        }   
+        .item-cat {
+            flex: 1;
+            font-size: 12px;
+            margin: 7px 0 0 20px;
+            .cat-link {
+                color: #666;
+                .line {
+                    margin: 0 10px;
+                    color: #ccc;
+                }
+            }
+        }
+        .item-more {
+            font-size: 12px;
+            color: #666;
+            display: flex;
+            align-items: center;
+            .more-link {
+                margin-right: 8px;
+            }
+        }
+    }
+}
