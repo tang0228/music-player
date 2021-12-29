@@ -35,8 +35,8 @@ export default function Banner() {
               <div className="bg" style={{
                   position: "absolute",
                   backgroundImage: `url('${b.imageUrl}')`,
-                  filter: "blur(15px)",
-                  width: "100%",
+                  filter: "blur(12px)",
+                  width: "200%",
                   height: "100%",
               }}></div>
               {mapUrl[b.targetType] ?<Link style={{

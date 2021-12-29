@@ -2,6 +2,7 @@ import React from 'react';
 import "./albumItem.less";
 import LazyLoad from "react-lazyload";
 import { Link } from "react-router-dom";
+import {IconPlayCircle} from "@douyinfe/semi-icons";
 
 export default function AlbumItem(props) {
     const albums = props.albums;
@@ -13,6 +14,9 @@ export default function AlbumItem(props) {
                         <img src={al.blurPicUrl} alt="" />
                     </LazyLoad>
                 </Link>
+                <IconPlayCircle size="large" style={{
+                    color: "#eee"
+                }} />
             </div>
             <Link to={'/album?id=' + al.id} className="album-name">{al.name}</Link>
             <Link to={'/artist?id=' + al.artist.id} className="singer-name">{al.artist.name}</Link>

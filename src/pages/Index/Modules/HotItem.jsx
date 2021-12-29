@@ -14,7 +14,7 @@ export default function Item(props) {
           <div className="bottom">
             <IconCustomerSupport />
             <span className="play-nums">
-              {parseInt(props.playCount / 10000)}万
+              {parseInt(props.playCount ? props.playCount / 10000 : props.playcount / 10000)}万
             </span>
             <IconPlayCircle />
           </div>
@@ -23,6 +23,7 @@ export default function Item(props) {
       <p className="desc">
         <Link to={`/find/playlist/detail?id=${props.id}`}>{props.name}</Link>
       </p>
+      {props.type === 1 ? <p className="copy-text">{props.copywriter}</p> : null}
     </li>
   );
 }

@@ -348,4 +348,10 @@ export async function getPersonalized({limit}) {
 export async function getDayPlsyList() {
     const res = await ins.get("/recommend/resource");
     return res;
+};
+
+// 获取首页新碟上架数据
+export async function getAlbumNewest() {
+    const res = await ins.get("/album/newest");
+    return res;
 }

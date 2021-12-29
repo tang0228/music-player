@@ -11,9 +11,26 @@
         display: flex;
         flex-direction: column;
 
+        .album-img {
+            position: relative;
+            &:hover {
+                .semi-icon-play_circle {
+                    display: block;
+                }
+            }
+        }
+
         img {
             width: 100%;
             height: 100%;
+        }
+
+        .semi-icon-play_circle {
+            position: absolute;
+            right: 16px;
+            bottom: 16px;
+            cursor: pointer;
+            display: none;
         }
     }
 

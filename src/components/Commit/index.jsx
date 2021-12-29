@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from "react";
 import PropTypes from "prop-types";
 import style from "./index.module.less";
-import { TextArea, Button } from "@douyinfe/semi-ui";
+import { TextArea, Button, Toast } from "@douyinfe/semi-ui";
 import Picker from "emoji-picker-react";
 import { connect } from "react-redux";
 import { IconImage } from "@douyinfe/semi-icons";
@@ -28,6 +28,12 @@ function Commit(props) {
     setShowEmoji(!showEmoji);
   };
   const commit = () => {
+      if(!commitText) {
+        Toast.warning({
+            content: "请先输入内容哦😊",
+            duration: 2
+        })
+      }
     // 回传给父组件
       setCommitText(""); // 输入框清空
       props.commit && props.commit(commitText)
