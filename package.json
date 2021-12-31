@@ -2,7 +2,7 @@
   "name": "music-player",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https:///tang0228.github.io/music-player",
+  "homepage": "https://tang0228.github.io/music-player",
   "dependencies": {
     "@babel/core": "7.12.3",
     "@douyinfe/semi-ui": "^2.0.6",
@@ -88,7 +88,8 @@
   "scripts": {
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
-    "test": "node scripts/test.js"
+    "test": "node scripts/test.js",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
@@ -164,5 +165,8 @@
       "react-app"
     ]
   },
-  "proxy": "http://localhost:3000"
+  "proxy": "http://localhost:3000",
+  "devDependencies": {
+    "gh-pages": "^3.2.3"
+  }
 }
