@@ -32,7 +32,8 @@ function Commit(props) {
         Toast.warning({
             content: "请先输入内容哦😊",
             duration: 2
-        })
+        });
+        return;
       }
     // 回传给父组件
       setCommitText(""); // 输入框清空

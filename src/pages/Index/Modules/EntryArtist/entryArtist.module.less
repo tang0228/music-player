@@ -1,0 +1,51 @@
+.entry-artist {
+    padding: 20px;
+    :global {
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 12px;
+            color: #333;
+            font-weight: bold;
+            border-bottom: 1px solid #ccc;
+            height: 23px;
+            margin-bottom: 20px;
+            .toPage {
+                text-decoration: none;
+                color: #666;
+                &:hover {
+                    text-decoration: underline;
+                }
+            }
+        }
+        .wrap {
+            .item {
+                display: flex;
+                height: 60px;
+                background: #fafafa;
+                align-items: center;
+                margin-bottom: 16px;
+                border: 1px solid #ccc;
+                overflow: hidden;
+                img {
+                    height: 62px;
+                    height: 62px;
+                }
+                .name {
+                    font-size: 14px;
+                    color: #333;
+                    font-weight: bold;
+                    width: 115px;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    margin-left: 16px;
+                }
+                &:hover {
+                    background: #f4f4f4;
+                }
+            }
+        }
+    }
+}

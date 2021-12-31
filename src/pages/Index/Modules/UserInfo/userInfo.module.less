@@ -1,0 +1,84 @@
+.user-info {
+    :global {
+        .user-login {
+            height: 126px;
+            background: #eee;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            box-shadow: 0 1px 1px #aaa;
+            .desc {
+                padding: 16px 0;
+                line-height: 22px;
+                color: #666;
+                font-size: 12px;
+                width: 205px;
+                margin: 0 auto;
+                box-sizing: border-box;
+            }
+        }
+        .user-wrap {
+            width: 252px;
+            height: 165px;
+            padding-top: 20px;
+            background: #eee;
+            box-shadow: 0 1px 1px #aaa;
+            .user-top {
+                display: flex;
+                .img-wrap {
+                    width: 84px;
+                    height: 84px;
+                    border: 1px solid #ddd;
+                    margin-left: 20px;
+                    img {
+                        width: 80px;
+                        height: 80px;
+                        margin: 2px;
+                    }
+                }
+                .user-detail {
+                    margin-left: 16px;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: flex-start;
+                    justify-content: space-between;
+                    .name {
+                        width: 115px;
+                        font-weight: bold;
+                        font-size: 14px;
+                        color: #333;
+                        text-overflow: ellipsis;
+                        white-space: nowrap;
+                        overflow: hidden;
+                    }
+                }
+            }
+            .user-nums {
+                display: flex;
+                margin-left: 20px;
+                margin-top: 22px;
+                .box {
+                    height: 40px;
+                    border-right: 1px solid #e4e4e4;
+                    padding: 0 18px;
+                    font-size: 16px;
+                    color: #666;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: flex-start;
+                    justify-content: space-between;
+                    cursor: pointer;
+                    &:first-child {
+                        padding: 0 18px 0 0;
+                    }
+                    &:last-child {
+                        border-right: none;
+                    }
+                    &:hover {
+                        color: skyblue;
+                    }
+                }
+            }
+        }
+    }
+}

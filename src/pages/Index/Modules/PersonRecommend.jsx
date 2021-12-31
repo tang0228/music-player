@@ -8,8 +8,9 @@ export default function PersonRecommend() {
     const [recommendList, setRecommendList] = useState([]);
     useEffect(() => {
         getDayPlsyList().then(res => {
-            if(res.code === 200) {
+            if(res && res.code === 200) {
                 setRecommendList(res.recommend.splice(0, 3));
+            } else {
             }
         });
         return () => {

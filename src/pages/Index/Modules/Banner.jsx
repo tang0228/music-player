@@ -4,6 +4,7 @@ import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a lo
 import { Carousel } from 'react-responsive-carousel';
 import "./banner.less";
 import {Link} from "react-router-dom";
+import { Spin } from "@douyinfe/semi-ui";
 const mapUrl = {
     '1' : "/song?id=",
     "10": "/album?id=",
@@ -17,21 +18,22 @@ const mapUrl = {
 
 export default function Banner() {
   const [banners, setBanners] = useState([]); // banner数据
+  const [loading, setLoading] = useState(true); // 加载中
   useEffect(() => {
     (async () => {
+        setLoading(true);
       const res = await getBanner();
       if (res.code === 200) {
         setBanners(res.banners);
+        setLoading(false);
       }
     })();
     return () => {};
   }, []);
   return (
       <div className="banner-wrap">
-          <Carousel autoPlay={false} showThumbs={false} showStatus={false} infiniteLoop={false}>
-          {banners ? banners.map(b => <div key={b.targetId} style={{
-              position: "relative",
-          }}>
+          { !loading ? <Carousel autoPlay={false} showThumbs={false} showStatus={false} infiniteLoop={false}>
+          {banners.map(b => <div key={b.targetId}>
               <div className="bg" style={{
                   position: "absolute",
                   backgroundImage: `url('${b.imageUrl}')`,
@@ -64,8 +66,18 @@ export default function Banner() {
                   zIndex: 10
               }} /></a>}
               
-          </div>) : null}
-        </Carousel>
+          </div>)}
+        </Carousel>  : <Spin 
+                    spinning={loading}
+                    tip="loading..."
+                    size="large"
+                    style={{
+                        position: "absolute",
+                        top: "50%",
+                        left: "50%",
+                        transform: "translate(-50%, -50%)",
+                        zIndex: "9999",
+                    }} /> }
         <div className="download">
             <Link className="download-btn" to="/download">下载客户端</Link>
             <p className="download-text">PC 安卓 iPhone WP iPad Mac 六大客户端</p>

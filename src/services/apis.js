@@ -354,4 +354,5 @@ export async function getDayPlsyList() {
 export async function getAlbumNewest() {
     const res = await ins.get("/album/newest");
     return res;
-}
+};
+

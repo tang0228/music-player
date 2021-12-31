@@ -1,8 +1,9 @@
 import axios from "axios";
 
 const ins = axios.create({
-    baseURL: "",
-    // withCredentials: true,
+    baseURL: "https://music-2903474904-qqcom.vercel.app/",
+    withCredentials: true,
+    timeout: 6000, // 毫秒
 });
 
 ins.interceptors.response.use(res => {
@@ -12,7 +13,7 @@ ins.interceptors.response.use(res => {
         return Promise.reject(res);
     }
 }, error => {
-    
+    return Promise.reject(error)
 })
 
 export default ins;
