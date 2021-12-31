@@ -2,6 +2,7 @@
   "name": "music-player",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https:///tang0228.github.io/music-player",
   "dependencies": {
     "@babel/core": "7.12.3",
     "@douyinfe/semi-ui": "^2.0.6",
