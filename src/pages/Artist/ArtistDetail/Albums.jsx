@@ -50,15 +50,15 @@ export default function Albums(props) {
             {albums.map((m) => (
               <div key={m.id} className="album-item">
                 <div className="img-wrap">
-                  <LazyLoad height={200}>
+                  <LazyLoad>
                     <img src={m.picUrl} alt="" />
                   </LazyLoad>
-                  <Link className="mask" to={"/album?id=" + m.id}></Link>
+                  <Link className="mask" to={"/find/album?id=" + m.id}></Link>
                   <span className="play">
                     <IconPlayCircle size="extra-large" />
                   </span>
                 </div>
-                <Link to={"/album?id=" + m.id} className="name">
+                <Link to={"/find/album?id=" + m.id} className="name">
                   {m.name}
                 </Link>
                 <div className="time">{utils.formatDate(m.publishTime)}</div>

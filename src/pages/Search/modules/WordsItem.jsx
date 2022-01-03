@@ -42,7 +42,7 @@ function WordsItem(props) {
                     <IconPlayCircle onClick={() => {
                         play(props.id)
                     }} />
-                    <Link to={'/song?id=' + props.id} className="ml8">{props.name}</Link>
+                    <Link to={'/find/song?id=' + props.id} className="ml8">{props.name}</Link>
                 </div>
                 <div className="operates">
                     <IconPlus />
@@ -51,9 +51,9 @@ function WordsItem(props) {
                     <IconDownload />
                 </div>
                 <div className="singers">
-                    {props.artists.map((a, i) => <Link to={'/artist?id=' + a.id} key={a.id}>{i === 0 ? a.name : '/' + a.name}</Link>)}
+                    {props.artists.map((a, i) => <Link to={'/find/artist?id=' + a.id} key={a.id}>{i === 0 ? a.name : '/' + a.name}</Link>)}
                 </div>
-                <Link to={'/album?id=' + props.album.id} className="alnum">{props.album.name}</Link>
+                <Link to={'/find/album?id=' + props.album.id} className="alnum">{props.album.name}</Link>
                 <span className="duration">{utils.formatTime(props.duration)}</span>
             </div>
             <div className="words-lyric">

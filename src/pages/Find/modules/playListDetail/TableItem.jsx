@@ -35,7 +35,7 @@ function TableItem(props) {
               play(item.id)
           }} />
       </div>
-      <div className="title bd ellipsis-1"><Link to={'/song?id=' + item.id}>{item.name}</Link></div>
+      <div className="title bd ellipsis-1"><Link to={'/find/song?id=' + item.id}>{item.name}</Link></div>
       <div className="duration bd">
           <span className="time">{utils.formatTime(item.dt)}</span>
           <div className="btns">
@@ -47,10 +47,10 @@ function TableItem(props) {
       </div>
       <div className="name bd ellipsis-1">
         {item.ar.map((e, i) => (
-          <Link to={'/artist?id=' + e.id } key={e.id + i}>{i === 0 ? e.name : `/${e.name}`}</Link>
+          <Link to={'/find/artist?id=' + e.id } key={e.id + i}>{i === 0 ? e.name : `/${e.name}`}</Link>
         ))}
       </div>
-      {showAlbum ? <div className="album bd ellipsis-1"><Link to={'/album?id='+item.al.id}>{item.al.name}</Link></div> : null}
+      {showAlbum ? <div className="album bd ellipsis-1"><Link to={'/find/album?id='+item.al.id}>{item.al.name}</Link></div> : null}
     </li>
   );
 };

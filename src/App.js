@@ -1,5 +1,5 @@
 import React from "react";
-import { Switch, BrowserRouter as Router, Route } from "react-router-dom"
+import { Switch, HashRouter as Router, Route } from "react-router-dom"
 import "./app.less";
 import { Layout, BackTop } from '@douyinfe/semi-ui';
 import CommonHeader from "./components/CommonHeader";
@@ -37,13 +37,13 @@ function App() {
                                 <Route exact path="/find" component={Index}></Route>
                                 <Route exact path="/find/playlist" component={PlayList}></Route>
                                 <Route exact path="/find/playlist/detail" component={PlaylistDetail}></Route>
+                                <Route exact path="/find/song" component={SongDetail}></Route>
+                                <Route exact path="/find/artist" component={ArtistDetail}></Route>
+                                <Route exact path="/find/album" component={AlbumDetail}></Route>
+                                <Route exact path="/find/mv" component={MvDetail}></Route>
                             </Find>
                         )}>
                         </Route>
-                        <Route exact path="/song" component={SongDetail}></Route>
-                        <Route exact path="/artist" component={ArtistDetail}></Route>
-                        <Route exact path="/album" component={AlbumDetail}></Route>
-                        <Route exact path="/mv" component={MvDetail}></Route>
                         <Route exact path="/mymusic"></Route>
                         <Route exact path="/friend" component={Friend}></Route>
                         <Route exact path="/mall"></Route>

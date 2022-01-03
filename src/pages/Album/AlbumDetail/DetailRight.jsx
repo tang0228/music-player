@@ -22,18 +22,18 @@ export default function DetailRight(props) {
       <div className="play-hot">
         <div className="header">
           <h3 className="title">Ta的其他热门专辑</h3>
-          <Link className="toPage" to={'/artist?id=' + artistId}>全部&gt;</Link>
+          <Link className="toPage" to={'/find/artist?id=' + artistId}>全部&gt;</Link>
         </div>
         <div className="hot-content">
           {hotAlbums && hotAlbums.length
             ? hotAlbums.map((l) => (
                 <div key={l.id} className="hot-item">
-                  <Link to={"/album?id=" + l.id}>
+                  <Link to={"/find/album?id=" + l.id}>
                     <img src={l.picUrl} alt="" />
                   </Link>
                   <div className="desc">
                     <Link
-                      to={"/album?id=" + l.id}
+                      to={"/find/album?id=" + l.id}
                       className="sub-title"
                     >
                       {l.name}

@@ -6,14 +6,14 @@ import "./banner.less";
 import {Link} from "react-router-dom";
 import { Spin } from "@douyinfe/semi-ui";
 const mapUrl = {
-    '1' : "/song?id=",
-    "10": "/album?id=",
-    "100": "/artist?id=",
+    '1' : "/find/song?id=",
+    "10": "/find/album?id=",
+    "100": "/find/artist?id=",
     "1000": "/find/playlist/detail?id=",
     "1002": "/user/home?uid=",
-    "106": "/song?id=",
+    "106": "/find/song?id=",
     "1009": "",
-    "1004": "mv?id=",
+    "1004": "/find/mv?id=",
 };
 
 export default function Banner() {
@@ -42,7 +42,7 @@ export default function Banner() {
                   height: "100%",
               }}></div>
               {mapUrl[b.targetType] ?<Link style={{
-                  display: "block",
+                  display: "inline-block",
                   position: "relative",
                   zIndex: 12,
               }} to={mapUrl[b.targetType] + b.targetId}>
@@ -54,7 +54,7 @@ export default function Banner() {
                   zIndex: 10
               }} />
               </Link> : <a href={b.url} style={{
-                  display: "block",
+                  display: "inline-block",
                   position: "relative",
                   zIndex: 12,
               }} target="_blank">
@@ -67,7 +67,11 @@ export default function Banner() {
               }} /></a>}
               
           </div>)}
-        </Carousel>  : <Spin 
+        </Carousel>  : <div style={{
+            position: "relative",
+            height: "285"
+        }}>
+        <Spin 
                     spinning={loading}
                     tip="loading..."
                     size="large"
@@ -76,8 +80,9 @@ export default function Banner() {
                         top: "50%",
                         left: "50%",
                         transform: "translate(-50%, -50%)",
-                        zIndex: "9999",
-                    }} /> }
+                        zIndex: "99999",
+                    }} />
+        </div> }
         <div className="download">
             <Link className="download-btn" to="/download">下载客户端</Link>
             <p className="download-text">PC 安卓 iPhone WP iPad Mac 六大客户端</p>

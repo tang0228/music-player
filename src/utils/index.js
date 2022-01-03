@@ -61,6 +61,15 @@ const utils = {
     },
     formatDate(time) {
         return day(time).format('YYYY-MM-DD')
+    },
+    
+    /**
+     * 锚点滚动
+     */
+    goAnchor(selector) {
+        let dom = document.querySelector(selector);
+        let top = dom.offsetTop;
+        window.scrollTo(0, top);
     }
 };
 

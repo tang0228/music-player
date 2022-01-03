@@ -19,10 +19,10 @@ export default function EntryArtist() {
         <div className={style['entry-artist']}>
             <div className="header">
                 <h3 className="title">入驻歌手</h3>
-                <Link className="toPage" to={'/find/artist'}>查看全部&gt;</Link>
+                <Link className="toPage" to={'/find/singers'}>查看全部&gt;</Link>
             </div>
             <div className="wrap">
-                {artist && artist.length ? artist.map(a => <Link to={'/artist?id=' + a.id} key={a.id} className="item">
+                {artist && artist.length ? artist.map(a => <Link to={'/find/artist?id=' + a.id} key={a.id} className="item">
                     <img src={a.picUrl} alt="" />
                     <div className="name">{a.name}</div>
                 </Link>) : '无'}

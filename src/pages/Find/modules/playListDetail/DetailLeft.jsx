@@ -167,10 +167,10 @@ function DetailLeft(props) {
               <Button type="tertiary" icon={<IconDownload />}>
                 下载
               </Button>
-              <Button type="tertiary" icon={<IconComment />}>
-                <a className="toComment" href="#comment">
+              <Button type="tertiary" icon={<IconComment />} onClick={() => {
+                  utils.goAnchor("#comment");
+              }}>
                   ({detail.commentCount})
-                </a>
               </Button>
             </Space>
           </div>

@@ -81,7 +81,7 @@ function UserHome(props) {
         <div className="user-home-container">
             { userInfo ? <div className="user-info">
                 <div className="img">
-                    <LazyLoad height={200}>
+                    <LazyLoad>
                         <img src={userInfo.profile.avatarUrl} alt="" />
                     </LazyLoad>
                 </div>

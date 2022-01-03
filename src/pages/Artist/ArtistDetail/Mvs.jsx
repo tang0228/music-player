@@ -50,15 +50,15 @@ export default function Mvs(props) {
             {mvs.map((m) => (
               <div key={m.id} className="mv-item">
                 <div className="img-wrap">
-                  <LazyLoad height={200}>
+                  <LazyLoad>
                     <img src={m.imgurl} alt="" />
                   </LazyLoad>
-                  <Link className="mask" to={"/mv?id=" + m.id}></Link>
-                  <Link className="play" to={"/mv?id=" + m.id}>
+                  <Link className="mask" to={"/find/mv?id=" + m.id}></Link>
+                  <Link className="play" to={"/find/mv?id=" + m.id}>
                     <IconPlayCircle size="extra-large" />
                   </Link>
                 </div>
-                <Link to={"/mv?id=" + m.id} className="name">
+                <Link to={"/find/mv?id=" + m.id} className="name">
                   {m.name}
                 </Link>
               </div>

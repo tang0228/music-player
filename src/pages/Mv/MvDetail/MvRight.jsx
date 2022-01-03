@@ -34,8 +34,8 @@ export default function MvRight(props) {
                 <ul className="mv-list">
                     {mvs ? mvs.map(m => <li className="item" key={m.id}>
                         <div className="img-wrap">
-                            <Link to={'mv?id=' + m.id}>
-                            <LazyLoad height={200}>
+                            <Link to={'/find/mv?id=' + m.id}>
+                            <LazyLoad>
                                 <img src={m.picUrl} alt="" />
                             </LazyLoad>
                             <div className="img-top">
@@ -45,7 +45,7 @@ export default function MvRight(props) {
                             </Link>
                         </div>
                         <div className="mv-info">
-                            <Link to={'/mv?id=' + m.id} className="name">{m.name}</Link>
+                            <Link to={'/find/mv?id=' + m.id} className="name">{m.name}</Link>
                             <span className="time">{utils.formatTime(m.duration)}</span>
                             <span className="by">by <Link className="artist" to={'/user/home?uid=' + m.artistId}>{m.artistName}</Link></span>
                         </div>

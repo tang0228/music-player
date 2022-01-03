@@ -19,7 +19,7 @@ export default function PlayList(props) {
     >
       <IconPlayCircle />
       <Link to={"/find/playlist/detail?id=" + p.id}>
-        <LazyLoad height={200}>
+        <LazyLoad>
           <img className="img" src={p.coverImgUrl} alt="" />
         </LazyLoad>
       </Link>
@@ -37,5 +37,5 @@ export default function PlayList(props) {
       <span className="listens">收听：{parseInt(p.playCount / 10000)}万</span>
     </li>
   ));
-  return <ul className="playlist-container">{items}</ul>;
+  return <ul className="playlist-wrap">{items}</ul>;
 }

@@ -15,7 +15,7 @@ export default function UserProfile(props) {
     >
       <div className="user-info">
         <Link to={"/user/home?uid=" + u.userId}>
-          <LazyLoad height={200}>
+          <LazyLoad >
             <img src={u.avatarUrl} alt="" />
           </LazyLoad>
         </Link>

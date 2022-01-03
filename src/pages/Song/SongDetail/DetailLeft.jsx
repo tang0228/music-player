@@ -18,6 +18,7 @@ import Commit from "../../../components/Commit";
 import { comment, likeComment } from "../../../services/comment";
 import { addSongAction } from "../../../store/actions/song";
 import { connect } from "react-redux";
+import utils from "../../../utils";
 
 const mapStateToProps = (state) => {
     return {
@@ -179,15 +180,15 @@ function DetailLeft(props) {
           <div className="row">
               <span className="label">歌手：</span>
               <div className="wrap">
-                  {detail.ar.map((a, i) => (i === 0 ? <Link key={a.id} className="item" to={'/artist?id=' + a.id}>{a.name}</Link> : 
-                    <span key={a.id} className="divider">/<Link className="item" to={'/artist?id=' + a.id}>{a.name}</Link></span>
+                  {detail.ar.map((a, i) => (i === 0 ? <Link key={a.id} className="item" to={'/find/artist?id=' + a.id}>{a.name}</Link> : 
+                    <span key={a.id} className="divider">/<Link className="item" to={'/find/artist?id=' + a.id}>{a.name}</Link></span>
                 ))}
               </div>
           </div>
           <div className="row">
               <span className="label">所属专辑：</span>
               <div className="wrap">
-                  <Link className="item" to={'/album?id=' + detail.al.id}>{detail.al.name}</Link>
+                  <Link className="item" to={'/find/album?id=' + detail.al.id}>{detail.al.name}</Link>
               </div>
           </div>
           <div className="operates">
@@ -196,10 +197,10 @@ function DetailLeft(props) {
               <Button type="tertiary" icon={<IconPlus />}>收藏</Button>
               <Button type="tertiary" icon={<IconForward />}>分享</Button>
               <Button onClick={download} type="tertiary" icon={<IconDownload />}>下载</Button>
-              <Button type="tertiary" icon={<IconComment />}>
-                <a className="toComment" href="#comment">
+              <Button type="tertiary" icon={<IconComment />} onClick={() => {
+                  utils.goAnchor("#comment");
+              }}>
                   ({total})
-                </a>
               </Button>
             </Space>
           </div>

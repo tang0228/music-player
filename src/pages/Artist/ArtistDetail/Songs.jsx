@@ -60,11 +60,11 @@ function Songs(props) {
                         }}/>
                     </div>
                     <div className="name">
-                        <Link to={'/song?id=' + s.id} className="singer-name">{s.name}</Link>
+                        <Link to={'/find/song?id=' + s.id} className="singer-name">{s.name}</Link>
                         {s.alia && s.alia.length ?
                             <span className="mv-name">-{s.alia.map(a=> a)}</span>
                             : null }
-                        {s.mv ? <Link className="mv-play" to={'/mv?id=' + s.mv}><IconVideo /></Link> : null}
+                        {s.mv ? <Link className="mv-play" to={'/find/mv?id=' + s.mv}><IconVideo /></Link> : null}
                     </div>
                     <div className="option">
                         <span className="dt">{utils.formatTime(s.dt)}</span>
@@ -75,7 +75,7 @@ function Songs(props) {
                             <IconDownload />
                         </div>
                     </div>
-                    <Link to={'/album?id=' + s.al.id} className="album">{s.al.name}</Link>
+                    <Link to={'/find/album?id=' + s.al.id} className="album">{s.al.name}</Link>
                     </li>)}
             </ul>
         </div>

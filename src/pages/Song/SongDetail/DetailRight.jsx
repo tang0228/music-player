@@ -52,9 +52,9 @@ export default function DetailRight(props) {
           <div className="simi-content">
               {simiSongs ? simiSongs.map(s => <div className="simi-item song-item" key={s.id}>
                   <div className="content">
-                      <Link to={'/song?id=' + s.id} className="song-name">{s.name}</Link>
+                      <Link to={'/find/song?id=' + s.id} className="song-name">{s.name}</Link>
                       <div className="artists">
-                        {s.artists.map((a, i) => (i === 0 ? <Link className="item" key={a.id} to={'/artist?id=' + a.id}>{a.name}</Link> : <span className="divider" key={a.id}><Link className="item" to={'/artist?id=' + a.id}>{a.name}</Link></span>)) }
+                        {s.artists.map((a, i) => (i === 0 ? <Link className="item" key={a.id} to={'/find/artist?id=' + a.id}>{a.name}</Link> : <span className="divider" key={a.id}><Link className="item" to={'/find/artist?id=' + a.id}>{a.name}</Link></span>)) }
                     </div>
                   </div>
                   <IconPlay style={{color: '#999'}} />

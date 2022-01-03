@@ -108,14 +108,14 @@ function DetailLeft(props) {
                       <Link
                         key={a.id}
                         className="item"
-                        to={"/artist?id=" + a.id}
+                        to={"/find/artist?id=" + a.id}
                       >
                         {a.name}
                       </Link>
                     ) : (
                       <span key={a.id} className="divider">
                         /
-                        <Link className="item" to={"/artist?id=" + a.id}>
+                        <Link className="item" to={"/find/artist?id=" + a.id}>
                           {a.name}
                         </Link>
                       </span>
@@ -145,10 +145,10 @@ function DetailLeft(props) {
                   <Button type="tertiary" icon={<IconDownload />}>
                     下载
                   </Button>
-                  <Button type="tertiary" icon={<IconComment />}>
-                    <a className="toComment" href="#comment">
+                  <Button type="tertiary" icon={<IconComment />} onClick={() => {
+                      utils.goAnchor("#comment");
+                  }}>
                       ({albumDetail.info.commentCount})
-                    </a>
                   </Button>
                 </Space>
               </div>

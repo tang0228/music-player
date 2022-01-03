@@ -8,14 +8,14 @@ export default function SingerItem(props) {
     const singLis = singers.map(s =>(
         <li key={s.id} className="singer-item">
             <div className="singer-img">
-                <Link to={'/artist?id=' + s.id}>
-                    <LazyLoad height={200}>
+                <Link to={'/find/artist?id=' + s.id}>
+                    <LazyLoad>
                         <img src={s.img1v1Url} alt="" />
                     </LazyLoad>
                 </Link>
             </div>
             <p className="singer-name">
-                <Link to={'/artist?id=' + s.id} className="name">{s.name}</Link>
+                <Link to={'/find/artist?id=' + s.id} className="name">{s.name}</Link>
                 {s.identityIconUrl ? <img src={s.identityIconUrl} alt="" /> : null}
             </p>
         </li>

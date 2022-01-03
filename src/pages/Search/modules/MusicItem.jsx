@@ -50,7 +50,7 @@ function MusicItem(props) {
             <IconPlayCircle onClick={() => {
                 playMusic(song.id);
             }}/>
-            <Link to={'/song?id=' + song.id} className="name">{song.name}</Link>
+            <Link to={'/find/song?id=' + song.id} className="name">{song.name}</Link>
             <div className="operates">
                 <IconPlus />
                 <IconFolder />
@@ -58,9 +58,9 @@ function MusicItem(props) {
                 <IconDownload />
             </div>
             <div className="singers">
-                {song.artists && song.artists.map((item, i) => <Link className="singer-name" to={'/artist?id=' + item.id} key={item.id}>{i === 0 ? item.name : `/${item.name}`}</Link>)}
+                {song.artists && song.artists.map((item, i) => <Link className="singer-name" to={'/find/artist?id=' + item.id} key={item.id}>{i === 0 ? item.name : `/${item.name}`}</Link>)}
             </div>
-            <Link to={'/album?id=' + song.album.id} className="album">《{song.album.name}》</Link>
+            <Link to={'/find/album?id=' + song.album.id} className="album">《{song.album.name}》</Link>
             <div className="duration">{utils.formatTime(song.duration)}</div>
         </li>
     ))

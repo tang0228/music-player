@@ -7,7 +7,7 @@ export default function DjItem(props) {
   const djs = props.djs;
   const items = djs.map((d) => (
     <div key={d.id} className="dj-item">
-      <LazyLoad height={200}>
+      <LazyLoad>
         <img src={d.picUrl} alt="" />
       </LazyLoad>
       <div className="dj-content">

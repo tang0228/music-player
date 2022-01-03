@@ -2,7 +2,8 @@ import React, {useEffect, useState} from 'react';
 import style from "./recommendPlaylist.module.less";
 import ItemNav from './ItemNav';
 import { getDayPlsyList } from '../../../services/apis';
-import HotItem from "./HotItem"
+import HotItem from "./HotItem";
+import Today from './Today/Today';
 
 export default function PersonRecommend() {
     const [recommendList, setRecommendList] = useState([]);
@@ -23,7 +24,10 @@ export default function PersonRecommend() {
             <ItemNav navItem={{
                 title: "个性化推荐",
             }}></ItemNav>
-            <ul className="list-content">
+            <ul className="list-content" style={{
+                flexWrap: "nowrap"
+            }}>
+                <Today ></Today>
                 {recommendList ? recommendList.map(l => <HotItem key={l.id} {...l}></HotItem>) :null}
             </ul>
         </div>

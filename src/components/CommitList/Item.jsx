@@ -14,14 +14,14 @@ function Item(props) {
   const {c, user} = props;
   return (
     <li className="comment-item" key={c.commentId}>
-      <LazyLoad height={200}>
+      <LazyLoad>
         <Link to={"/user/home?uid=" + c.user.userId}>
           <img src={c.user.avatarUrl} alt="" />
         </Link>
       </LazyLoad>
       <div className="comment-desc">
         <p className="comment-content">
-          <Link className="name" to={"/user/home?uid=" + c.userId}>
+          <Link className="name" to={"/user/home?uid=" + c.user.userId}>
             {c.user.nickname}
           </Link>
           <span className="divider">:</span>

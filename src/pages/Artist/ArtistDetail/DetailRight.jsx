@@ -25,8 +25,8 @@ export default function DetailRight(props) {
                 <h3 className="title">相似歌手</h3>
                 <div className="artist-content">
                 {artists ? artists.map(a => <div key={a.id} className="artist-item">
-                    <Link to={'/artist?id=' + a.id}><img src={a.picUrl} alt="" /></Link>
-                    <Link to={'/artist?id=' + a.id} className="name">{a.name}</Link>
+                    <Link to={'/find/artist?id=' + a.id}><img src={a.picUrl} alt="" /></Link>
+                    <Link to={'/find/artist?id=' + a.id} className="name">{a.name}</Link>
                 </div>) : null}
                 </div>
             </div>

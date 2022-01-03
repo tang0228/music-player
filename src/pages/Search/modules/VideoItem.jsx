@@ -9,9 +9,9 @@ export default function VideoItem(props) {
   const videos = props.videos;
   const items = videos.map((v) => (
     <li key={v.vid} className="video-item">
-      <Link to={'mv?id=' + v.vid}>
+      <Link to={'/find/mv?id=' + v.vid}>
         <div className="video-img">
-          <LazyLoad height={200}>
+          <LazyLoad >
             <img src={v.coverUrl} alt="" />
           </LazyLoad>
           <div className="play-nums">

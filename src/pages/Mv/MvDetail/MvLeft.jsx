@@ -132,7 +132,7 @@ export default function MvLeft(props) {
             i === 0 ? (
               <Link
                 key={a.id}
-                to={"/artist?id=" + a.id}
+                to={"/find/artist?id=" + a.id}
                 className="name-artist"
               >
                 {a.name}
@@ -140,7 +140,7 @@ export default function MvLeft(props) {
             ) : (
               <Link
                 key={a.id}
-                to={"/artist?id=" + a.id}
+                to={"/find/artist?id=" + a.id}
                 className="name-artist"
               >
                 <span className="divider">/</span>

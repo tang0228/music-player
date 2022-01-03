@@ -9,8 +9,8 @@ export default function AlbumItem(props) {
     const items = albums.map(al => (
         <li key={al.id} className="album-item">
             <div className="album-img">
-                <Link to={'/album?id=' + al.id}>
-                    <LazyLoad height={200}>
+                <Link to={'/find/album?id=' + al.id}>
+                    <LazyLoad>
                         <img src={al.blurPicUrl} alt="" />
                     </LazyLoad>
                 </Link>
@@ -18,8 +18,8 @@ export default function AlbumItem(props) {
                     color: "#eee"
                 }} />
             </div>
-            <Link to={'/album?id=' + al.id} className="album-name">{al.name}</Link>
-            <Link to={'/artist?id=' + al.artist.id} className="singer-name">{al.artist.name}</Link>
+            <Link to={'/find/album?id=' + al.id} className="album-name">{al.name}</Link>
+            <Link to={'/find/artist?id=' + al.artist.id} className="singer-name">{al.artist.name}</Link>
         </li>
     ))
     return (

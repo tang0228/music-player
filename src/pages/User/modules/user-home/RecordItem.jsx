@@ -43,11 +43,11 @@ function RecordItem(props) {
         }} />
       </div>
       <div className="singer">
-        <Link to={'/song?id=' + record.song.id} className="music-name">{record.song.name}</Link>
+        <Link to={'/find/song?id=' + record.song.id} className="music-name">{record.song.name}</Link>
         <span className="divider">-</span>
         <span className="singer-name">
           {record.song.ar.map((a, i) => (
-            <Link className="name" to={'/artist?id=' + a.id} key={a.name}>{i === 0 ? a.name : "/" + a.name}</Link>
+            <Link className="name" to={'/find/artist?id=' + a.id} key={a.name}>{i === 0 ? a.name : "/" + a.name}</Link>
           ))}
         </span>
       </div>

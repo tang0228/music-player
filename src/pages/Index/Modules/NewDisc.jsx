@@ -22,13 +22,13 @@ export default function NewDisc() {
         <div className={style['new-disc']}>
             <ItemNav navItem={{
                 title: "新碟上架",
-            }} moreLink="/find/album"></ItemNav>
+            }} moreLink="/find/allAlbum"></ItemNav>
             <div className="album-wrapper">
                 <div className={status === "prev" ? 'album-content' : 'album-content prev'}>
                 {albums ? albums.map(al => <div className="album-item" key={al.id}>
             <div className="album-img">
-                <Link to={'/album?id=' + al.id}>
-                    <LazyLoad height={200}>
+                <Link to={'/find/album?id=' + al.id}>
+                    <LazyLoad>
                         <img src={al.blurPicUrl} alt="" />
                     </LazyLoad>
                 </Link>
@@ -36,8 +36,8 @@ export default function NewDisc() {
                     color: "#eee"
                 }} />
             </div>
-            <Link to={'/album?id=' + al.id} className="album-name">{al.name}</Link>
-            <Link to={'/artist?id=' + al.artist.id} className="singer-name">{al.artist.name}</Link>
+            <Link to={'/find/album?id=' + al.id} className="album-name">{al.name}</Link>
+            <Link to={'/find/artist?id=' + al.artist.id} className="singer-name">{al.artist.name}</Link>
                 </div>) : null}
                 </div>
                 

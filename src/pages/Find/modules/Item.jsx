@@ -10,7 +10,7 @@ export default function Item(props) {
       <div
         className="item-content"
       ><Link to={`/find/playlist/detail?id=${props.id}`}>
-        <LazyLoad height={200}>
+        <LazyLoad>
           <img src={props.coverImgUrl} alt="" />
         </LazyLoad>
         <div className="bottom">
