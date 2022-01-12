@@ -45,6 +45,7 @@ export default function Banner() {
                   display: "inline-block",
                   position: "relative",
                   zIndex: 12,
+                  left: -126,
               }} to={mapUrl[b.targetType] + b.targetId}>
               <img src={b.imageUrl} alt="" style={{
                   height: 285,
@@ -57,6 +58,7 @@ export default function Banner() {
                   display: "inline-block",
                   position: "relative",
                   zIndex: 12,
+                  left: -126,
               }} target="_blank">
                   <img src={b.imageUrl} alt="" style={{
                   height: 285,
@@ -83,10 +85,6 @@ export default function Banner() {
                         zIndex: "99999",
                     }} />
         </div> }
-        <div className="download">
-            <Link className="download-btn" to="/download">下载客户端</Link>
-            <p className="download-text">PC 安卓 iPhone WP iPad Mac 六大客户端</p>
-        </div>
       </div>
       
   );

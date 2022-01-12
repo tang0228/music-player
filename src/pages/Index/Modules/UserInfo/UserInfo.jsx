@@ -17,16 +17,18 @@ function UserInfo(props) {
     //获取用户信息
     useEffect(() => {
         (async () => {
-            const res = await getUserDetail({
-                uid: user.userId
-            });
-            if(res.code === 200) {
-                setUserInfo(res)
+            if(user) {
+                const res = await getUserDetail({
+                    uid: user.userId
+                });
+                if(res.code === 200) {
+                    setUserInfo(res)
+                }
             }
         })();
         return () => {
         }
-    }, [user.userId]);
+    }, [user]);
     const [visible, setVisible] = useState(false);
     return (
         <div className={style["user-info"]}>
