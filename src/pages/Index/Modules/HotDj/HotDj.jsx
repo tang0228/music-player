@@ -10,7 +10,6 @@ export default function HotDj() {
             if(res.code === 200) {
                 setDjs(res.data.list);
             }
-            console.log(res);
         })
         return () => {
         }

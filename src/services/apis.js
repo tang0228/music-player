@@ -356,3 +356,9 @@ export async function getAlbumNewest() {
     return res;
 };
 
+// // 获取榜单
+// export async function getTopList() {
+//     const res = ins.get("/toplist/detail");
+//     return res;
+// }
+

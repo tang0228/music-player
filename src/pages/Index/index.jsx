@@ -8,6 +8,7 @@ import UserInfo from "./Modules/UserInfo/UserInfo";
 import EntryArtist from "./Modules/EntryArtist/EntryArtist";
 import HotDj from "./Modules/HotDj/HotDj";
 import Download from "./Modules/Download/Download";
+import TopList from "./Modules/TopList/TopList";
 import { connect } from "react-redux";
 
 const mapStateToProps = (state) => {
@@ -26,6 +27,7 @@ function Index(props) {
           <RecommendPlaylist />
           {user ? <PersonRecommend /> : null}
           <NewDisc />
+          <TopList />
         </div>
         <div className="right">
           <UserInfo />
