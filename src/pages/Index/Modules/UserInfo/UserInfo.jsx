@@ -1,9 +1,9 @@
 import React, { useState, useEffect} from 'react';
 import style from "./userInfo.module.less";
 import {connect} from "react-redux";
-import { Button, Tag } from "@douyinfe/semi-ui";
+import { Button, Tag, Toast } from "@douyinfe/semi-ui";
 import Login from '../../../../components/Login';
-import { getUserDetail } from "../../../../services/apis";
+import { getUserDetail, userSignIn } from "../../../../services/apis";
 import { Link } from 'react-router-dom';
 
 const mapStateToProps = (state) => ({
@@ -15,21 +15,37 @@ function UserInfo(props) {
     const { user } = props;
     const [userInfo, setUserInfo] = useState(null); // 用户信息
     //获取用户信息
-    useEffect(() => {
-        (async () => {
-            if(user) {
-                const res = await getUserDetail({
-                    uid: user.userId
-                });
-                if(res.code === 200) {
-                    setUserInfo(res)
-                }
+    const getUserInfo = async () => {
+        if(user) {
+            const res = await getUserDetail({
+                uid: user.userId
+            });
+            if(res.code === 200) {
+                setUserInfo(res)
             }
-        })();
+        }
+    }
+    useEffect(() => {
+        getUserInfo();
         return () => {
         }
     }, [user]);
     const [visible, setVisible] = useState(false);
+
+    // 签到
+    const signIn = async () => {
+        if(userInfo.pcSign) {
+            return;
+        }
+        const res = await userSignIn({type: 1});
+        if(res.code === 200) {
+            getUserInfo();
+            Toast.success({
+                content: "签到成功",
+                duration: 2,
+            })
+        }
+    };
     return (
         <div className={style["user-info"]}>
             {!userInfo ? <div className="user-login">
@@ -48,7 +64,7 @@ function UserInfo(props) {
                     <div className="user-detail">
                         <Link to={'/user/home?uid=' + userInfo.profile.userId} className="name">{userInfo.profile.nickname}</Link>
                         <Link to="/level"><Tag>LV.{userInfo.level}</Tag></Link>
-                        <Button>签到</Button>
+                        <Button disabled={userInfo.pcSign} type={userInfo.pcSign ? 'tertiary' : 'primary'} onClick={signIn}>{userInfo.pcSign ? '已签到' : '签到' }</Button>
                     </div>
                 </div>
                 <div className="user-nums">

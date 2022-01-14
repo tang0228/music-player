@@ -356,9 +356,19 @@ export async function getAlbumNewest() {
     return res;
 };
 
-// // 获取榜单
-// export async function getTopList() {
-//     const res = ins.get("/toplist/detail");
-//     return res;
-// }
+// 签到
+export async function userSignIn({type}) {
+    const res = await ins.get("/daily_signin", {
+        params: {
+            type
+        }
+    });
+    return res;
+};
+
+// 获取榜单内容摘要
+export async function getTop() {
+    const res = await ins.get("/toplist/detail");
+    return res;
+}
 

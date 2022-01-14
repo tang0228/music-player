@@ -1,0 +1,120 @@
+.right-content {
+    border-left: 1px solid #ddd;
+    flex: 1;
+    padding: 40px;
+    width: 740px;
+    box-sizing: border-box;
+    :global {
+        .top-content {
+            display: flex;
+            .img {
+                width: 160px;
+                height: 160px;
+                padding: 4px;
+                border: 1px solid #ddd;
+                box-sizing: border-box;
+                margin-right: 24px;
+
+                img {
+                    width: 150px;
+                    height: 150px;
+                }
+            }
+
+            .list-content {
+                .list-name {
+                    font-size: 20px;
+                    color: #333;
+                    margin: 16px 0 4px;
+                }
+
+                .create-desc {
+                    margin-bottom: 20px;
+                    line-height: 35px;
+                    font-size: 12px;
+                    color: #666;
+                    display: flex;
+                    align-items: center;
+                }
+            }
+        }
+
+        .music-list {
+            margin-top: 40px;
+            margin-bottom: 40px;
+            .list-header {
+                display: flex;
+                border-bottom: 2px solid #c20c0c;
+                height: 33px;
+                align-items: center;
+
+                .title {
+                    color: #333;
+                    font-size: 20px;
+                    margin-right: 20px;
+                }
+
+                .total {
+                    color: #666;
+                    font-size: 12px;
+                    margin-top: 9px;
+                    flex: 1;
+                }
+
+                .play-num {
+                    font-size: 12px;
+                    color: #666;
+
+                    .num {
+                        color: #c20c0c;
+                    }
+                }
+            }
+
+            .list-wrap {
+                .table-header {
+                    display: flex;
+                    color: #666;
+                    font-size: 12px;
+                    height: 38.5px;
+                    align-items: center;
+                    background-color: #f7f7f7;
+                    border: 1px solid #ddd;
+
+                    .bd {
+                        border-left: 1px solid #ddd;
+                        height: 100%;
+                        line-height: 38.5px;
+                        padding-left: 10px;
+                        box-sizing: border-box;
+                    }
+
+                    .play-num {
+                        width: 74px;
+                    }
+
+                    .title {
+                        flex: 1;
+                    }
+
+                    .duration {
+                        width: 111px;
+                    }
+
+                    .name {
+                        width: 14%;
+                    }
+
+                    .album {
+                        width: 20%;
+                    }
+                }
+            }
+        }
+        .pagination-wrapper {
+            margin-top: 24px;
+            display: flex;
+            justify-content: center;
+        }
+    }
+}

@@ -18,6 +18,7 @@ import SongDetail from "./pages/Song/SongDetail";
 import ArtistDetail from "./pages/Artist/ArtistDetail";
 import AlbumDetail from "./pages/Album/AlbumDetail";
 import MvDetail from "./pages/Mv/MvDetail";
+import TopList from "./pages/Find/modules/topList/TopList"
 
 function App() {
     const { Header, Footer, Content } = Layout;
@@ -37,6 +38,7 @@ function App() {
                                 <Route exact path="/find" component={Index}></Route>
                                 <Route exact path="/find/playlist" component={PlayList}></Route>
                                 <Route exact path="/find/playlist/detail" component={PlaylistDetail}></Route>
+                                <Route exact path="/find/toplist" component={TopList}></Route>
                                 <Route exact path="/find/song" component={SongDetail}></Route>
                                 <Route exact path="/find/artist" component={ArtistDetail}></Route>
                                 <Route exact path="/find/album" component={AlbumDetail}></Route>

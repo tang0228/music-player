@@ -32,7 +32,7 @@ export default function Banner() {
   }, []);
   return (
       <div className="banner-wrap">
-          { !loading ? <Carousel autoPlay={false} showThumbs={false} showStatus={false} infiniteLoop={false}>
+          { !loading ? <Carousel autoPlay={true} showThumbs={false} showStatus={false} infiniteLoop={true}>
           {banners.map(b => <div key={b.targetId}>
               <div className="bg" style={{
                   position: "absolute",

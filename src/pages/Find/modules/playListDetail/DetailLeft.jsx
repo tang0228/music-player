@@ -27,7 +27,7 @@ function DetailLeft(props) {
   const [total, setTotal] = useState(0); // 总评论数
   const [loading, setLoading] = useState(false); // loading
   const [open, setOpen] = useState(false);// 是否展开
-  const {detail, id} = props;
+  const { detail, id } = props;
   // 提交评论
   const playListCommit = useCallback(async (val) => {
     const res = await comment({
@@ -54,81 +54,80 @@ function DetailLeft(props) {
     setLimit(limit);
   }, []);
   const getComments = async () => {
+    setLoading(true);
     const res = await getPlayListCommit({
-        id: id,
-        limit,
-        offset: (page - 1) * limit,
-        timestamp: Date.now(),
-      });
-      if (res.code === 200) {
-        setTotal(res.total);
-        setComments(res.comments);
-        setHotComments(res.hotComments);
-        setLoading(false);
-      }
+      id: id,
+      limit,
+      offset: (page - 1) * limit,
+      timestamp: Date.now(),
+    });
+    if (res.code === 200) {
+      setTotal(res.total);
+      setComments(res.comments);
+      setHotComments(res.hotComments);
+      setLoading(false);
+    }
   }
   // 获取评论列表
   useEffect(() => {
-     getComments();
-    return () => {};
+    getComments();
+    return () => { };
   }, [id, limit, page]);
 
   // 点赞评论
   const like = useCallback(
-      async (cid, liked) => {
-          const res = await likeComment({
-              id,
-              cid,
-              t: liked ? 0 : 1,
-              type: 2,
-              timestamp: Date.now(),
-          });
-          if(res.code === 200) {
-              if(liked) {
-                Toast.success({
-                    content: "取消赞成功",
-                    duration: 2,
-                })
-              } else {
-                Toast.success({
-                    content: "赞成功",
-                    duration: 2,
-                })
-              }
-              getComments();
-          } else {
-              Toast.error({
-                  content: "操作失败"
-              })
-          }
-      },
-      [],
+    async (cid, liked) => {
+      const res = await likeComment({
+        id,
+        cid,
+        t: liked ? 0 : 1,
+        type: 2,
+        timestamp: Date.now(),
+      });
+      if (res.code === 200) {
+        if (liked) {
+          Toast.success({
+            content: "取消赞成功",
+            duration: 2,
+          })
+        } else {
+          Toast.success({
+            content: "赞成功",
+            duration: 2,
+          })
+        }
+        getComments();
+      } else {
+        Toast.error({
+          content: "操作失败"
+        })
+      }
+    },
+    [],
   );
 
   // 删除评论
   const del = async (cid) => {
     const res = await comment({
-        t: 0,
-        type: 2,
-        id: id,
-        commentId: cid,
-        timestamp: Date.now(),
+      t: 0,
+      type: 2,
+      id: id,
+      commentId: cid,
+      timestamp: Date.now(),
     });
-    if(res.code === 200) {
+    if (res.code === 200) {
       Toast.success({
-          content: "删除成功",
-          duration: 2,
+        content: "删除成功",
+        duration: 2,
       });
       getComments();
     }
-}
+  }
   return (
     <div className={style["detail-left"]}>
       <div className="top-content">
         <div className="img">
-          <Link to={"/user/home?uid=" + detail.creator.userId}>
-            <img src={detail.coverImgUrl} alt="" />
-          </Link>
+          <img src={detail.coverImgUrl} alt="" />
         </div>
         <div className="list-content">
           <div className="list-name">{detail.name}</div>
@@ -143,7 +142,7 @@ function DetailLeft(props) {
               {detail.creator.nickname}
             </Link>
             {detail.creator.avatarDetail &&
-            detail.creator.avatarDetail.identityIconUrl ? (
+              detail.creator.avatarDetail.identityIconUrl ? (
               <img
                 className="icon"
                 src={detail.creator.avatarDetail.identityIconUrl}
@@ -168,9 +167,9 @@ function DetailLeft(props) {
                 下载
               </Button>
               <Button type="tertiary" icon={<IconComment />} onClick={() => {
-                  utils.goAnchor("#comment");
+                utils.goAnchor("#comment");
               }}>
-                  ({detail.commentCount})
+                ({detail.commentCount})
               </Button>
             </Space>
           </div>
@@ -187,17 +186,17 @@ function DetailLeft(props) {
             </Space>
           </div>
           {
-            detail.description ?<div className="desc">
+            detail.description ? <div className="desc">
               介绍：{open ? detail.description : detail.description.split("\n").splice(0, 5).join("\n") + '...'}
-                <div className="arrow" onClick={() => {
-                    setOpen(!open);
-                }}>
-                    <span className="text">{open ? '收起' : '展开'}</span>
-                    {open ? <IconChevronUp /> : <IconChevronDown />}
-                </div>
-          </div> : null
+              <div className="arrow" onClick={() => {
+                setOpen(!open);
+              }}>
+                <span className="text">{open ? '收起' : '展开'}</span>
+                {open ? <IconChevronUp /> : <IconChevronDown />}
+              </div>
+            </div> : null
           }
-          
+
         </div>
       </div>
       <div className="music-list">
