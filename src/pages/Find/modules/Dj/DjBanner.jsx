@@ -21,7 +21,7 @@ export default function DjBanner() {
         <div className={style['dj-banner']}>
             {cats && cats.length ? cats.map(c => <Link className={id == c.id ? "cat-item active" : "cat-item"} key={c.id} to={'/find/djradio/category?id=' + c.id}>
                 <div className="icon" style={{
-                    backgroundImage: `url(${c.picPCBlackUrl})`,
+                    backgroundImage: `url(${c.picWebUrl})`,
                 }}></div>
                 <em className="name">{c.name}</em>
             </Link>) : null}

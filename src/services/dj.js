@@ -22,8 +22,9 @@ export async function getDjCat() {
     return res;
 };
 
+// dj 推荐
 export async function getDjRecommend() {
-    const res = await ins.get("/dj/program/toplist/hours");
+    const res = await ins.get("/dj/recommend");
     return res;
 }
 
