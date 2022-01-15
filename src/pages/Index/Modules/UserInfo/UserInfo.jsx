@@ -18,7 +18,8 @@ function UserInfo(props) {
     const getUserInfo = async () => {
         if(user) {
             const res = await getUserDetail({
-                uid: user.userId
+                uid: user.userId,
+                timestamp: Date.now(),
             });
             if(res.code === 200) {
                 setUserInfo(res)

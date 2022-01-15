@@ -18,7 +18,8 @@ import SongDetail from "./pages/Song/SongDetail";
 import ArtistDetail from "./pages/Artist/ArtistDetail";
 import AlbumDetail from "./pages/Album/AlbumDetail";
 import MvDetail from "./pages/Mv/MvDetail";
-import TopList from "./pages/Find/modules/topList/TopList"
+import TopList from "./pages/Find/modules/topList/TopList";
+import Dj from "./pages/Find/modules/Dj/Dj"
 
 function App() {
     const { Header, Footer, Content } = Layout;
@@ -39,6 +40,18 @@ function App() {
                                 <Route exact path="/find/playlist" component={PlayList}></Route>
                                 <Route exact path="/find/playlist/detail" component={PlaylistDetail}></Route>
                                 <Route exact path="/find/toplist" component={TopList}></Route>
+                                <Route path="/find/djradio" render={() => (
+                                    <>
+                                        <Route exact path="/find/djradio" component={Dj}></Route>
+                                        <Route exact path="/find/djradio/category" render={() => (
+                                            <Dj>
+                                                cat
+                                            </Dj>
+                                        )}></Route>
+                                        <Route exact path="/find/djradio/recommend" component={MvDetail}></Route>
+                                        <Route exact path="/find/djradio/rank" component={MvDetail}></Route>
+                                    </>
+                                )}></Route>
                                 <Route exact path="/find/song" component={SongDetail}></Route>
                                 <Route exact path="/find/artist" component={ArtistDetail}></Route>
                                 <Route exact path="/find/album" component={AlbumDetail}></Route>

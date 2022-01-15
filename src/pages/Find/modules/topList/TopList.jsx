@@ -8,6 +8,7 @@ import { useLocation } from 'react-router-dom';
 export default function TopList() {
     const location = useLocation();
     const id = location.search ? qs.parse(location.search).id : '19723756';
+    console.log(location)
     const [listDetail, setListDetail] = useState(null);
     useEffect(() => {
         getPlayListDetail({id}).then(res => {
