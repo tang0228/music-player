@@ -21,6 +21,7 @@ import MvDetail from "./pages/Mv/MvDetail";
 import TopList from "./pages/Find/modules/topList/TopList";
 import Dj from "./pages/Find/modules/Dj/DjRadio/Dj";
 import CatDetail from "./pages/Find/modules/Dj/CatDetail/CatDetail";
+import DJRank from "./pages/Find/modules/Dj/DjRank/DJRank";
 
 function App() {
     const { Header, Footer, Content } = Layout;
@@ -46,7 +47,7 @@ function App() {
                                         <Route exact path="/find/djradio" component={Dj}></Route>
                                         <Route exact path="/find/djradio/category" component={CatDetail}></Route>
                                         <Route exact path="/find/djradio/recommend" component={MvDetail}></Route>
-                                        <Route exact path="/find/djradio/rank" component={MvDetail}></Route>
+                                        <Route exact path="/find/djradio/rank" component={DJRank}></Route>
                                     </>
                                 )}></Route>
                                 <Route exact path="/find/song" component={SongDetail}></Route>

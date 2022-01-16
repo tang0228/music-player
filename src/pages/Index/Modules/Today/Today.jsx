@@ -10,7 +10,7 @@ const dayMap = {
     "4": "四",
     "5": "五",
     "6": "六",
-    "7": "天",
+    "0": "日",
 }
 
 export default function Today() {

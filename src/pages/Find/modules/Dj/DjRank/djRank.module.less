@@ -1,0 +1,133 @@
+.dj-rank {
+    width: 980px;
+    padding: 40px;
+    box-sizing: border-box;
+    margin: 0 auto;
+    border: 1px solid #ddd;
+    border-top: none;
+
+    :global {
+        .header {
+            height: 40px;
+            border-bottom: 2px solid #c20c0c;
+            display: flex;
+            align-items: center;
+
+            .title {
+                font-size: 24px;
+                color: #333;
+            }
+
+            .tips {
+                color: #999;
+                font-size: 12px;
+                margin: 13px 0 0 10px;
+                flex: 1;
+            }
+        }
+
+        .dj-list {
+            border: 1px solid #e2e2e2;
+            border-top: none;
+
+            .dj-item {
+                display: flex;
+                height: 40px;
+                padding: 10px 0;
+                align-items: center;
+
+                &:hover {
+                    background-color: #eee;
+                }
+
+                &:hover .img-wrap .semi-icon-play_circle {
+                    display: block;
+                }
+
+                .index {
+                    width: 40px;
+                    text-align: center;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    color: #999;
+                    line-height: 18px;
+
+                    .num {
+                        font-size: 14px;
+                    }
+
+                    .top {
+                        color: #da4545;
+                    }
+
+                    .level {
+                        font-size: 12px;
+                    }
+                }
+
+
+                .img-wrap {
+                    position: relative;
+                    margin-left: 20px;
+
+                    img {
+                        width: 40px;
+                        height: 40px;
+                    }
+
+                    .semi-icon-play_circle {
+                        position: absolute;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(-50%, -50%);
+                        color: #666;
+                        display: none;
+                    }
+                }
+
+                .desc {
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    width: 300px;
+                    font-size: 12px;
+                    color: #333;
+                    margin-left: 10px;
+                }
+
+                .name {
+                    font-size: 12px;
+                    color: #666;
+                    margin-left: 10px;
+                    width: 176px;
+                }
+
+                .cat-wrap {
+                    width: 140px;
+
+                    .cat {
+                        margin-left: 10px;
+                        display: inline-block;
+                        height: 16px;
+                        overflow: hidden;
+                        padding: 0 6px;
+                        border: 1px solid #999;
+                        line-height: 16px;
+                        color: #999;
+                        vertical-align: middle;
+                        font-size: 12px;
+                        cursor: pointer;
+                    }
+                }
+
+
+
+                .progress {
+                    width: 100px;
+                    margin-left: 28px;
+                }
+            }
+        }
+    }
+}
