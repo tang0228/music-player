@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { getDjProgramToplist } from '../../../../services/dj';
+import { getDjProgramToplist } from '../../../../../services/dj';
 import style from "./djRank.module.less";
-import Header from "./components/Header";
+import Header from "../components/Header";
 import LazyLoad from 'react-lazyload';
 import { Link } from 'react-router-dom';
 import { IconPlayCircle, IconArrowUp, IconArrowDown } from "@douyinfe/semi-icons";
 import { Progress } from "@douyinfe/semi-ui";
-import utils from "../../../../utils";
+import utils from "../../../../../utils";
 
 export default function DjRank() {
     const [list, setList] = useState([]); // 节目排行榜列表
@@ -41,7 +41,7 @@ export default function DjRank() {
 
                     <div className="detail">
                         <Link to={"/find/program?id=" + d.program.id} className="desc" title={d.program.name} >{d.program.name}</Link>
-                        <Link to={"/find/djradioinfo?id=" + d.program.radio.id} className="name" title={d.program.dj.brand}>{d.program.dj.brand}</Link>
+                        <Link to={"/find/djradio/detail?id=" + d.program.radio.id} className="name" title={d.program.dj.brand}>{d.program.dj.brand}</Link>
                     </div>
                     <div className="progress">
                         <Progress percent={d.score / topScore * 100} style={{height: 8}} stroke="#888" showInfo={false} aria-label="disk usage" />

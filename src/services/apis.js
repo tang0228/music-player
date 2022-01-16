@@ -371,5 +371,5 @@ export async function userSignIn({type}) {
 export async function getTop() {
     const res = await ins.get("/toplist/detail");
     return res;
-}
+};
 

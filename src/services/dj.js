@@ -28,8 +28,40 @@ export async function getDjRecommend() {
     return res;
 }
 
+// 节目推荐
+export async function getProgramRecommend() {
+    const res = await ins.get("/program/recommend");
+    return res;
+}
+
 // 节目排行榜
 export async function getDjProgramToplist() {
     const res = await ins.get("/dj/program/toplist");
+    return res;
+};
+
+// 获取推荐电台类型
+export async function getRecommendCat() {
+    const res = await ins.get("/dj/category/recommend");
+    return res;
+};
+
+// 获取分类推荐的电台
+export async function getRecommendByCat({type}) {
+    const res = await ins.get("/dj/recommend/type", {
+        params: {
+            type
+        }
+    });
+    return res;
+};
+
+// 获取热门电台列表
+export async function getHotDjList({ limit, offset, cateId }) {
+    const res = await ins.get('/dj/radio/hot', {
+        params: {
+            limit, offset, cateId
+        }
+    });
     return res;
 }

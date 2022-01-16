@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import style from "./djBanner.module.less";
-import { getDjCat } from '../../../../services/dj';
+import { getDjCat } from '../../../../../services/dj';
 import { Link, useLocation } from 'react-router-dom';
 import qs from "query-string";
 

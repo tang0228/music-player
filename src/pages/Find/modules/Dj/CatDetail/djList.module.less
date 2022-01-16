@@ -1,0 +1,78 @@
+.dj-list {
+    margin-top: 35px;
+    :global {
+        .header {
+            height: 40px;
+            border-bottom: 2px solid #c20c0c;
+            font-size: 24px;
+            color: #333;
+        }
+
+        .list-wrap {
+            display: flex;
+            flex-wrap: wrap;
+
+            .list-item {
+                display: flex;
+                width: 435px;
+                height: 120px;
+                padding: 20px 0;
+                border-bottom: 1px solid #e7e7e7;
+
+                &.mr28 {
+                    margin-right: 28px;
+                }
+
+                img {
+                    width: 120px;
+                    height: 120px;
+                }
+
+                .content {
+                    margin-left: 20px;
+
+                    .name {
+                        display: block;
+                        font-size: 18px;
+                        color: #333;
+                        height: 64px;
+                        line-height: 64px;
+                        font-weight: 700;
+                        white-space: nowrap;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        width: 295px;
+                    }
+
+                    .user {
+                        line-height: 20px;
+                        margin-bottom: 6px;
+                        display: flex;
+                        align-items: center;
+
+                        .nickname {
+                            font-size: 12px;
+                            color: #333;
+                            margin-left: 5px;
+                            display: inline-block;
+                        }
+                    }
+
+                    .nums {
+                        font-size: 12px;
+                        color: #999;
+
+                        .sub-num {
+                            padding-left: 16px;
+                        }
+                    }
+                }
+            }
+        }
+        .pagination-wrapper {
+            margin-top: 24px;
+            display: flex;
+            justify-content: center;
+        }
+    }
+}
