@@ -30,7 +30,7 @@ export default function DjRecommend() {
                         <IconPlayCircle />
                     </div>
                     <div className="detail">
-                        <Link to={"/find/program?id=" + d.id} className="desc" title={d.name} >{d.name}</Link>
+                        <Link to={"/find/djradio/program?id=" + d.id} className="desc" title={d.name} >{d.name}</Link>
                         <Link to={"/find/djradio/detail?id=" + d.radio.id} className="name" title={d.radio.name}>{d.radio.name}</Link>
                     </div>
                     <Link to={"/find/djradio/category?id=" + d.categoryId} className="cat">{d.radio.category}</Link>

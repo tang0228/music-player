@@ -1,0 +1,145 @@
+.program-left {
+    padding: 47px 30px 40px 39px;
+    width: 710px;
+    box-sizing: border-box;
+
+    :global {
+        .p-info {
+            display: flex;
+
+            .img-wrap {
+                width: 148px;
+                height: 148px;
+                border: 1px solid #d5d5d5;
+                padding: 3px;
+                box-sizing: border-box;
+                margin-right: 32px;
+
+                img {
+                    width: 140px;
+                    height: 140px;
+                }
+            }
+
+            .main-detail {
+
+                .row-1 {
+                    padding-top: 28px;
+                    display: flex;
+                    align-items: flex-start;
+                    margin-bottom: 29px;
+
+                    .icon {
+                        width: 73px;
+                        height: 24px;
+                        display: inline-block;
+                        overflow: hidden;
+                        background-position: 0 -75px;
+                        background: url(https://s2.music.126.net/style/web2/img/icon2.png?26b40391b0504915d65e7d9155a0a1b9) no-repeat 0 -75px;
+                    }
+
+                    .name {
+                        margin-left: 7px;
+                        font-size: 20px;
+                        color: #333;
+                        line-height: 24px;
+                    }
+                }
+
+                .row-2 {
+                    display: flex;
+                    align-items: center;
+
+                    .icon {
+                        margin-right: 7px;
+                        width: 16px;
+                        height: 17px;
+                        display: inline-block;
+                        overflow: hidden;
+                        background-position: -50px -20px;
+                        background: url(https://s2.music.126.net/style/web2/img/icon2.png?26b40391b0504915d65e7d9155a0a1b9) no-repeat -50px -20px;
+                    }
+
+                    .name {
+                        font-size: 16px;
+                        color: #666;
+                        margin-right: 16px;
+                    }
+
+                    .icon-sub {
+                        margin-right: 7px;
+                        width: 14px;
+                        height: 14px;
+                        display: inline-block;
+                        overflow: hidden;
+                        background-position: -50px 0px;
+                        background: url(https://s2.music.126.net/style/web2/img/icon2.png?26b40391b0504915d65e7d9155a0a1b9) no-repeat -50px 0px;
+                    }
+                }
+            }
+        }
+
+        .operates {
+            margin: 20px 0 25px;
+        }
+
+        .c-info {
+            display: flex;
+            align-items: center;
+            height: 35px;
+
+            .cat {
+                color: #cc0000;
+                border: 1px solid #cc0000;
+                background: #fbeeee;
+                padding: 0 6px;
+                height: 16px;
+                font-size: 12px;
+                line-height: 16px;
+                margin-right: 9px;
+            }
+
+            .name {
+                font-weight: 700;
+                font-size: 14px;
+                color: #333;
+                padding-right: 18px;
+            }
+
+            .time {
+                font-size: 12px;
+                color: #999;
+                padding-right: 18px;
+            }
+
+            .nums {
+                font-size: 12px;
+                color: #999;
+            }
+        }
+
+        .desc {
+            color: #666;
+            font-size: 12px;
+            white-space: pre-wrap;
+            line-height: 23px;
+
+            .arrow {
+                display: flex;
+                align-items: center;
+                justify-content: flex-end;
+                cursor: pointer;
+
+                .text {
+                    color: #0c73c2;
+                }
+
+                &:hover {
+                    .text {
+                        text-decoration: underline;
+                    }
+                }
+            }
+        }
+    }
+}

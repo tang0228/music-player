@@ -51,10 +51,10 @@ export default function DJRank() {
                         </LazyLoad>
                         <IconPlayCircle />
                     </div>
-                    <Link to={"/find/program?id=" + d.program.id} className="desc" title={d.program.name} >{d.program.name}</Link>
+                    <Link to={"/find/djradio/program?id=" + d.program.id} className="desc" title={d.program.name} >{d.program.name}</Link>
                     <Link to={"/find/djradio/detail?id=" + d.program.radio.id} className="name" title={d.program.dj.brand}>{d.program.dj.brand}</Link>
                     <div className="cat-wrap">
-                        <Link to={"/find/djradio/category?id=" + d.program.radio.id} className="cat" title={d.program.radio.category}>{d.program.radio.category}</Link>
+                        <Link to={"/find/djradio/category?id=" + d.program.categoryId} className="cat" title={d.program.radio.category}>{d.program.radio.category}</Link>
                     </div>
                     <div className="progress">
                         <Progress percent={d.score / topScore * 100} style={{ height: 8 }} stroke="#888" showInfo={false} aria-label="disk usage" />

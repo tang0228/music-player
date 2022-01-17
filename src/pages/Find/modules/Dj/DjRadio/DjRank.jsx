@@ -40,7 +40,7 @@ export default function DjRank() {
                     </div>
 
                     <div className="detail">
-                        <Link to={"/find/program?id=" + d.program.id} className="desc" title={d.program.name} >{d.program.name}</Link>
+                        <Link to={"/find/djradio/program?id=" + d.program.id} className="desc" title={d.program.name} >{d.program.name}</Link>
                         <Link to={"/find/djradio/detail?id=" + d.program.radio.id} className="name" title={d.program.dj.brand}>{d.program.dj.brand}</Link>
                     </div>
                     <div className="progress">

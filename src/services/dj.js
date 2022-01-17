@@ -24,7 +24,7 @@ export async function getDjCat() {
 
 // dj 推荐
 export async function getDjRecommend() {
-    const res = await ins.get("/dj/recommend");
+    const res = await ins.get("/dj/program/toplist/hours");
     return res;
 }
 
@@ -61,6 +61,26 @@ export async function getHotDjList({ limit, offset, cateId }) {
     const res = await ins.get('/dj/radio/hot', {
         params: {
             limit, offset, cateId
+        }
+    });
+    return res;
+};
+
+// 获取节目详情
+export async function getProgramDetail({id}) {
+    const res = await ins.get("/dj/program/detail", {
+        params: {
+            id
+        }
+    });
+    return res;
+};
+
+// 获取dj详情
+export async function getDjradioDetail({rid}) {
+    const res = await ins.get("/dj/detail", {
+        params: {
+            rid
         }
     });
     return res;
