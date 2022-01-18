@@ -84,4 +84,12 @@ export async function getDjradioDetail({rid}) {
         }
     });
     return res;
+};
+
+// 获取节目评论
+export async function getDjComments({ id, limit, offset, timestamp }) {
+    const res = await ins.get("/comment/dj", {
+        params: { id, limit, offset, timestamp }
+    });
+    return res;
 }

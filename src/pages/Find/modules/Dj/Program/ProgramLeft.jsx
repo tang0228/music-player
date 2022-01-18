@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { Link } from "react-router-dom";
 import style from "./left.module.less";
 import { getProgramDetail } from "../../../../../services/dj";
-import { Button, Space } from '@douyinfe/semi-ui';
+import { Button, Space, Spin, Pagination, Toast } from '@douyinfe/semi-ui';
 import {
     IconPlayCircle,
     IconLikeThumb,
@@ -12,12 +12,24 @@ import {
     IconChevronUp,
     IconChevronDown,
 } from "@douyinfe/semi-icons";
-import utils from "../../../../../utils"
+import utils from "../../../../../utils";
+import SongList from "./SongList";
+import Commit from "../../../../../components/Commit";
+import CommitList from "../../../../../components/CommitList/CommitList";
+import { comment, likeComment } from "../../../../../services/comment";
+import { getDjComments } from "../../../../../services/dj";
 
 export default function ProgramLeft(props) {
     const { id } = props;
     const [detail, setDetail] = useState(null); // program detail
     const [open, setOpen] = useState(false);
+    const [comments, setComments] = useState([]); // 评论列表
+    const [hotComments, setHotComments] = useState([]); // 热门评论列表
+    const [page, setPage] = useState(1); // 评论列表
+    const [total, setTotal] = useState(0); // 总评论数
+    const [loading, setLoading] = useState(false); // loading
+
+    // 获取 节目详情
     useEffect(() => {
         getProgramDetail({ id }).then(res => {
             if (res.code === 200) {
@@ -26,7 +38,87 @@ export default function ProgramLeft(props) {
         })
         return () => {
         }
-    }, [])
+    }, [id]);
+
+    useEffect(() => {
+        getComments();
+        return () => {
+        }
+    }, [id, page])
+
+    const getComments = async () => {
+        setLoading(true);
+        const res = await getDjComments({
+            id: id,
+            limit: 20,
+            offset: (page - 1) * 20,
+            timestamp: Date.now(),
+        });
+        if (res.code === 200) {
+            setTotal(res.total);
+            setComments(res.comments);
+            setHotComments(res.hotComments);
+            setLoading(false);
+        }
+    }
+
+    // 页码变化
+    const handlePageChange = (page) => {
+        setPage(page)
+    };
+    // 点赞评论
+    const like = useCallback(
+        async (cid, liked) => {
+            const res = await likeComment({
+                id,
+                cid,
+                t: liked ? 0 : 1,
+                type: 2,
+                timestamp: Date.now(),
+            });
+            if (res.code === 200) {
+                if (liked) {
+                    Toast.success({
+                        content: "取消赞成功",
+                        duration: 2,
+                    })
+                } else {
+                    Toast.success({
+                        content: "赞成功",
+                        duration: 2,
+                    })
+                }
+                getComments();
+            } else {
+                Toast.error({
+                    content: "操作失败"
+                })
+            }
+        },
+        [],
+    );
+
+    // 删除评论
+    const del = async (cid) => {
+        const res = await comment({
+            t: 0,
+            type: 2,
+            id: id,
+            commentId: cid,
+            timestamp: Date.now(),
+        });
+        if (res.code === 200) {
+            Toast.success({
+                content: "删除成功",
+                duration: 2,
+            });
+            getComments();
+        }
+    }
+
+    const playListCommit = () => {
+
+    }
     return (
         <>
             {detail ? <div className={style['program-left']}>
@@ -82,6 +174,35 @@ export default function ProgramLeft(props) {
                         </div>
                     </div> : null
                 }
+                <SongList list={detail.songs} />
+                <Commit
+                    commitNum={detail.commentCount}
+                    commit={playListCommit}
+                    commitLength={140}
+                />
+                <CommitList like={like} del={del} total={total} comments={comments} hotComments={hotComments} />
+                {total > 0 ? (
+                    <div className="pagination-wrapper">
+                        <Pagination
+                            total={total}
+                            currentPage={page}
+                            onPageChange={handlePageChange}
+                            pageSize={20}
+                        ></Pagination>
+                    </div>
+                ) : null}
+                <Spin
+                    spinning={loading}
+                    tip="loading..."
+                    size="large"
+                    style={{
+                        position: "fixed",
+                        top: "50%",
+                        left: "50%",
+                        transform: "translate(-50%, -50%)",
+                        zIndex: "9999",
+                    }}
+                ></Spin>
             </div> : '网络不好......'}
         </>
 
