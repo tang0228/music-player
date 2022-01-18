@@ -24,6 +24,7 @@ import CatDetail from "./pages/Find/modules/Dj/CatDetail/CatDetail";
 import DJRank from "./pages/Find/modules/Dj/DjRank/DJRank";
 import DJRecommend from "./pages/Find/modules/Dj/DjRecommend/DJRecommend";
 import Program from "./pages/Find/modules/Dj/Program/Program";
+import DjDetail from "./pages/Find/modules/Dj/DjDetail/DjDetail"
 
 function App() {
     const { Header, Footer, Content } = Layout;
@@ -51,6 +52,7 @@ function App() {
                                         <Route exact path="/find/djradio/recommend" component={DJRecommend}></Route>
                                         <Route exact path="/find/djradio/rank" component={DJRank}></Route>
                                         <Route exact path="/find/djradio/program" component={Program}></Route>
+                                        <Route exact path="/find/djradio/detail" component={DjDetail}></Route>
                                     </>
                                 )}></Route>
                                 <Route exact path="/find/song" component={SongDetail}></Route>

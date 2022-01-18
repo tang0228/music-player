@@ -1,55 +1,47 @@
-.program-right {
+.dj-right {
     padding: 20px 40px 40px 30px;
-
     :global {
-        .list-header {
-            width: 200px;
+        .header {
             height: 23px;
             margin-bottom: 20px;
             border-bottom: 1px solid #ccc;
             color: #333;
+            width: 200px;
             display: flex;
             align-items: center;
-            justify-content: space-between;
-            font-size: 12px;
 
             .title {
+                font-size: 12px;
                 color: #333;
             }
-
-            .more {
-                color: #666;
-            }
         }
-
         .list-wrap {
+            width: 200px;
+
             .list-item {
                 display: flex;
-                width: 200px;
-                height: 50px;
                 margin-bottom: 15px;
-                line-height: 24px;
-
+                height: 50px;
                 img {
                     width: 50px;
-                    height: 50px;
+                    height: 50px; 
                     margin-right: 10px;
                 }
-
                 .info {
-
+                    line-height: 24px;
                     .name {
                         font-size: 14px;
+                        width: 140px;
                         white-space: nowrap;
                         overflow: hidden;
                         text-overflow: ellipsis;
-                        width: 140px;
-                        display: block;
                     }
-
-                    .vol {
+                    .main {
                         font-size: 12px;
-                        color: #999;
+                        .dj {
+                            color: #666;
+                            margin: 0 2px 0 4px;
+                        }
                     }
                 }
             }

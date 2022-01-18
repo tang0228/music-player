@@ -1,7 +1,7 @@
 import ins from "./request";
 
 // 获取最热主播榜
-export async function getDjPopularList({limit}) {
+export async function getDjPopularList({ limit }) {
     const res = await ins.get("/dj/toplist/popular", {
         params: {
             limit
@@ -47,7 +47,7 @@ export async function getRecommendCat() {
 };
 
 // 获取分类推荐的电台
-export async function getRecommendByCat({type}) {
+export async function getRecommendByCat({ type }) {
     const res = await ins.get("/dj/recommend/type", {
         params: {
             type
@@ -67,7 +67,7 @@ export async function getHotDjList({ limit, offset, cateId }) {
 };
 
 // 获取节目详情
-export async function getProgramDetail({id}) {
+export async function getProgramDetail({ id }) {
     const res = await ins.get("/dj/program/detail", {
         params: {
             id
@@ -77,7 +77,7 @@ export async function getProgramDetail({id}) {
 };
 
 // 获取dj详情
-export async function getDjradioDetail({rid}) {
+export async function getDjradioDetail({ rid }) {
     const res = await ins.get("/dj/detail", {
         params: {
             rid
@@ -91,5 +91,19 @@ export async function getDjComments({ id, limit, offset, timestamp }) {
     const res = await ins.get("/comment/dj", {
         params: { id, limit, offset, timestamp }
     });
+    return res;
+};
+
+// 获取电台节目 根据id
+export async function getDjProgramById({ rid, offset }) {
+    const res = await ins.get("/dj/program", {
+        params: { rid, offset }
+    });
+    return res;
+};
+
+// 电台 可能喜欢
+export async function getLikeDj() {
+    const res = await ins.get("/dj/recommend");
     return res;
 }

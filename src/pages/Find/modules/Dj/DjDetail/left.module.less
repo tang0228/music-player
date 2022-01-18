@@ -1,0 +1,206 @@
+.dj-left {
+    padding: 47px 30px 40px 39px;
+    width: 710px;
+    box-sizing: border-box;
+    flex-shrink: 0;
+    border: 1px solid #ddd;
+
+    :global {
+        .main-info {
+            display: flex;
+
+            .img-wrap {
+                padding: 3px;
+                border: 1px solid #ddd;
+                height: 208px;
+                width: 208px;
+                box-sizing: border-box;
+                margin-right: 32px;
+
+                img {
+                    width: 200px;
+                    height: 200px;
+                }
+            }
+
+            .info {
+                .row-1 {
+                    display: flex;
+                    align-items: flex-start;
+                    margin-bottom: 12px;
+
+                    .icon {
+                        width: 73px;
+                        height: 24px;
+                        display: inline-block;
+                        overflow: hidden;
+                        background-position: 0 -75px;
+                        background: url(https://s2.music.126.net/style/web2/img/icon2.png?26b40391b0504915d65e7d9155a0a1b9) no-repeat 0 -75px;
+                    }
+
+                    .name {
+                        display: inline-block;
+                        font-size: 20px;
+                        color: #333;
+                        margin-left: 9px;
+                        line-height: 24px;
+                    }
+                }
+
+                .row-2 {
+                    margin-bottom: 20px;
+                    display: flex;
+                    align-items: center;
+
+                    img {
+                        width: 35px;
+                        height: 35px;
+                        margin-right: 10px;
+                    }
+
+                    .nickname {
+                        font-size: 12px;
+                        color: #0c73c2;
+                    }
+                }
+
+                .row-3 {
+                    margin-bottom: 25px;
+
+                    .icon-sub {
+                        margin-right: 7px;
+                        width: 14px;
+                        height: 14px;
+                        display: inline-block;
+                        overflow: hidden;
+                        background-position: -50px 0px;
+                        background: url(https://s2.music.126.net/style/web2/img/icon2.png?26b40391b0504915d65e7d9155a0a1b9) no-repeat -50px 0px;
+                    }
+                }
+
+                .row-4 {
+                    font-size: 12px;
+                    color: #666;
+                    line-height: 18px;
+
+                    .cat {
+                        color: #cc0000;
+                        border: 1px solid #cc0000;
+                        background: #fbeeee;
+                        padding: 0 6px;
+                        height: 16px;
+                        font-size: 12px;
+                        line-height: 16px;
+                        margin-right: 9px;
+                        cursor: pointer;
+                    }
+                }
+            }
+        }
+
+        .list-header {
+            margin-top: 27px;
+            border-bottom: 2px solid #c20c0c;
+            height: 33px;
+            display: flex;
+            align-items: center;
+
+            .title {
+                font-size: 20px;
+                color: #333;
+            }
+
+            .nums {
+                font-size: 12px;
+                margin: 9px 0 0 20px;
+                color: #999;
+            }
+        }
+
+        .list-wrap {
+            border: 1px solid #d9d9d9;
+            border-top: none;
+
+
+
+            .list-item {
+                height: 55px;
+                display: flex;
+                align-items: center;
+                font-size: 12px;
+
+                &.even {
+                    background-color: #eee;
+                }
+
+                &:hover {
+                    background-color: #ddd;
+
+                    .col-2 {
+                        .btns {
+                            display: block;
+                        }
+                    }
+                }
+
+                .col-1 {
+                    width: 62px;
+                    padding: 0 10px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    color: #999;
+                }
+
+                .col-2 {
+                    width: 230px;
+                    padding-right: 10px;
+                    color: #333;
+                    display: flex;
+                    align-items: center;
+
+                    .name {
+                        white-space: nowrap;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                    }
+
+                    .btns {
+                        display: none;
+                        flex-shrink: 0;
+                    }
+                }
+
+                .col-3 {
+                    width: 60px;
+                    padding: 0 10px;
+                    color: #666;
+                }
+
+                .col-4 {
+                    width: 70px;
+                    padding: 0 10px;
+                    color: #666;
+                }
+
+                .col-5 {
+                    width: 66px;
+                    padding: 0 10px;
+                    color: #999;
+                }
+
+                .col-6 {
+                    padding: 0 10px;
+                    color: #999;
+                }
+            }
+        }
+
+        .pagination-wrapper {
+            margin-top: 24px;
+            display: flex;
+            justify-content: center;
+        }
+
+    }
+}
