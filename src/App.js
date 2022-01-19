@@ -24,7 +24,8 @@ import CatDetail from "./pages/Find/modules/Dj/CatDetail/CatDetail";
 import DJRank from "./pages/Find/modules/Dj/DjRank/DJRank";
 import DJRecommend from "./pages/Find/modules/Dj/DjRecommend/DJRecommend";
 import Program from "./pages/Find/modules/Dj/Program/Program";
-import DjDetail from "./pages/Find/modules/Dj/DjDetail/DjDetail"
+import DjDetail from "./pages/Find/modules/Dj/DjDetail/DjDetail";
+import AlbumList from "./pages/Album/AlbumList";
 
 function App() {
     const { Header, Footer, Content } = Layout;
@@ -58,6 +59,7 @@ function App() {
                                 <Route exact path="/find/song" component={SongDetail}></Route>
                                 <Route exact path="/find/artist" component={ArtistDetail}></Route>
                                 <Route exact path="/find/album" component={AlbumDetail}></Route>
+                                <Route exact path="/find/album/list" component={AlbumList}></Route>
                                 <Route exact path="/find/mv" component={MvDetail}></Route>
                             </Find>
                         )}>
