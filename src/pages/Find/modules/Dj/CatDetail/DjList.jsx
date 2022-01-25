@@ -49,7 +49,7 @@ export default function DjList(props) {
                         <Link to={"/find/djradio/detail?id=" + d.id} className="name">{d.name}</Link>
                         <div className="user">
                             <IconUser style={{ color: '#ddd' }} />
-                            <Link className="nickname" to={"/user/home?uid=" + d.dj.id}>{d.dj.nickname}</Link>
+                            <Link className="nickname" to={"/user/home?uid=" + d.dj.userId}>{d.dj.nickname}</Link>
                         </div>
                         <div className="nums">
                             <span className="program-num">共{d.programCount}期</span>

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { getDjradioDetail, getDjProgramById } from "../../../../../services/dj";
+import { getDjProgramById } from "../../../../../services/dj";
 import style from "./left.module.less";
 import { Link } from "react-router-dom";
 import { Button, Space, Pagination, Spin } from "@douyinfe/semi-ui";
@@ -7,21 +7,11 @@ import { IconPlayCircle, IconForward, IconPlus, IconDownload } from "@douyinfe/s
 import utils from "../../../../../utils";
 
 export default function DjLeft(props) {
-    const { rid } = props;
-    const [detail, setDetail] = useState(null);
+    const { rid, detail } = props;
     const [total, setTotal] = useState(0);
     const [list, setList] = useState([]);
     const [loading, setLoading] = useState(false);
     const [page, setPage] = useState(1); // 评论列表
-
-    // 获取电台详情
-    useEffect(() => {
-        getDjradioDetail({ rid }).then(res => {
-            if (res.code === 200) { setDetail(res.data) }
-        })
-        return () => {
-        }
-    }, [rid]);
 
     // 根据 rid 获取电台节目列表
     useEffect(() => {
