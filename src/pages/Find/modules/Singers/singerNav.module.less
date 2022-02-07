@@ -1,0 +1,49 @@
+.singer-nav {
+    padding: 51px 10px 40px;
+    width: 180px;
+    box-sizing: border-box;
+    border-right: 1px solid #d3d3d3;
+
+    :global {
+        .nav-wrap {
+            margin: 5px 0 0;
+            padding-top: 16px;
+            border-top: 1px solid #d3d3d3;
+
+            &:first-child {
+                margin: 0;
+                padding-top: 0;
+                border-top: none;
+            }
+
+            .nav-title {
+                height: 25px;
+                padding-left: 14px;
+                font-size: 16px;
+                font-family: "Microsoft Yahei";
+                font-weight: 700;
+            }
+
+            .nav-item {
+                color: #333;
+                height: 29px;
+                display: block;
+                line-height: 29px;
+                margin-bottom: 2px;
+                font-size: 12px;
+                background-position: 0 -30px;
+                background: url(https://s2.music.126.net/style/web2/img/singer.png?20c3ee3cb9df99f29b17529084a433fd) no-repeat 0 -30px;
+
+                dd {
+                    padding-left: 27px;
+                }
+
+                &.active {
+                    color: #c20c0c;
+                    background-position: 0 27px;
+                    background: url(https://s2.music.126.net/style/web2/img/singer.png?20c3ee3cb9df99f29b17529084a433fd) no-repeat 0 27px;
+                }
+            }
+        }
+    }
+}
