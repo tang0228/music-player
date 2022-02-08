@@ -1,0 +1,63 @@
+.singer-list {
+    padding: 40px;
+    flex: 1;
+
+    :global {
+        .header {
+            display: flex;
+            align-items: center;
+            height: 40px;
+            border-bottom: 2px solid #c20c0c;
+            width: 100%;
+
+            .title {
+                font-size: 24px;
+                color: #333;
+            }
+        }
+
+        .list-wrap {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 20px 0 0 -16px;
+
+            .list-item {
+                margin: 0 0 30px 17px;
+                .avatar-img {
+                    height: 130px;
+                    width: 130px;
+                    object-fit: cover;
+                }
+
+                .info {
+                    margin-top: 8px;
+                    display: flex;
+                    justify-content: space-between;
+
+                    .name {
+                        font-size: 12px;
+                    }
+                }
+            }
+
+        }
+        .singer-wrap {
+            display: flex;
+            flex-wrap: wrap;
+            margin-left: -17px;
+            border-top: 1px dashed #d3d3d3;
+            padding-top: 12px;
+            .item {
+                height: 30px;
+                width: 130px;
+                display: flex;
+                margin-left: 17px;
+                align-items: center;
+                font-size: 12px;
+                .name {
+                    padding-right: 4px;
+                }
+            }
+        }
+    }
+}
