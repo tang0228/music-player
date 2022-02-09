@@ -90,7 +90,7 @@ function Login(props) {
                             trigger='blur'
                             onChange={handlePhoneChange}
                             rules={[
-                                { required: true, message: "请输入邮箱" },
+                                { required: true, message: "请输入手机号" },
                             ]}
                         />
                     </Row>

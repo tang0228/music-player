@@ -48,7 +48,7 @@ function Item(props) {
           <span className="time">{c.timeStr}</span>
           <div className="operate">
               {
-                  c.user.userId === user.userId ? <span className="del-wrap">
+                  user && c.user.userId === user.userId ? <span className="del-wrap">
                   <span className="reback" onClick={() => {
                       props.delComment && props.delComment(c.commentId)
                   }}>删除</span>
