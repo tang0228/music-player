@@ -19,7 +19,7 @@ export default function EntryArtist() {
         <div className={style['entry-artist']}>
             <div className="header">
                 <h3 className="title">入驻歌手</h3>
-                <Link className="toPage" to={'/find/singers'}>查看全部&gt;</Link>
+                <Link className="toPage" to={'/find/singers/cat?id=1'}>查看全部&gt;</Link>
             </div>
             <div className="wrap">
                 {artist && artist.length ? artist.map(a => <Link to={'/find/artist?id=' + a.id} key={a.id} className="item">

@@ -26,14 +26,16 @@ import DJRecommend from "./pages/Find/modules/Dj/DjRecommend/DJRecommend";
 import Program from "./pages/Find/modules/Dj/Program/Program";
 import DjDetail from "./pages/Find/modules/Dj/DjDetail/DjDetail";
 import AlbumList from "./pages/Album/AlbumList";
-import Singers from "./pages/Find/modules/Singers";
+import SingerCat from "./pages/Find/modules/Singers/SingerCat";
 
 function App() {
     const { Header, Footer, Content } = Layout;
     return (
-        <Router getUserConfirmation={(msg, cb) => {
-            console.log(msg)
-        }}>
+        <Router getUserConfirmation={(message, callback) => {
+            // this is the default behavior
+            const allowTransition = window.confirm(message);
+            callback(allowTransition);}}
+            >
             <Layout className="components-layout-demo">
                 <Header>
                     <CommonHeader />
@@ -62,7 +64,7 @@ function App() {
                                 <Route exact path="/find/album" component={AlbumDetail}></Route>
                                 <Route exact path="/find/album/list" component={AlbumList}></Route>
                                 <Route exact path="/find/mv" component={MvDetail}></Route>
-                                <Route exact path="/find/singers" component={Singers}></Route>
+                                <Route exact path="/find/singers/cat" component={SingerCat}></Route>
                             </Find>
                         )}>
                         </Route>

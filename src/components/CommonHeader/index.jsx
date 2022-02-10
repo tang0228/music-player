@@ -2,7 +2,7 @@ import React, { useState, useCallback } from "react";
 import { withRouter, useHistory, useLocation } from "react-router-dom";
 import navList from "../../common/navList";
 import "./index.less";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import { Dropdown, Avatar, Input, Toast, Button } from "@douyinfe/semi-ui";
 import {
   IconSearch,
@@ -87,7 +87,7 @@ function CommonHeader(props) {
     <>
       <div className="nav-wrapper">
         <div className="nav-logo">
-          <a href="/">网易云音乐</a>
+          <Link to="/find">网易云音乐</Link>
         </div>
         <ul className="nav-list">{lis}</ul>
         <div className="nav-search">

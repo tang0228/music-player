@@ -1,0 +1,18 @@
+.letter {
+    display: flex;
+    margin-top: 20px;
+    justify-content: space-between;
+    align-items: center;
+
+    :global {
+        .item {
+            font-size: 14px;
+            &.active {
+                background: #c20c0c;
+                border-radius: 2px;
+                color: #fff;
+                padding: 8px;
+            }
+        }
+    }
+}

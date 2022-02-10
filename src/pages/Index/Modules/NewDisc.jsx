@@ -22,7 +22,7 @@ export default function NewDisc() {
         <div className={style['new-disc']}>
             <ItemNav navItem={{
                 title: "新碟上架",
-            }} moreLink="/find/allAlbum"></ItemNav>
+            }} moreLink="/find/album/list"></ItemNav>
             <div className="album-wrapper">
                 <div className={status === "prev" ? 'album-content' : 'album-content prev'}>
                     {albums ? albums.map(al => <div className="album-item" key={al.id}>
