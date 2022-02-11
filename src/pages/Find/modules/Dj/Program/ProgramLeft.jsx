@@ -119,7 +119,7 @@ export default function ProgramLeft(props) {
                     </div>
                     <div className="row-2">
                         <i className='icon'></i>
-                        <Link to={"/find/djradio/detail?id=" + detail.dj.id} className="name">{detail.dj.brand}</Link>
+                        <Link to={"/find/djradio/detail?id=" + detail.radio.id} className="name">{detail.dj.brand}</Link>
                         <Button type="tertiary"><i className='icon-sub'></i>订阅({detail.radio.subCount})</Button>
                     </div>
                 </div>
@@ -144,7 +144,7 @@ export default function ProgramLeft(props) {
                 </Space>
             </div>
             <div className="c-info">
-                <span className="cat">{detail.categoryName}</span>
+                <Link to={'/find/djradio/category?id=' + detail.categoryId} className="cat">{detail.categoryName}</Link>
                 <span className="name">{detail.radio.name}&nbsp;&nbsp;第{detail.serialNum}期</span>
                 <span className="time">{utils.formatDate(detail.createTime)}创建</span>
                 <span className="nums">播放：<span style={{ color: '#c20c0c' }}>{detail.listenerCount}</span>次</span>
