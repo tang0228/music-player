@@ -23,7 +23,7 @@ export default function RightContent(props) {
     const [limit, setLimit] = useState(20); // 页容量
     const [total, setTotal] = useState(0); // 总评论数
     const [loading, setLoading] = useState(false); // loading
-    const {detail, id} = props;
+    const {detail, id, text} = props;
 
     // 提交评论
     const playListCommit = useCallback(async (val) => {
@@ -132,7 +132,7 @@ export default function RightContent(props) {
                         <IconClock />
                         最近更新：
                         {utils.formatDate(detail.updateTime)}
-                        （刚刚更新）
+                        （{text}）
                     </div>
                     <div className="operates">
                         <Space>

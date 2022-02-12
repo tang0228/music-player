@@ -45,7 +45,7 @@ export default function DjLeft(props) {
                         </div>
                         <div className="row-2">
                             <img src={detail.dj.avatarUrl} alt="" />
-                            <Link to={'/user/home?uid=' + detail.dj.id} className="nickname">{detail.dj.nickname}</Link>
+                            <Link to={'/user/home?uid=' + detail.dj.userId} className="nickname">{detail.dj.nickname}</Link>
                         </div>
                         <div className="row-3">
                             <Space>

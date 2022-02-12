@@ -8,7 +8,7 @@ import { useLocation } from 'react-router-dom';
 export default function TopList() {
     const location = useLocation();
     const id = location.search ? qs.parse(location.search).id : '19723756';
-    console.log(location)
+    const text = location.search ? qs.parse(location.search).text : '刚刚更新';
     const [listDetail, setListDetail] = useState(null);
     useEffect(() => {
         getPlayListDetail({id}).then(res => {
@@ -27,7 +27,7 @@ export default function TopList() {
             display: 'flex',
         }}>
             <TopLeftNav id={id} />
-           {listDetail ? <RightContent detail={listDetail} id={id} /> : null }
+           {listDetail ? <RightContent detail={listDetail} id={id} text={text} /> : null }
         </div>
     )
 }

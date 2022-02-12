@@ -13,22 +13,21 @@
   position: relative;
 
   .nav-logo {
-    background: url("https://s2.music.126.net/style/web2/img/frame/topbar.png?0dfeb036213959048a6290e4dc744f78")
-      no-repeat 0 9999px;
+    background: url("https://s2.music.126.net/style/web2/img/frame/topbar.png?0dfeb036213959048a6290e4dc744f78") no-repeat 0 9999px;
     width: 176px;
     height: 69px;
 
     a {
-        font-size: 34px;
-        display: inline-block;
-        height: 100%;
-        text-decoration: none;
-        font-family: "PingFang SC", "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei", "WenQuanYi Micro Hei";
-        color: #ccc;
+      font-size: 34px;
+      display: inline-block;
+      height: 100%;
+      text-decoration: none;
+      font-family: "PingFang SC", "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei", "WenQuanYi Micro Hei";
+      color: #ccc;
 
-        &:hover {
-            color: #fff;
-        }
+      &:hover {
+        color: #fff;
+      }
     }
   }
 
@@ -48,25 +47,44 @@
       &.active {
         color: #fff;
         background-color: #000;
+        position: relative;
+
+        &::after {
+          content: "";
+          width: 0;
+          height: 0;
+          border-bottom: 7px solid #c20c0c;
+          border-left: 7px solid transparent;
+          border-right: 7px solid transparent;
+          border-top: 1px solid transparent;
+          position: absolute;
+          left: 50%;
+          bottom: -1px;
+          transform: translateX(-50%);
+        }
       }
 
       &:hover {
-          color: #fff;
-          background: #000;
+        color: #fff;
+        background: #000;
       }
     }
   }
 
+  .nav-search {
+    width: 190px;
+  }
+
   .nav-user {
-      margin-left: 24px;
+    margin-left: 24px;
   }
 }
 
 .sub-nav {
-    height: 5px;
-    background: #c20c0c;
+  height: 5px;
+  background: #c20c0c;
 }
 
 .semi-spin-wrapper {
-    color: #c20c0c;
+  color: #c20c0c;
 }

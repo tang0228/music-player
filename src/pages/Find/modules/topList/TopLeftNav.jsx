@@ -22,7 +22,7 @@ export default function TopLeftNav(props) {
         <div className={style['top-left-nav']}>
             <dl className="list">
                 <dt className="title">云音乐特色榜</dt>
-                {firstNav.length ? firstNav.map(n => <Link to={'/find/toplist?id=' + n.id} key={n.id} ><dd className={n.id == id ? 'row active' : 'row'}>
+                {firstNav.length ? firstNav.map(n => <Link to={`/find/toplist?id=${n.id}&text=${n.updateFrequency}`} key={n.id} ><dd className={n.id == id ? 'row active' : 'row'}>
                     <LazyLoad>
                         <img src={n.coverImgUrl} alt="" />
                     </LazyLoad>
@@ -34,7 +34,7 @@ export default function TopLeftNav(props) {
             </dl>
             <dl className="list mt20">
                 <dt className="title">云音乐特色榜</dt>
-                {secondNav.length ? secondNav.map(n => <Link to={'/find/toplist?id=' + n.id} key={n.id} ><dd className={n.id == id ? 'row active' : 'row'}>
+                {secondNav.length ? secondNav.map(n => <Link to={`/find/toplist?id=${n.id}&text=${n.updateFrequency}`} key={n.id} ><dd className={n.id == id ? 'row active' : 'row'}>
                     <img src={n.coverImgUrl} alt="" />
                     <div className="content">
                         <div className="name">{n.name}</div>

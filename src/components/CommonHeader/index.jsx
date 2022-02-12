@@ -96,9 +96,6 @@ function CommonHeader(props) {
               background: "#fff",
               outline: "none",
             }}
-            inputStyle={{
-              background: "#fff",
-            }}
             onEnterPress={searchMusic}
             placeholder="音乐/视频/电台/用户"
             prefix={<IconSearch />}
