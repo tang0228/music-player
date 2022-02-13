@@ -56,7 +56,7 @@ function CommonHeader(props) {
   const handleLogout = useCallback(async () => {
     const res = await logout();
     if (res.code === 200) {
-      history.push("/"); // 退出登录回到首页
+      history.push("/find"); // 退出登录回到首页
       delUser();
       localStorage.removeItem("user");
       Toast.success({

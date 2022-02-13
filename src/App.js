@@ -1,5 +1,5 @@
 import React from "react";
-import { Switch, HashRouter as Router, Route } from "react-router-dom"
+import { Switch, HashRouter as Router, Route, Redirect } from "react-router-dom"
 import "./app.less";
 import { Layout, BackTop } from '@douyinfe/semi-ui';
 import CommonHeader from "./components/CommonHeader";
@@ -42,7 +42,9 @@ function App() {
                 </Header>
                 <Content>
                     <Switch>
-                        {/* <Route exact path="/" component={Index}></Route> */}
+                        <Route exact path="/">
+                            <Redirect to="/find" />
+                        </Route>
                         <Route path="/find" render={() =>(
                             <Find>  
                                 <Route exact path="/find" component={Index}></Route>

@@ -142,7 +142,7 @@ function UserHome(props) {
                     </div>
                 </div>
                 <ul className="record-list">
-                    {recordList ? recordList.slice(0, 10).map((r, i) => <RecordItem key={r.song.id} record={r} index={i + 1}></RecordItem>) : null}
+                    {recordList ? recordList.slice(0, 10).map((r, i) => <RecordItem key={r.song.id} record={r} index={i + 1} showNum={user.userId === uid}></RecordItem>) : null}
                 </ul>
                 <div className="more">查看更多<IconChevronRight /></div>
                 </> : null

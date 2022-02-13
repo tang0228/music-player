@@ -25,7 +25,7 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 function RecordItem(props) {
-  const { record, index, addSong } = props;
+  const { record, index, addSong, showNum } = props;
   // 播放歌曲
   const play = async (id) => {
       const res = await getMusicPlayUrl({id});
@@ -64,7 +64,7 @@ function RecordItem(props) {
             width: `${record.score}%`,
           }}
         ></span>
-        <span className="text">{record.playCount}次</span>
+        {showNum ? <span className="text">{record.playCount}次</span> : null }
       </div>
     </li>
   );
