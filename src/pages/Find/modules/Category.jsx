@@ -2,7 +2,6 @@ import React, { useEffect, useState, useCallback} from 'react';
 import "./category.less";
 import { getPlayListCat } from "../../../services/apis";
 import CatSelect from './CatSelect';
-import { Button } from "@douyinfe/semi-ui";
 import qs from "query-string";
 import { useLocation } from "react-router-dom";
 
@@ -47,7 +46,6 @@ export default function Category() {
                 <span className="cat-title">{cat ? cat : '全部'}</span>
                 <CatSelect categories={categories} catChange={catChange} />
             </div>
-            <Button type="danger">热门</Button>
         </div>
     )
 }
