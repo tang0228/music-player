@@ -10,7 +10,7 @@ const mapStateToProps = (state) => {
 
 function SongPlay(props) {
     return (
-        <audio autoPlay controls src={props.song}></audio>
+        <audio style={{display: 'none'}} autoPlay controls src={props.song}></audio>
     )
 }
 

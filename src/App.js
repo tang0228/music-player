@@ -27,6 +27,9 @@ import Program from "./pages/Find/modules/Dj/Program/Program";
 import DjDetail from "./pages/Find/modules/Dj/DjDetail/DjDetail";
 import AlbumList from "./pages/Album/AlbumList";
 import SingerCat from "./pages/Find/modules/Singers/SingerCat";
+import Download from "./pages/Other/Download";
+import Mall from "./pages/Other/Mall";
+import Musician from "./pages/Other/Musician";
 
 function App() {
     const { Header, Footer, Content } = Layout;
@@ -72,9 +75,9 @@ function App() {
                         </Route>
                         <Route exact path="/mymusic"></Route>
                         <Route exact path="/friend" component={Friend}></Route>
-                        <Route exact path="/mall"></Route>
-                        <Route exact path="/musicians"></Route>
-                        <Route exact path="/download"></Route>
+                        <Route exact path="/mall" component={Mall}></Route>
+                        <Route exact path="/musician" component={Musician}></Route>
+                        <Route exact path="/download" component={Download}></Route>
                         <Route exact path="/search" component={Search}></Route>
                         <Route path="/user" render={() => (
                             <User>
