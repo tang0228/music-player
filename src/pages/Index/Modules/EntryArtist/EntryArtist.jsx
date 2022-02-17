@@ -18,7 +18,7 @@ export default function EntryArtist() {
     return (
         <div className={style['entry-artist']}>
             <div className="header">
-                <h3 className="title">入驻歌手</h3>
+                <h3 className="title">热门歌手</h3>
                 <Link className="toPage" to={'/find/singers/cat?id=1'}>查看全部&gt;</Link>
             </div>
             <div className="wrap">

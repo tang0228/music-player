@@ -13,6 +13,7 @@ import Friend from "./pages/Friend";
 import User from "./pages/User"
 import UserHome from "./pages/User/modules/user-home/UserHome";
 import UserUpdate from "./pages/User/modules/user-update/UserUpdate";
+import UserEvent from "./pages/User/modules/user-event/UserEvent";
 import PlaylistDetail from "./pages/Find/modules/playListDetail/PlaylistDetail.jsx";
 import SongDetail from "./pages/Song/SongDetail";
 import ArtistDetail from "./pages/Artist/ArtistDetail";
@@ -83,6 +84,7 @@ function App() {
                             <User>
                                 <Route exact path="/user/home" component={UserHome} ></Route>
                                 <Route exact path="/user/update" component={UserUpdate} ></Route>
+                                <Route exact path="/user/event" component={UserEvent} ></Route>
                             </User>
                         )}></Route>
                     </Switch>
