@@ -4,21 +4,26 @@
             display: flex;
             margin-bottom: 27px;
             .img {
-                width: 208px;
-                height: 208px;
-                border: 30px solid #000;
-                box-sizing: border-box;
-                border-radius: 50%;
+                width: 198px;
+                height: 198px;
                 display: flex;
                 align-items: center;
                 justify-content: center;
                 margin-right: 24px;
                 overflow: hidden;
                 flex-shrink: 0;
+                position: relative;
                 img {
-                    width: 200px;
-                    height: 200px;
-                    border-radius: 50%;
+                    width: 134px;
+                    height: 134px;
+                }
+                .img-mask {
+                    position: absolute;
+                    width: 206px;
+                    height: 205px;
+                    top: -4px;
+                    left: -4px;
+                    background: url(https://s2.music.126.net/style/web2/img/coverall.png?765fc596386c9395f2d0d66c79dbe24b) -140px -580px no-repeat;
                 }
             }
             .list-content {
@@ -26,6 +31,15 @@
                     font-size: 24px;
                     color: #333;
                     font-weight: bold;
+                    display: flex;
+
+                    .icon-song {
+                        display: inline-block;
+                        width: 54px;
+                        height: 24px;
+                        margin-right: 10px;
+                        background: url(https://s2.music.126.net/style/web2/img/icon.png?dd66b8dcc51ec2cad4ada9f31557b84d) 0 -463px no-repeat;
+                    }
                 }
                 .sub-name {
                     margin-bottom: 22px;

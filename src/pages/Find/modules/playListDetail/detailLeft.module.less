@@ -3,6 +3,7 @@
         .top-content {
             display: flex;
             margin-bottom: 27px;
+
             .img {
                 width: 210px;
                 height: 210px;
@@ -10,82 +11,128 @@
                 padding: 4px;
                 box-sizing: border-box;
                 margin-right: 24px;
-                img {
+
+                .content {
+                    position: relative;
                     width: 200px;
                     height: 200px;
+                    overflow: hidden;
+
+                    img {
+                        width: 200px;
+                        height: 200px;
+                    }
+
+                    .mask {
+                        position: absolute;
+                        width: 208px;
+                        height: 208px;
+                        top: -4px;
+                        left: -4px;
+                        background: url(https://s2.music.126.net/style/web2/img/coverall.png?765fc596386c9395f2d0d66c79dbe24b) 0 -1285px no-repeat;
+                    }
                 }
+
+
             }
+
             .list-content {
                 position: relative;
+
                 .list-name {
                     font-size: 20px;
                     color: #333;
                     margin-bottom: 12px;
+                    display: flex;
+
+                    .icon-playlist {
+                        width: 54px;
+                        height: 24px;
+                        display: inline-block;
+                        margin-right: 10px;
+                        background: url(https://s2.music.126.net/style/web2/img/icon.png?dd66b8dcc51ec2cad4ada9f31557b84d) 0 -243px no-repeat;
+                    }
                 }
+
                 .create-desc {
                     display: flex;
                     align-items: center;
                     margin-bottom: 20px;
+
                     img {
                         width: 35px;
                         height: 35px;
                     }
+
                     .icon {
                         width: 13px;
                         height: 13px;
                     }
+
                     .nick-name {
                         font-size: 12px;
                         color: #0c73c2;
                         margin-left: 16px;
                         text-decoration: none;
+
                         &:hover {
                             text-decoration: underline;
                         }
                     }
+
                     .create-time {
                         color: #999;
                         font-size: 12px;
                         margin-left: 16px;
                     }
                 }
+
                 .operates {
                     margin-bottom: 25px;
+
                     .toComment {
                         color: #1c1f32;
                         text-decoration: none;
                     }
                 }
+
                 .tags {
                     display: flex;
                     align-items: center;
                     margin-bottom: 5px;
                     color: #666;
                     font-size: 12px;
+
                     .semi-tag {
                         border: 1px solid #ddd;
+
                         &:hover {
                             background-color: #fff;
                         }
                     }
+
                     .item {
                         color: #1c1f32;
                         text-decoration: none;
                     }
                 }
+
                 .desc {
                     color: #666;
                     font-size: 12px;
                     white-space: pre-wrap;
                     line-height: 20px;
+
                     .arrow {
                         display: flex;
                         align-items: center;
                         justify-content: flex-end;
                         cursor: pointer;
+
                         .text {
                             color: #0c73c2;
                         }
+
                         &:hover {
                             .text {
                                 text-decoration: underline;
@@ -95,36 +142,43 @@
                 }
             }
         }
+
         .music-list {
             margin-bottom: 40px;
-            
+
             .list-header {
                 display: flex;
                 border-bottom: 2px solid #c20c0c;
                 height: 33px;
                 align-items: center;
+
                 .title {
                     color: #333;
                     font-size: 20px;
                     margin-right: 20px;
                 }
+
                 .total {
                     color: #666;
                     font-size: 12px;
                     margin-top: 9px;
                     flex: 1;
                 }
+
                 .play-num {
                     font-size: 12px;
                     color: #666;
+
                     .num {
                         color: #c20c0c;
                     }
                 }
             }
+
             .list-wrap {
                 border: 1px solid #d9d9d9;
                 border-top: none;
+
                 .table-header {
                     display: flex;
                     color: #666;
@@ -133,6 +187,7 @@
                     align-items: center;
                     background-color: #f7f7f7;
                     border-bottom: 1px solid #d9d9d9;
+
                     .bd {
                         border-left: 1px solid #d9d9d9;
                         height: 100%;
@@ -140,29 +195,35 @@
                         padding-left: 10px;
                         box-sizing: border-box;
                     }
+
                     .play-num {
                         width: 74px;
                     }
+
                     .title {
                         flex: 1;
                     }
+
                     .duration {
                         width: 111px;
                     }
+
                     .name {
                         width: 14%;
                     }
+
                     .album {
                         width: 20%;
                     }
                 }
             }
         }
+
         .pagination-wrapper {
             margin-top: 24px;
             display: flex;
             justify-content: center;
         }
     }
-    
+
 }

@@ -1,14 +1,16 @@
-import React, {useEffect, useState} from 'react';
-import { getArtistList } from '../../../../services/artist'; 
+import React, { useEffect, useState } from 'react';
+import { getArtistList } from '../../../../services/artist';
 import style from "./entryArtist.module.less";
 import { Link } from 'react-router-dom';
 import { Button } from "@douyinfe/semi-ui";
+import LazyLoad from "react-lazyload";
+import loadingUrl from "@/assets/loading.svg";
 
 export default function EntryArtist() {
     const [artist, setArtist] = useState([]);
     useEffect(() => {
-        getArtistList({limit: 5}).then(res => {
-            if(res.code === 200) {
+        getArtistList({ limit: 5 }).then(res => {
+            if (res.code === 200) {
                 setArtist(res.artists);
             }
         });
@@ -23,16 +25,18 @@ export default function EntryArtist() {
             </div>
             <div className="wrap">
                 {artist && artist.length ? artist.map(a => <Link to={'/find/artist?id=' + a.id} key={a.id} className="item">
-                    <img src={a.picUrl} alt="" />
+                    <LazyLoad height={62} debounce={500} placeholder={<img width="100%" height="100%" src={loadingUrl} />}>
+                        <img src={a.picUrl} alt="" />
+                    </LazyLoad>
                     <div className="name">{a.name}</div>
                 </Link>) : '无'}
             </div>
             <a href="https://music.163.com/st/musician" target="_blank">
-            <Button style={{
-                width: 212,
-                background: "#ddd",
-                color: "#333"
-            }}>申请成为网易音乐人</Button>
+                <Button style={{
+                    width: 212,
+                    background: "#ddd",
+                    color: "#333"
+                }}>申请成为网易音乐人</Button>
             </a>
         </div>
     )

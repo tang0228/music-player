@@ -5,6 +5,7 @@ import style from "./newDisc.module.less";
 import LazyLoad from "react-lazyload";
 import { Link } from "react-router-dom";
 import { IconPlayCircle, IconChevronLeft, IconChevronRight } from "@douyinfe/semi-icons";
+import loadingUrl from "@/assets/loading.svg";
 
 export default function NewDisc() {
     const [albums, setAlbums] = useState([]);
@@ -12,7 +13,7 @@ export default function NewDisc() {
     useEffect(() => {
         getAlbumNewest().then(res => {
             if (res.code === 200) {
-                setAlbums(res.albums);
+                setAlbums(res.albums.splice(0, 10));
             }
         })
         return () => {
@@ -28,9 +29,10 @@ export default function NewDisc() {
                     {albums ? albums.map(al => <div className="album-item" key={al.id}>
                         <div className="album-img">
                             <Link to={'/find/album?id=' + al.id}>
-                                <LazyLoad>
+                                <LazyLoad height={100} debounce={500} placeholder={<img width="100%" height="100%" src={loadingUrl} />}>
                                     <img src={al.blurPicUrl} alt="" />
                                 </LazyLoad>
+                                <span className="disc-mask"></span>
                             </Link>
                             <IconPlayCircle size="large" style={{
                                 color: "#eee"

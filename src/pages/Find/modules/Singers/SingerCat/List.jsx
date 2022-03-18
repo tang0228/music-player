@@ -7,6 +7,7 @@ import { IconUserCircle } from "@douyinfe/semi-icons";
 import qs from "query-string";
 import LetterNav from "./LetterNav";
 import { Spin } from "@douyinfe/semi-ui";
+import loadingUrl from "@/assets/loading.svg";
 
 export default function SingerList() {
     const location = useLocation();
@@ -36,7 +37,10 @@ export default function SingerList() {
             <ul className='list-wrap'>
                 {singers.splice(0, 10).map(h => <li key={h.id} className='list-item'>
                     <Link to={"/find/artist?id=" + h.id}>
-                        <LazyLoad><img className='avatar-img' src={h.picUrl} alt="" /></LazyLoad>
+                        <LazyLoad height={130} debounce={500} placeholder={<img width="100%" height="100%" src={loadingUrl} />}>
+                            <img className='avatar-img' src={h.picUrl} alt="" />
+                        </LazyLoad>
+                        <span className="singer-mask"></span>
                     </Link>
                     <div className="info">
                         <Link to={"/find/artist?id=" + h.id}><span className="name">{h.name}</span></Link>
