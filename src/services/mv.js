@@ -29,3 +29,11 @@ export async function getPersonalizedMv() {
     const res = await ins.get("/personalized/mv");
     return res;
 }
+
+// 获取mv url
+export async function getMvUrl({id, r = 1080}) {
+    const res = await ins.get("/mv/url", {
+        params: { id, r}
+    });
+    return res;
+}

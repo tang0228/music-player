@@ -160,7 +160,7 @@ export default function ProgramLeft(props) {
                     </div>
                 </div> : null
             }
-            <SongList list={detail.songs} />
+            {detail.songs && detail.songs.length ? <SongList list={detail.songs} /> : null}
             <Commit
                 commitNum={detail.commentCount}
                 commit={playListCommit}

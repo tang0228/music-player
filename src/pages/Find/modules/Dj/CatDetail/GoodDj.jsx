@@ -3,6 +3,7 @@ import style from "./goodDj.module.less";
 import { getRecommendByCat } from '../../../../../services/dj';
 import { Link } from 'react-router-dom';
 import LazyLoad from 'react-lazyload';
+import loadingUrl from "@/assets/loading.svg";
 
 export default function GoodDj(props) {
     const id = props.id;
@@ -21,7 +22,7 @@ export default function GoodDj(props) {
             <div className="header">优秀新电台</div>
             <ul className="list-wrap">
                 {djs && djs.length ? djs.map(d => <li key={d.id} className="list-item">
-                    <LazyLoad>
+                    <LazyLoad height={150} debounce={500} placeholder={<img src={loadingUrl} />}>
                         <Link to={"/find/djradio/detail?id=" + d.id}>
                             <img src={d.picUrl} alt="" />
                         </Link>

@@ -35,7 +35,8 @@ export default function SingerList() {
             </div>
             <LetterNav initial={initial} />
             <ul className='list-wrap'>
-                {singers.splice(0, 10).map(h => <li key={h.id} className='list-item'>
+                {/* 如果使用singers.splice() 来截取数组，会改变原数组，导致页面结构变化 */}
+                {singers.slice(0, 10).map(h => <li key={h.id} className='list-item'>
                     <Link to={"/find/artist?id=" + h.id}>
                         <LazyLoad height={130} debounce={500} placeholder={<img width="100%" height="100%" src={loadingUrl} />}>
                             <img className='avatar-img' src={h.picUrl} alt="" />

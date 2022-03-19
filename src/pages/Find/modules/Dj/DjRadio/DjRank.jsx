@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 import { IconPlayCircle, IconArrowUp, IconArrowDown } from "@douyinfe/semi-icons";
 import { Progress } from "@douyinfe/semi-ui";
 import utils from "../../../../../utils";
+import loadingUrl from "@/assets/loading.svg";
 
 export default function DjRank() {
     const [list, setList] = useState([]); // 节目排行榜列表
@@ -33,7 +34,7 @@ export default function DjRank() {
                             : <><IconArrowUp style={{ color: "#ba2226" }} size="extra-small" /> <span style={{ color: "#ba2226" }}>{d.lastRank - d.rank}</span> </>)}</span>
                     </div>
                     <div className="img-wrap">
-                        <LazyLoad>
+                        <LazyLoad height={40} debounce={500} placeholder={<img src={loadingUrl} />}>
                             <img title="播放" src={d.program.coverUrl} alt="" />
                         </LazyLoad>
                         <IconPlayCircle />
@@ -44,7 +45,7 @@ export default function DjRank() {
                         <Link to={"/find/djradio/detail?id=" + d.program.radio.id} className="name" title={d.program.dj.brand}>{d.program.dj.brand}</Link>
                     </div>
                     <div className="progress">
-                        <Progress percent={d.score / topScore * 100} style={{height: 8}} stroke="#888" showInfo={false} aria-label="disk usage" />
+                        <Progress percent={d.score / topScore * 100} style={{ height: 8 }} stroke="#888" showInfo={false} aria-label="disk usage" />
                     </div>
 
                 </li>) : null}

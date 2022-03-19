@@ -6,6 +6,7 @@ import LazyLoad from "react-lazyload";
 import { IconPlayCircle } from "@douyinfe/semi-icons";
 import { Link } from "react-router-dom";
 import utils from "../../../../../utils";
+import loadingUrl from "@/assets/loading.svg";
 
 export default function DjRecommend() {
     const [djRadios, setDjRadios] = useState([]);
@@ -24,7 +25,7 @@ export default function DjRecommend() {
             <ul className="dj-list">
                 {djRadios && djRadios.length ? djRadios.map((d, i) => <li key={d.id} className={utils.isEven(i + 1) ? 'dj-item even' : 'dj-item'}>
                     <div className="img-wrap">
-                        <LazyLoad>
+                        <LazyLoad height={40} debounce={500} placeholder={<img src={loadingUrl} />}>
                             <img title="播放" src={d.coverUrl} alt="" />
                         </LazyLoad>
                         <IconPlayCircle />

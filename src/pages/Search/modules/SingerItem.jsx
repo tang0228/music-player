@@ -2,6 +2,7 @@ import React from 'react';
 import LazyLoad from 'react-lazyload';
 import "./singerItem.less";
 import { Link } from "react-router-dom";
+import loadingUrl from "@/assets/loading.svg";
 
 export default function SingerItem(props) {
     const singers = props.singers;
@@ -9,8 +10,9 @@ export default function SingerItem(props) {
         <li key={s.id} className="singer-item">
             <div className="singer-img">
                 <Link to={'/find/artist?id=' + s.id}>
-                    <LazyLoad>
+                    <LazyLoad height={130} debounce={500} placeholder={<img width="100%" height="100%" src={loadingUrl} />}>
                         <img src={s.img1v1Url} alt="" />
+                        <span className="mask"></span>
                     </LazyLoad>
                 </Link>
             </div>

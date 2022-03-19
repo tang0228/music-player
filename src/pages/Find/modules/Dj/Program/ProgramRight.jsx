@@ -18,19 +18,19 @@ export default function ProgramRIght(props) {
     }, [id, rid])
     return (
         <div className={style['program-right']}>
-            <div className="list-header">
+            {list && list.length ? <><div className="list-header">
                 <div className="title">更多节目</div>
                 <Link className='more' to={"/find/djradio/detail?id=" + rid}>全部&gt;</Link>
             </div>
-            <ul className="list-wrap">
-                {list && list.length ? list.map(l => <li className='list-item' key={l.id}>
-                    <Link to={"/find/djradio/program?id=" + l.id} ><img src={l.coverUrl} alt="" /></Link>
-                    <div className="info">
-                        <Link to={"/find/djradio/program?id=" + l.id} className="name">{l.name}</Link>
-                        <div className="vol">vol.{l.serialNum}</div>
-                    </div>
-                </li>) : null}
-            </ul>
+                <ul className="list-wrap">
+                    {list.map(l => <li className='list-item' key={l.id}>
+                        <Link to={"/find/djradio/program?id=" + l.id} ><img src={l.coverUrl} alt="" /></Link>
+                        <div className="info">
+                            <Link to={"/find/djradio/program?id=" + l.id} className="name">{l.name}</Link>
+                            <div className="vol">vol.{l.serialNum}</div>
+                        </div>
+                    </li>)}
+                </ul></> : <div className='empty'>暂时没有呢</div>}
         </div>
     )
 }

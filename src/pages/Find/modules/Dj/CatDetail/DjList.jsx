@@ -7,24 +7,21 @@ import { IconUser } from "@douyinfe/semi-icons";
 import utils from '../../../../../utils';
 import {
     Pagination,
-    Spin,
 } from "@douyinfe/semi-ui";
+import loadingUrl from "@/assets/loading.svg";
 
 export default function DjList(props) {
     const id = props.id;
     const [djList, setDjList] = useState([]);
     const [total, setTotal] = useState(0);
-    const [loading, setLoading] = useState(false);
     const [page, setPage] = useState(1);
 
     // 获取dj列表
     useEffect(() => {
-        setLoading(true);
         getHotDjList({ offset: (page - 1) * 32, cateId: id }).then(res => {
             if (res.code === 200) {
                 setDjList(res.djRadios);
                 setTotal(res.count);
-                setLoading(false);
             }
         })
         return () => {
@@ -40,7 +37,7 @@ export default function DjList(props) {
             <div className="header">电台排行榜</div>
             <ul className="list-wrap">
                 {djList && djList.length ? djList.map((d, i) => <li className={utils.isEven(i + 1) ? "list-item" : "list-item mr28"} key={d.id}>
-                    <LazyLoad>
+                    <LazyLoad height={120} debounce={500} placeholder={<img src={loadingUrl} />}>
                         <Link to={"/find/djradio/detail?id=" + d.id}>
                             <img src={d.picUrl} alt="" />
                         </Link>
@@ -67,18 +64,6 @@ export default function DjList(props) {
                     ></Pagination>
                 </div>
             ) : null}
-            <Spin
-                spinning={loading}
-                tip="loading..."
-                size="large"
-                style={{
-                    position: "fixed",
-                    top: "50%",
-                    left: "50%",
-                    transform: "translate(-50%, -50%)",
-                    zIndex: "9999",
-                }}
-            ></Spin>
         </div>
     )
 }
