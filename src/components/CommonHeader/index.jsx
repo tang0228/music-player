@@ -87,7 +87,9 @@ function CommonHeader(props) {
 		<>
 			<div className="nav-wrapper">
 				<div className="nav-logo">
-					<Link to="/find">网易云音乐</Link>
+					<Link className="logo-text" to="/find">
+						Music-Player
+					</Link>
 				</div>
 				<ul className="nav-list">{lis}</ul>
 				<div className="nav-search">

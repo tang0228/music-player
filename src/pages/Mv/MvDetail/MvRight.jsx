@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import style from "./mvRight.module.less";
+import style from "./MvRight.module.less";
 import utils from "../../../utils";
 import { getPersonalizedMv } from '../../../services/mv';
 import LazyLoad from "react-lazyload";

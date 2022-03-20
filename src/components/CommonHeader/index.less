@@ -1,92 +1,99 @@
 .nav-wrapper {
-  padding: 0 85px;
-  box-sizing: border-box;
-  margin: 0 auto;
-  display: flex;
-  height: 70px;
-  line-height: 70px;
-  display: flex;
-  align-items: center;
-  color: #ccc;
-  background-color: #242424;
-  border-bottom: 1px solid rgb(0, 0, 0);
-  position: relative;
+	padding: 0 85px;
+	box-sizing: border-box;
+	margin: 0 auto;
+	display: flex;
+	height: 70px;
+	line-height: 70px;
+	display: flex;
+	align-items: center;
+	color: #ccc;
+	background-color: #242424;
+	border-bottom: 1px solid rgb(0, 0, 0);
+	position: relative;
 
-  .nav-logo {
-    background: url("https://s2.music.126.net/style/web2/img/frame/topbar.png?0dfeb036213959048a6290e4dc744f78") no-repeat 0 9999px;
-    width: 176px;
-    height: 69px;
-    flex-shrink: 0;
+	.nav-logo {
+		background: url("https://s2.music.126.net/style/web2/img/frame/topbar.png?0dfeb036213959048a6290e4dc744f78") no-repeat 0 0;
+		width: 176px;
+		height: 69px;
+		flex-shrink: 0;
 
-    a {
-      font-size: 34px;
-      display: inline-block;
-      height: 100%;
-      text-decoration: none;
-      font-family: "PingFang SC", "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei", "WenQuanYi Micro Hei";
-      color: #ccc;
+		.logo-text {
+			display: inline-block;
+			width: 100%;
+			height: 100%;
+			text-indent: -9999px;
+		}
 
-      &:hover {
-        color: #fff;
-      }
-    }
-  }
+		a {
+			font-size: 34px;
+			display: inline-block;
+			height: 100%;
+			text-decoration: none;
+			font-family: "PingFang SC", "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei", "WenQuanYi Micro Hei";
+			color: #ccc;
 
-  .nav-list {
-    display: flex;
-    align-items: center;
-    flex-shrink: 0;
-    flex-grow: 1;
+			&:hover {
+				color: #fff;
+			}
+		}
+	}
 
-    .nav-link {
-      text-decoration: none;
-      color: inherit;
+	.nav-list {
+		display: flex;
+		align-items: center;
+		flex-shrink: 0;
+		flex-grow: 1;
 
-      .nav-item {
-        padding: 0 19px;
-      }
+		.nav-link {
+			text-decoration: none;
+			color: inherit;
 
-      &.active {
-        color: #fff;
-        background-color: #000;
-        position: relative;
+			.nav-item {
+				padding: 0 19px;
+			}
 
-        &::after {
-          content: "";
-          width: 0;
-          height: 0;
-          border-bottom: 7px solid #c20c0c;
-          border-left: 7px solid transparent;
-          border-right: 7px solid transparent;
-          border-top: 1px solid transparent;
-          position: absolute;
-          left: 50%;
-          bottom: -1px;
-          transform: translateX(-50%);
-        }
-      }
+			&.active {
+				color: #fff;
+				background-color: #000;
+				position: relative;
 
-      &:hover {
-        color: #fff;
-        background: #000;
-      }
-    }
-  }
+				&::after {
+					content: "";
+					width: 0;
+					height: 0;
+					border-bottom: 7px solid #c20c0c;
+					border-left: 7px solid transparent;
+					border-right: 7px solid transparent;
+					border-top: 1px solid transparent;
+					position: absolute;
+					left: 50%;
+					bottom: -1px;
+					transform: translateX(-50%);
+				}
+			}
 
-  .nav-search {
-    width: 190px;
-  }
+			&:hover {
+				color: #fff;
+				background: #000;
+			}
+		}
+	}
 
-  .nav-user {
-    margin-left: 24px;
-  }
+	.nav-search {
+		width: 190px;
+	}
+
+	.nav-user {
+		margin-left: 24px;
+	}
 }
 
 .sub-nav {
-  height: 5px;
-  background: #c20c0c;
+	height: 5px;
+	background: #c20c0c;
 }
 
 .semi-spin-wrapper {
-  color: #c20c0c;
+	color: #c20c0c;
 }
