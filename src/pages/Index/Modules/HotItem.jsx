@@ -3,10 +3,11 @@ import LazyLoad from "react-lazyload";
 import { IconCustomerSupport, IconPlayCircle } from "@douyinfe/semi-icons";
 import { Link } from "react-router-dom";
 import loadingUrl from "@/assets/loading.svg";
+import style from "./hotItem.module.less";
 
 export default function Item(props) {
 	return (
-		<li className="item-wrapper">
+		<li className={style["item-wrapper"]}>
 			<div className="item-content">
 				<Link to={`/find/playlist/detail?id=${props.id}`}>
 					<LazyLoad height={140} debounce={500} placeholder={<img width="100%" height="100%" src={loadingUrl} />}>
