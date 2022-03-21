@@ -4,7 +4,7 @@ import { getAlbumNewest } from '../../../services/apis';
 import style from "./newDisc.module.less";
 import LazyLoad from "react-lazyload";
 import { Link } from "react-router-dom";
-import { IconPlayCircle, IconChevronLeft, IconChevronRight } from "@douyinfe/semi-icons";
+import { IconChevronLeft, IconChevronRight } from "@douyinfe/semi-icons";
 import loadingUrl from "@/assets/loading.svg";
 
 export default function NewDisc() {
@@ -34,9 +34,8 @@ export default function NewDisc() {
                                 </LazyLoad>
                                 <span className="disc-mask"></span>
                             </Link>
-                            <IconPlayCircle size="large" style={{
-                                color: "#eee"
-                            }} />
+                            <i className="icon-play"></i>
+                            
                         </div>
                         <Link to={'/find/album?id=' + al.id} className="album-name">{al.name}</Link>
                         <Link to={'/find/artist?id=' + al.artist.id} className="singer-name">{al.artist.name}</Link>

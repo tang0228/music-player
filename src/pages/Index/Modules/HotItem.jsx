@@ -1,6 +1,5 @@
 import React from "react";
 import LazyLoad from "react-lazyload";
-import { IconCustomerSupport, IconPlayCircle } from "@douyinfe/semi-icons";
 import { Link } from "react-router-dom";
 import loadingUrl from "@/assets/loading.svg";
 import style from "./hotItem.module.less";
@@ -15,11 +14,11 @@ export default function Item(props) {
 					</LazyLoad>
 					<span className="mask"></span>
 					<div className="bottom">
-						<IconCustomerSupport />
+						<i className="icon-heard"></i>
+						<i className="icon-play" title="播放"></i>
 						<span className="play-nums">
 							{parseInt(props.playCount ? props.playCount / 10000 : props.playcount / 10000)}万
 						</span>
-						<IconPlayCircle />
 					</div>
 				</Link>
 			</div>
