@@ -4,7 +4,7 @@ import style from "./djRank.module.less";
 import Header from "../components/Header";
 import LazyLoad from 'react-lazyload';
 import { Link } from 'react-router-dom';
-import { IconPlayCircle, IconArrowUp, IconArrowDown } from "@douyinfe/semi-icons";
+import { IconArrowUp, IconArrowDown } from "@douyinfe/semi-icons";
 import { Progress } from "@douyinfe/semi-ui";
 import utils from "../../../../../utils";
 import loadingUrl from "@/assets/loading.svg";
@@ -37,7 +37,7 @@ export default function DjRank() {
                         <LazyLoad height={40} debounce={500} placeholder={<img src={loadingUrl} />}>
                             <img title="播放" src={d.program.coverUrl} alt="" />
                         </LazyLoad>
-                        <IconPlayCircle />
+                        <i className="icon-dj-play"></i>
                     </div>
 
                     <div className="detail">

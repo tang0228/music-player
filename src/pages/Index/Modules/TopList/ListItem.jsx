@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from "prop-types";
 import style from "./listItem.module.less";
-import { IconCopyAdd, IconPlayCircle, IconPlus } from "@douyinfe/semi-icons";
 import { Link } from "react-router-dom";
 
 export default function ListItem(props) {
@@ -13,8 +12,8 @@ export default function ListItem(props) {
                 </Link>
                 <div className="name">
                     <div className="title"><Link to={'/find/toplist?id=' + props.id}>{props.title}</Link></div>
-                    <IconPlayCircle size="extra-large" style={{ color: '#ddd' }} />
-                    <IconCopyAdd size="extra-large" style={{ color: '#ddd' }} />
+                    <i className="icon-play icon-common"></i>
+                    <i className="icon-add icon-common"></i>
                 </div>
             </div>
             <div className="item-bottom">
@@ -23,9 +22,10 @@ export default function ListItem(props) {
                     <span className={i > 2 ? 'index' : 'index top'}>{i+1}</span>
                     <Link to={'/find/song?id=' + l.id} className="name">{l.name}</Link>
                     <div className="operate">
-                        <IconPlayCircle />
-                        <IconPlus />
-                        <IconCopyAdd />
+                        <i className="icon-play-one icon"></i>
+                        <i className="icon-add-play icon"></i>
+                        <i className="icon-add-all icon"></i>
+                        
                     </div>
                 </li>) : null
                 }

@@ -1,39 +1,75 @@
 .list-item {
     width: 230px;
     flex-shrink: 0;
+
     :global {
         .item-top {
             height: 100px;
             padding: 20px 0 0 20px;
             display: flex;
+
             img {
                 width: 80px;
                 height: 80px;
             }
+
             .name {
                 margin: 6px 0 0 10px;
+
                 .title {
                     margin-bottom: 10px;
+
                     a {
                         color: #333;
                         font-weight: 700;
                     }
                 }
+
+                .icon-common {
+                    display: block;
+                    float: left;
+                    width: 22px;
+                    height: 22px;
+                    margin-right: 10px;
+                    cursor: pointer;
+                }
+
+                .icon-play {
+
+                    background: url(https://s2.music.126.net/style/web2/img/index/index.png?d8546aefcf80a25efe795ed51d1af43d) -267px -205px no-repeat;
+
+                    &:hover {
+                        background-position: -267px -235px;
+                    }
+
+                }
+
+                .icon-add {
+                    background: url(https://s2.music.126.net/style/web2/img/index/index.png?d8546aefcf80a25efe795ed51d1af43d) -300px -205px no-repeat;
+
+                    &:hover {
+                        background-position: -300px -235px;
+                    }
+                }
             }
         }
+
         .item-bottom {
             .row {
                 display: flex;
                 align-items: center;
                 height: 32px;
                 padding: 0 20px 0 30px;
+
                 .index {
                     width: 30px;
                     font-size: 16px;
                 }
+
                 .top {
                     color: #c10d0c;
                 }
+
                 .name {
                     flex: 1;
                     font-size: 12px;
@@ -41,14 +77,52 @@
                     text-overflow: ellipsis;
                     overflow: hidden;
                 }
+
                 .operate {
                     display: none;
+
+                    .icon {
+                        float: left;
+                        width: 17px;
+                        height: 17px;
+                        margin-right: 10px;
+                        cursor: pointer;
+                    }
+
+                    .icon-play-one {
+                        background: url(https://s2.music.126.net/style/web2/img/index/index.png?d8546aefcf80a25efe795ed51d1af43d) -267px -268px no-repeat;
+
+                        &:hover {
+                            background-position: -267px -288px;
+                        }
+
+                    }
+
+                    .icon-add-play {
+                        margin: 2px 6px 0 0;
+                        background: url(https://s2.music.126.net/style/web2/img/icon.png?7bc6fe854fb5c5495706aa7ba15880e2) 0 -700px no-repeat;
+
+                        &:hover {
+                            background-position: -22px -700px;
+                        }
+
+                    }
+
+                    .icon-add-all {
+                        background: url(https://s2.music.126.net/style/web2/img/index/index.png?d8546aefcf80a25efe795ed51d1af43d) -297px -268px no-repeat;
+
+                        &:hover {
+                            background-position: -297px -288px;
+                        }
+                    }
                 }
+
                 &:hover {
                     .operate {
                         display: block;
                     }
                 }
+
                 .all {
                     font-size: 12px;
                     flex: 1;

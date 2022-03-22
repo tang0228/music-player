@@ -12,7 +12,7 @@
             height: 130px;
 
             &:hover {
-                .semi-icon-play_circle {
+                .icon-album-play {
                     display: block;
                 }
             }
@@ -33,12 +33,20 @@
             height: 130px;
         }
 
-        .semi-icon-play_circle {
-            position: absolute;
-            right: 16px;
-            bottom: 16px;
-            cursor: pointer;
+        .icon-album-play {
             display: none;
+            cursor: pointer;
+            left: 94px;
+            width: 28px;
+            height: 28px;
+            position: absolute;
+            right: 10px;
+            bottom: 5px;
+            background: url(https://s2.music.126.net/style/web2/img/iconall.png?f3219d4803db2562ac7cda23e1c9af03) 0 -140px no-repeat;
+        
+            &:hover {
+                background-position: 0 -170px;
+            }
         }
 
         .album-name {

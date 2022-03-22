@@ -1,7 +1,6 @@
 import React from 'react';
 import LazyLoad from "react-lazyload";
 import { Link } from "react-router-dom";
-import { IconPlayCircle } from "@douyinfe/semi-icons";
 import style from "./item.module.less";
 import loadingUrl from "@/assets/loading.svg";
 
@@ -15,9 +14,7 @@ export default function Item(props) {
                     </LazyLoad>
                     <span className='al-mask'></span>
                 </Link>
-                <IconPlayCircle size="large" style={{
-                    color: "#eee"
-                }} />
+                <i className="icon-album-play"></i>
             </div>
             <Link to={'/find/album?id=' + props.id} className="album-name">{props.name}</Link>
             <Link to={'/find/artist?id=' + props.artist.id} className="singer-name">{props.artist.name}</Link>

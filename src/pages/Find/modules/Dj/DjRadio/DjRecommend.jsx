@@ -3,7 +3,6 @@ import style from "./djRecommend.module.less";
 import { getProgramRecommend } from '../../../../../services/dj';
 import Header from '../components/Header';
 import LazyLoad from "react-lazyload";
-import { IconPlayCircle } from "@douyinfe/semi-icons";
 import { Link } from "react-router-dom";
 import utils from "../../../../../utils";
 import loadingUrl from "@/assets/loading.svg";
@@ -28,7 +27,7 @@ export default function DjRecommend() {
                         <LazyLoad height={40} debounce={500} placeholder={<img src={loadingUrl} />}>
                             <img title="播放" src={d.coverUrl} alt="" />
                         </LazyLoad>
-                        <IconPlayCircle />
+                        <i className="icon-dj-play"></i>
                     </div>
                     <div className="detail">
                         <Link to={"/find/djradio/program?id=" + d.id} className="desc" title={d.name} >{d.name}</Link>

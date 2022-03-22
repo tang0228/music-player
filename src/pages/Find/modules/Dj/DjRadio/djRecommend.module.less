@@ -17,7 +17,7 @@
                     background-color: #eee;               
                 }
 
-                &:hover .img-wrap .semi-icon-play_circle {
+                &:hover .img-wrap .icon-dj-play {
                     display: block;
                 }
 
@@ -34,14 +34,19 @@
                         height: 40px;
                     }
 
-                    .semi-icon-play_circle {
+                    .icon-dj-play {
+                        cursor: pointer;
+                        display: none;
                         position: absolute;
+                        width: 22px;
+                        height: 22px;
                         top: 50%;
                         left: 50%;
-                        transform: translate(-50%, -50%);
-                        color: #666;
-                        display: none;
+                        overflow: hidden;
+                        margin: -11px 0 0 -11px;
+                        background: url(https://s2.music.126.net/style/web2/img/iconall.png?f3219d4803db2562ac7cda23e1c9af03) 0 -85px no-repeat;
                     }
+                    
                 }
 
                 .detail {
