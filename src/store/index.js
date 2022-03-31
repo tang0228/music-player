@@ -1,11 +1,13 @@
-import {createStore, combineReducers} from "redux";
+import { createStore, combineReducers } from "redux";
 
 import user from "./reducers/user";
-import song from "./reducers/song";
+import songs from "./reducers/song";
+import curSongId from "./reducers/curSong";
 
 const rootReducer = combineReducers({
     user,
-    song,
+    songs,
+    curSongId,
 });
 
 const store = createStore(rootReducer);

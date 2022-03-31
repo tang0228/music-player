@@ -1,11 +1,12 @@
 import React from "react";
-import style from "./item.module.less";
 import utils from "../../../../utils";
+import { Toast } from "@douyinfe/semi-ui";
 import { IconPlayCircle, IconPlus, IconFolder, IconForward, IconDownload } from "@douyinfe/semi-icons";
 import { Link } from "react-router-dom";
 import { getMusicPlayUrl } from "../../../../services/apis";
 import { connect } from "react-redux";
 import { addSongAction } from "../../../../store/actions/song";
+import { setCurSongIdAction } from "@/store/actions/curSongId";
 
 const mapStateToProps = (state) => {
     return {
@@ -15,16 +16,22 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         addSong: (...args) => dispatch(addSongAction(...args)),
+        setCurSongId: (...args) => dispatch(setCurSongIdAction(...args))
     };
 };
 function TableItem(props) {
-    const { item, index, showAlbum, addSong } = props;
+    const { item, index, showAlbum, addSong, setCurSongId } = props;
     // 播放歌曲
     const play = async (id) => {
         const res = await getMusicPlayUrl({ id });
-        if (res.code === 200) {
-            addSong(res.data[0].url);
-            localStorage.setItem("song_url", JSON.stringify(res.data[0].url));
+        setCurSongId(id);
+        if (res.code === 200 && res.data[0].url) {
+            addSong(res.data);
+        } else {
+            Toast.error({
+                content: "无权限",
+                duration: 2
+            })
         }
     };
     return (

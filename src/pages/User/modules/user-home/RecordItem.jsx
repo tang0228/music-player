@@ -7,39 +7,47 @@ import {
   IconForward,
   IconDownload,
 } from "@douyinfe/semi-icons";
+import { Toast } from '@douyinfe/semi-ui';
 import utils from "../../../../utils";
 import { Link } from "react-router-dom";
 import { getMusicPlayUrl } from "../../../../services/apis";
 import { connect } from "react-redux";
 import { addSongAction } from "../../../../store/actions/song";
+import { setCurSongIdAction } from "@/store/actions/curSongId";
 
 const mapStateToProps = (state) => {
-    return {
-        song: state.song,
-    }
+  return {
+    song: state.song,
+  }
 };
 const mapDispatchToProps = (dispatch) => {
-    return {
-        addSong: (...args) => dispatch(addSongAction(...args)),
-    }
+  return {
+    addSong: (...args) => dispatch(addSongAction(...args)),
+    setCurSongId: (...args) => dispatch(setCurSongIdAction(...args))
+  }
 }
 
 function RecordItem(props) {
-  const { record, index, addSong, showNum } = props;
+  const { record, index, addSong, showNum, setCurSongId } = props;
   // 播放歌曲
   const play = async (id) => {
-      const res = await getMusicPlayUrl({id});
-      if(res.code === 200) {
-          addSong(res.data[0].url);
-          localStorage.setItem("song_url", JSON.stringify(res.data[0].url));
-      }
+    const res = await getMusicPlayUrl({ id });
+    setCurSongId(id);
+    if (res.code === 200 && res.data[0].url) {
+      addSong(res.data);
+    } else {
+      Toast.error({
+        content: "无权限",
+        duration: 2
+      })
+    }
   }
   return (
     <li className={utils.isEven(index) ? "record-item even" : "record-item"}>
       <div className="hd">
         <span className="hd-index">{index}.</span>
         <IconPlayCircle onClick={() => {
-            play(record.song.id)
+          play(record.song.id)
         }} />
       </div>
       <div className="singer">
@@ -64,7 +72,7 @@ function RecordItem(props) {
             width: `${record.score}%`,
           }}
         ></span>
-        {showNum ? <span className="text">{record.playCount}次</span> : null }
+        {showNum ? <span className="text">{record.playCount}次</span> : null}
       </div>
     </li>
   );

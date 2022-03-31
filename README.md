@@ -1,6 +1,8 @@
-# music-player, author: tangyuanqing
+# music-player,
+
+## api提供：感谢 https://github.com/tang0228/NeteaseCloudMusicApi
 ---
-## 技术栈： 后端；node  前端：react react-router-dom semi-design redux
+## 技术栈：react react-router-dom semi-design redux react-redux less axios
 ---
 ### 已完成的功能
 
@@ -12,5 +14,8 @@
 6. 登录
 7. 评论列表
 8. 评论
+等等......
+
+---
 
 

@@ -17,6 +17,7 @@ import CommitList from "../../../components/CommitList/CommitList";
 import Commit from "../../../components/Commit";
 import { comment, likeComment } from "../../../services/comment";
 import { addSongAction } from "../../../store/actions/song";
+import { setCurSongIdAction } from "@/store/actions/curSongId";
 import { connect } from "react-redux";
 import utils from "../../../utils";
 
@@ -29,11 +30,12 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
 	return {
 		addSong: (...args) => dispatch(addSongAction(...args)),
+		setCurSongId: (...args) => dispatch(setCurSongIdAction(...args))
 	};
 };
 
 function DetailLeft(props) {
-	const { id, addSong } = props; // 歌曲ID
+	const { id, addSong, setCurSongId } = props; // 歌曲ID
 	const [lyric, setLyric] = useState(""); // 歌词
 	const [open, setOpen] = useState(false); // 是否展开歌词
 	const [comments, setComments] = useState([]); // 评论列表
@@ -42,7 +44,6 @@ function DetailLeft(props) {
 	const [limit, setLimit] = useState(20); // 页容量
 	const [total, setTotal] = useState(0); // 总评论数
 	const [loading, setLoading] = useState(false); // loading
-	const [url, setUrl] = useState(""); //url
 	const detail = props.detail;
 	// 获取歌词
 	useEffect(() => {
@@ -154,10 +155,14 @@ function DetailLeft(props) {
 	// 播放歌曲
 	const play = async () => {
 		const res = await getMusicPlayUrl({ id });
-		if (res.code === 200) {
-			setUrl(res.data[0].url);
-			addSong(res.data[0].url);
-			localStorage.setItem("song_url", JSON.stringify(res.data[0].url));
+		setCurSongId(id);
+		if (res.code === 200 && res.data[0].url) {
+			addSong(res.data);
+		} else {
+			Toast.error({
+				content: "无权限",
+				duration: 2
+			})
 		}
 	};
 
@@ -248,7 +253,6 @@ function DetailLeft(props) {
 					zIndex: "9999",
 				}}
 			></Spin>
-			<audio autoPlay src={url}>audio</audio>
 		</div>
 	);
 }

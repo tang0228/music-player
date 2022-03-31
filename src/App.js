@@ -93,7 +93,7 @@ function App() {
                         </Switch>
                     </Content>
                     <Footer><CommonFooter /></Footer>
-                    <BackTop />
+                    <BackTop style={{ bottom: 100 }} />
                     <SongPlay />
                 </Layout>
             </Suspense>
@@ -102,3 +102,4 @@ function App() {
 }
 
 export default App;
+

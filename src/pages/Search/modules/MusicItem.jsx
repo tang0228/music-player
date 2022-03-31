@@ -1,12 +1,13 @@
-import React, {useCallback} from 'react';
-import {IconPlayCircle, IconDownload, IconFolder, IconPlus, IconForward } from "@douyinfe/semi-icons"
-// import { Modal, Button, Form, Row, Toast } from '@douyinfe/semi-ui';
+import React from 'react';
+import { IconPlayCircle, IconDownload, IconFolder, IconPlus, IconForward } from "@douyinfe/semi-icons"
+import { Toast } from '@douyinfe/semi-ui';
 import "./musicItem.less";
 import utils from '../../../utils';
-import { getMusicPlayUrl, checkMusic } from "../../../services/apis";
+import { getMusicPlayUrl } from "../../../services/apis";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { addSongAction } from '../../../store/actions/song';
+import { setCurSongIdAction } from "@/store/actions/curSongId";
 
 const mapStateToProps = (state) => {
     return {
@@ -16,40 +17,32 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-      addSong: (...args) => dispatch(addSongAction(...args)),
+        addSong: (...args) => dispatch(addSongAction(...args)),
+        setCurSongId: (...args) => dispatch(setCurSongIdAction(...args))
     };
-  };
+};
 
 function MusicItem(props) {
-    const {addSong} = props;
-    const checkCanPlay = useCallback(
-        async (id) => {
-            const res = await checkMusic({
-                id
-            });
-            return res;
-        },
-        [],
-    )
+    const { addSong, setCurSongId } = props;
     const playMusic = async (id) => {
-        const res = await getMusicPlayUrl({id});
-        if(res.code === 200) {
-            addSong(res.data[0].url);
-            localStorage.setItem("song_url", JSON.stringify(res.data[0].url));
+        const res = await getMusicPlayUrl({ id });
+        setCurSongId(id);
+        if (res.code === 200 && res.data[0].url) {
+            addSong(res.data);
+        } else {
+            Toast.error({
+                content: "无权限",
+                duration: 2
+            })
         }
     };
 
-    // const closeModal = useCallback(
-    //     () => {
-    //     },
-    //     [],
-    // )
     const songs = props.songs;
-    const items = songs.map((song, index) =>(
+    const items = songs.map((song, index) => (
         <li key={song.id} className={`${utils.isEven(index + 1) ? 'search-item' : 'search-item even'}`}>
             <IconPlayCircle onClick={() => {
                 playMusic(song.id);
-            }}/>
+            }} />
             <Link to={'/find/song?id=' + song.id} className="name">{song.name}</Link>
             <div className="operates">
                 <IconPlus />
@@ -67,13 +60,6 @@ function MusicItem(props) {
     return (
         <ul className="music-container">
             {items}
-            {/* <Modal
-                title="登录"
-                visible={props.visible}
-                onCancel={closeModal}
-                centered
-                bodyStyle={{height: 200}}
-            ></Modal> */}
         </ul>
     )
 }

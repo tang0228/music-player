@@ -13,7 +13,7 @@ ins.interceptors.response.use(res => {
         return Promise.reject(res);
     }
 }, error => {
-    return Promise.reject(error)
+    return Promise.reject(error);
 })
 
 export default ins;

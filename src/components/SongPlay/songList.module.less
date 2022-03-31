@@ -1,0 +1,195 @@
+.song-list-wrap {
+    position: absolute;
+    width: 980px;
+    right: -6px;
+    bottom: 38px;
+
+    :global {
+        .list-header {
+            position: relative;
+            height: 40px;
+            height: 41px;
+            padding: 0 5px;
+            display: flex;
+            background: url(https://s2.music.126.net/style/web2/img/frame/playlist_bg.png?045042a5acfe04afba5df81b1ee35c85) 0 0 no-repeat;
+
+            .title {
+                position: absolute;
+                left: 25px;
+                top: 0;
+                height: 39px;
+                line-height: 39px;
+                font-size: 14px;
+                color: #e2e2e2;
+            }
+
+            .add-all {
+                position: absolute;
+                left: 490px;
+                top: 12px;
+                height: 15px;
+                line-height: 15px;
+                color: #ccc;
+                left: 398px;
+                font-size: 12px;
+                display: flex;
+
+                &:hover {
+                    color: #e2e2e2;
+
+                    .icon-add {
+                        background-position: -24px -20px;
+                    }
+                }
+
+                .icon-add {
+                    margin: 1px 6px 0 0;
+                    display: inline-block;
+                    width: 16px;
+                    height: 16px;
+                    background: url(https://s2.music.126.net/style/web2/img/frame/playlist.png?2bbeede35191338240441cc762f830e3) -24px 0 no-repeat;
+                }
+            }
+
+            .line {
+                position: absolute;
+                top: 13px;
+                left: 477px;
+                height: 15px;
+                border-left: 1px solid #000;
+                border-right: 1px solid #2c2c2c;
+            }
+
+            .del {
+                position: absolute;
+                left: 490px;
+                top: 12px;
+                height: 15px;
+                line-height: 15px;
+                display: inline-block;
+                color: #ccc;
+                font-size: 12px;
+                display: flex;
+
+                &:hover {
+                    color: #e2e2e2;
+
+                    .icon-del {
+                        background-position: -51px -20px;
+                    }
+                }
+
+                .icon-del {
+                    height: 16px;
+                    margin: 1px 6px 0 0;
+                    width: 13px;
+                    background: url(https://s2.music.126.net/style/web2/img/frame/playlist.png?2bbeede35191338240441cc762f830e3) -51px 0 no-repeat;
+                }
+            }
+
+            .name {
+                position: absolute;
+                left: 595px;
+                top: 0;
+                width: 346px;
+                text-align: center;
+                height: 39px;
+                line-height: 39px;
+                color: #fff;
+                font-size: 14px;
+            }
+
+            .icon-close {
+                position: absolute;
+                top: 6px;
+                right: 8px;
+                width: 30px;
+                height: 30px;
+                overflow: hidden;
+                text-indent: -999px;
+                cursor: pointer;
+                background: url(https://s2.music.126.net/style/web2/img/frame/playlist.png?2bbeede35191338240441cc762f830e3) -195px 9px no-repeat;
+
+                &:hover {
+                    background-position: -195px -21px;
+                }
+            }
+
+        }
+
+        .list-content {
+            position: relative;
+            left: 0;
+            width: 980px;
+            height: 260px;
+            overflow: hidden;
+            background-repeat: repeat-y;
+            background: url(https://s2.music.126.net/style/web2/img/frame/playlist_bg.png?045042a5acfe04afba5df81b1ee35c85) -1014px 0;
+
+            .list-wrap {
+                width: 553px;
+                height: 100%;
+                overflow-y: auto;
+
+                .list {
+                    // overflow-y: auto;
+                    .list-item {
+                        color: #ccc;
+                        height: 28px;
+                        display: flex;
+                        align-items: center;
+                        width: 100%;
+                        font-size: 12px;
+                        padding-left: 10px;
+                        box-sizing: border-box;
+
+                        &:hover {
+                            background-color: rgba(0, 0, 0, 0.4);
+                            color: #fff;
+                        }
+
+                        .pdl10 {
+                            padding-left: 10px;
+                        }
+
+                        .icon-p {
+                            width: 10px;
+                            height: 13px;
+                        }
+
+                        .icon-playing {
+                            background: url(https://s2.music.126.net/style/web2/img/frame/playlist.png?2bbeede35191338240441cc762f830e3) -182px 0 no-repeat;
+                        }
+
+                        .name {
+                            width: 266px;
+                        }
+
+                        .artist {
+                            width: 100px;
+                            overflow: hidden;
+                            white-space: nowrap;
+                            text-overflow: ellipsis;
+                        }
+
+                        .dt {
+                            width: 35px;
+                            flex-shrink: 1;
+                            text-align: right;
+                        }
+                    }
+                }
+            }
+            .middle {
+                position: absolute;
+                left: 555px;
+                top: -1px;
+                z-index: 2;
+                width: 6px;
+                height: 260px;
+                background: #000;
+                opacity: .5;
+            }
+        }
+    }
+}

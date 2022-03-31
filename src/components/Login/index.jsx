@@ -29,10 +29,14 @@ function Login(props) {
 
     const handleOk = useCallback(
         async () => {
+            if(!phone || !password) {
+                return false;
+            }
             const res = await phoneLogin({
                 phone,
                 password
             });
+            console.log(res);
             if(res.code === 200) {
                 Toast.success({
                     content: `欢迎${res.profile.nickname}回家`,
@@ -44,7 +48,7 @@ function Login(props) {
                 utils.setCookie('token', JSON.stringify(res.token));
             } else {
                 Toast.error({
-                    content: "手机号或密码错误",
+                    content: res.msg,
                     duration: 2
                 });
             }
@@ -52,19 +56,13 @@ function Login(props) {
         [password, phone],
     );
 
-    const handlePassChange = useCallback(
-        (val) => {
-            setPassword(val);
-        },
-        [],
-    );
+    const handlePassChange = (val) => {
+            setPassword(val)
+    };
 
-    const handlePhoneChange = useCallback(
-        (val) => {
+    const handlePhoneChange = (val) => {
             setPhone(val)
-        },
-        [],
-    );
+    };
 
     return (
         <div>

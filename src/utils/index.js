@@ -21,7 +21,7 @@ const utils = {
         var h = parseInt((mss / (1000 * 60 * 60)) % 60);
         var m = parseInt((mss / (1000 * 60)) % 60);
         var s = parseInt((mss / 1000) % 60);
-        return `${h > 0 ? this.paddingLeft(h) + ':' : ''}${m > 0 ? this.paddingLeft(m) + ':' : "00"}${s > 0 ? this.paddingLeft(s) + '' : "00"}`;
+        return `${h > 0 ? this.paddingLeft(h) + ':' : ''}${m > 0 ? this.paddingLeft(m) + ':' : "00:"}${s > 0 ? this.paddingLeft(s) + '' : "00"}`;
     },
     // 对象数组去重
     unique(arr) {
@@ -32,7 +32,7 @@ const utils = {
     getTextByType(type) {
         switch (type) {
             case "1":
-              return "单曲";
+                return "单曲";
             case "100":
                 return "歌手";
             case "10":
@@ -48,8 +48,8 @@ const utils = {
             case "1002":
                 return "用户";
             default:
-              break;
-          }
+                break;
+        }
     },
     // 设置cookie
     setCookie(key, value) {
@@ -62,7 +62,7 @@ const utils = {
     formatDate(time) {
         return day(time).format('YYYY-MM-DD')
     },
-    
+
     /**
      * 锚点滚动
      */
@@ -70,6 +70,10 @@ const utils = {
         let dom = document.querySelector(selector);
         let top = dom.offsetTop;
         window.scrollTo(0, top);
+    },
+    unique(arr) {
+        const res = new Map();
+        return arr.filter((arr) => !res.has(arr.id) && res.set(arr.id, 1))
     }
 };
 

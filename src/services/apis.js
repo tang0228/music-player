@@ -5,7 +5,7 @@ import ins from "./request";
  */
 
 // 搜索
-export async function search({keywords = "", type = 1, limit = 20, offset = 0}) {
+export async function search({ keywords = "", type = 1, limit = 20, offset = 0 }) {
     const res = await ins.get("/search", {
         params: {
             keywords,
@@ -18,7 +18,7 @@ export async function search({keywords = "", type = 1, limit = 20, offset = 0}) 
 };
 
 // 手机号登录
-export async function phoneLogin({phone, password}) {
+export async function phoneLogin({ phone, password }) {
     const res = await ins.get("/login/cellphone", {
         params: {
             phone,
@@ -39,7 +39,7 @@ export async function logout() {
  * @param {cat} param0 分类
  * @returns 
  */
-export async function getPlaylist({cat = "", limit = 20, offset, order = "hot"}) {
+export async function getPlaylist({ cat = "", limit = 20, offset, order = "hot" }) {
     const res = await ins.get("/top/playlist", {
         params: {
             cat,
@@ -56,10 +56,10 @@ export async function getPlaylist({cat = "", limit = 20, offset, order = "hot"})
  * offset, 第二页的话，offset是 1 * limit
  * limit 页容量
  */
-export async function getFriend({offset = "0", limit = 20}) {
+export async function getFriend({ offset = "0", limit = 20 }) {
     const res = await ins.get("/event/list", {
         params: {
-            offset, 
+            offset,
             limit
         }
     });
@@ -70,12 +70,12 @@ export async function getFriend({offset = "0", limit = 20}) {
  * 网友 歌单类型列表
  */
 export async function getPlayListCat() {
-    const res = await ins.get("/playlist/catlist", );
+    const res = await ins.get("/playlist/catlist",);
     return res;
 };
 
 // 获取用户信息,传userId
-export async function getUserDetail({uid, timestamp}) {
+export async function getUserDetail({ uid, timestamp }) {
     const res = await ins.get('/user/detail', {
         params: {
             uid,
@@ -96,7 +96,7 @@ export async function getUserLevel() {
 };
 
 // 获取用户的播放记录 type = 1 weekData, type = 2 allData
-export async function getUserRecord({uid, type = 1}) {
+export async function getUserRecord({ uid, type = 1 }) {
     const res = await ins.get("/user/record", {
         params: {
             uid,
@@ -107,7 +107,7 @@ export async function getUserRecord({uid, type = 1}) {
 };
 
 //获取用户歌单
-export async function getUserPlayList({uid, offset = 0, limit = 30}) {
+export async function getUserPlayList({ uid, offset = 0, limit = 30 }) {
     const res = await ins.get("/user/playlist", {
         params: {
             uid,
@@ -126,10 +126,10 @@ export async function getUserPlayList({uid, offset = 0, limit = 30}) {
  * city: 城市id
  * signature：用户签名
  */
-export async function updateUserInfo({gender,birthday,nickname, province, city, signature}) {
+export async function updateUserInfo({ gender, birthday, nickname, province, city, signature }) {
     const res = await ins.get("/user/update", {
         params: {
-            gender,birthday,nickname, province, city, signature
+            gender, birthday, nickname, province, city, signature
         }
     });
     return res;
@@ -142,7 +142,7 @@ export async function loginRefresh() {
 };
 
 // 获取用户绑定信息
-export async function getUserBindInfo({uid}) {
+export async function getUserBindInfo({ uid }) {
     const res = await ins.get("/user/binding", {
         params: {
             uid
@@ -152,25 +152,32 @@ export async function getUserBindInfo({uid}) {
 };
 
 // 获取歌曲播放链接
-export async function getMusicPlayUrl({id}) {
-    const res = await ins.get("/song/url", {
-        params: {
-            id,
-        }
-    });
-    return res;
+export async function getMusicPlayUrl({ id }) {
+    // const res = await ins.get("/song/url", {
+    //     params: {
+    //         id: id + '.mp3',
+    //     }
+    // });
+    const res = await getSongDetail({ ids: id });
+    let song;
+    if (res.code === 200) {
+        song = res.songs[0];
+    }
+
+    let url = "https://music.163.com/song/media/outer/url?id="
+    return { code: 200, data: [{ id, url: `${url}${id}.mp3`, song }] };
 };
 
 // 获取歌曲下载url
-export async function getSongUrl({id}) {
+export async function getSongUrl({ id }) {
     const res = await ins.get("/song/download/url", {
-        params: {id}
+        params: { id }
     });
     return res;
 }
 
 // 检查歌曲是否可以播放
-export async function checkMusic({id}) {
+export async function checkMusic({ id }) {
     const res = await ins.get("/check/music", {
         params: {
             id
@@ -180,7 +187,7 @@ export async function checkMusic({id}) {
 };
 
 // 获取歌单详情
-export async function getPlayListDetail({id}) {
+export async function getPlayListDetail({ id }) {
     const res = await ins.get("/playlist/detail", {
         params: {
             id
@@ -196,7 +203,7 @@ export async function getHotPlayList() {
 };
 
 // 歌单评论列表
-export async function getPlayListCommit({id, limit, offset, timestamp}) {
+export async function getPlayListCommit({ id, limit, offset, timestamp }) {
     const res = await ins.get("/comment/playlist", {
         params: {
             id, limit, offset, timestamp
@@ -206,7 +213,7 @@ export async function getPlayListCommit({id, limit, offset, timestamp}) {
 };
 
 // 获取歌曲详情
-export async function getSongDetail({ids}) {
+export async function getSongDetail({ ids }) {
     const res = await ins.get("/song/detail", {
         params: { ids }
     });
@@ -214,7 +221,7 @@ export async function getSongDetail({ids}) {
 };
 
 // 获取歌词
-export async function getLyric({id}) {
+export async function getLyric({ id }) {
     const res = await ins.get("/lyric", {
         params: {
             id
@@ -224,7 +231,7 @@ export async function getLyric({id}) {
 };
 
 // 获取相似歌单（包含此歌曲的歌单)
-export async function getSimiPlayList({id}) {
+export async function getSimiPlayList({ id }) {
     const res = await ins.get("/simi/playlist", {
         params: {
             id
@@ -234,7 +241,7 @@ export async function getSimiPlayList({id}) {
 };
 
 // 获取相似音乐
-export async function getSimiSong({id}) {
+export async function getSimiSong({ id }) {
     const res = await ins.get("/simi/song", {
         params: {
             id,
@@ -244,7 +251,7 @@ export async function getSimiSong({id}) {
 };
 
 // 获取歌曲评论
-export async function getSongComment({id, limit, offset, timestamp}) {
+export async function getSongComment({ id, limit, offset, timestamp }) {
     const res = await ins.get("/comment/music", {
         params: {
             id, limit, offset, timestamp
@@ -254,7 +261,7 @@ export async function getSongComment({id, limit, offset, timestamp}) {
 };
 
 // 获取歌手详情
-export async function getArtistDetail({id}) {
+export async function getArtistDetail({ id }) {
     const res = await ins.get("/artist/detail", {
         params: {
             id,
@@ -264,7 +271,7 @@ export async function getArtistDetail({id}) {
 };
 
 // 获取相似歌手
-export async function getSimiArtist({id}) {
+export async function getSimiArtist({ id }) {
     const res = await ins.get("/simi/artist", {
         params: {
             id,
@@ -274,23 +281,23 @@ export async function getSimiArtist({id}) {
 };
 
 // 获取歌手热门作品已经歌手部分信息
-export async function getArtistSongs({id}) {
+export async function getArtistSongs({ id }) {
     const res = await ins.get("/artists", {
-        params: {id}
+        params: { id }
     });
     return res;
 };
 
 // 获取歌手专辑
-export async function getArtistAlbums({id, limit, offset}) {
+export async function getArtistAlbums({ id, limit, offset }) {
     const res = await ins.get("/artist/album", {
-        params: {id, limit, offset}
+        params: { id, limit, offset }
     });
     return res;
 };
 
 // 获取歌手mv
-export async function getArtistMv({id, limit, offset}) {
+export async function getArtistMv({ id, limit, offset }) {
     const res = await ins.get("/artist/mv", {
         params: {
             id, limit, offset
@@ -300,33 +307,33 @@ export async function getArtistMv({id, limit, offset}) {
 };
 
 // 获取歌手描述
-export async function getArtistDesc({id}) {
+export async function getArtistDesc({ id }) {
     const res = await ins.get("/artist/desc", {
-        params: {id}
+        params: { id }
     });
     return res;
 };
 
 // 获取专辑内容
-export async function getAlbum({id}) {
+export async function getAlbum({ id }) {
     const res = await ins.get("/album", {
-        params: {id}
+        params: { id }
     });
     return res;
 };
 
 // 获取专辑评论
-export async function getAlbumCommit({id, limit, offset, timestamp}) {
+export async function getAlbumCommit({ id, limit, offset, timestamp }) {
     const res = await ins.get("/comment/album", {
-        params: {id, limit, offset, timestamp}
+        params: { id, limit, offset, timestamp }
     });
     return res;
 };
 
 // 
-export async function getAlbumDynamic({id}) {
+export async function getAlbumDynamic({ id }) {
     const res = await ins.get("/album/detail/dynamic", {
-        params: {id}
+        params: { id }
     });
     return res;
 };
@@ -338,9 +345,9 @@ export async function getBanner() {
 };
 
 // 获取推荐歌单
-export async function getPersonalized({limit}) {
+export async function getPersonalized({ limit }) {
     const res = await ins.get("/personalized", {
-        params: {limit}
+        params: { limit }
     });
     return res;
 }
@@ -358,7 +365,7 @@ export async function getAlbumNewest() {
 };
 
 // 签到
-export async function userSignIn({type}) {
+export async function userSignIn({ type }) {
     const res = await ins.get("/daily_signin", {
         params: {
             type

@@ -1,0 +1,397 @@
+.b-bottom {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    :global {
+        .song-play {
+            height: 53px;
+            position: relative;
+            width: 100%;
+
+
+            .song-lock {
+                .left {
+                    position: absolute;
+                    top: -14px;
+                    right: 15px;
+                    width: 52px;
+                    height: 67px;
+                    background: url(https://s2.music.126.net/style/web2/img/frame/playbar.png?df3773a39a36c6e6d58ee5e447510644) 0 -380px no-repeat;
+
+                    .icon-lock {
+                        cursor: pointer;
+                        display: block;
+                        width: 18px;
+                        height: 18px;
+                        margin: 6px 0 0 17px;
+                        background: url(https://s2.music.126.net/style/web2/img/frame/playbar.png?df3773a39a36c6e6d58ee5e447510644) -100px -380px no-repeat;
+
+                        &:hover {
+                            background-position: -100px -400px;
+                        }
+
+                    }
+
+                }
+
+                .right {
+                    position: absolute;
+                    top: -1px;
+                    right: 0;
+                    width: 15px;
+                    height: 54px;
+                    pointer-events: none;
+                    background: url(https://s2.music.126.net/style/web2/img/frame/playbar.png?df3773a39a36c6e6d58ee5e447510644) -52px -393px no-repeat;
+                }
+            }
+
+            .bg {
+                height: 53px;
+                position: relative;
+                background: url(https://s2.music.126.net/style/web2/img/frame/playbar.png?df3773a39a36c6e6d58ee5e447510644) no-repeat;
+                background-repeat: repeat-x;
+                margin-right: 67px;
+            }
+
+            .hand {
+                position: absolute;
+                top: -10px;
+                width: 100%;
+                height: 20px;
+                cursor: pointer;
+            }
+
+            .song-content {
+                width: 980px;
+                margin: 0 auto;
+                height: 100%;
+                display: flex;
+                align-items: center;
+                left: 50%;
+                top: 0;
+                position: absolute;
+                margin-left: -485.5px;
+
+                .left {
+                    display: flex;
+                    align-items: center;
+                    height: 100%;
+                    width: 137px;
+
+                    .icon {
+                        display: block;
+                        float: left;
+                        width: 28px;
+                        height: 28px;
+
+                        text-indent: -9999px;
+                        cursor: pointer;
+                    }
+
+                    .icon-prev {
+                        background: url(https://s2.music.126.net/style/web2/img/frame/playbar.png?df3773a39a36c6e6d58ee5e447510644) 0 -130px no-repeat;
+                        margin-right: 8px;
+                        margin-top: 5px;
+
+                        &:hover {
+                            background-position: -30px -130px;
+                        }
+                    }
+
+                    .icon-play {
+                        width: 36px;
+                        height: 36px;
+                        margin-top: 4px;
+                        margin-right: 8px;
+                        background: url(https://s2.music.126.net/style/web2/img/frame/playbar.png?df3773a39a36c6e6d58ee5e447510644) 0 -165px no-repeat;
+
+                        &:hover {
+                            background-position: -40px -165px;
+                        }
+
+                    }
+
+                    .icon-pause {
+                        width: 36px;
+                        height: 36px;
+                        margin-top: 4px;
+                        margin-right: 8px;
+                        background: url(https://s2.music.126.net/style/web2/img/frame/playbar.png?df3773a39a36c6e6d58ee5e447510644) 0 -204px no-repeat;
+
+                        &:hover {
+                            background-position: -40px -204px;
+                        }
+                    }
+
+                    .icon-next {
+                        background-position: -110px -130px;
+                        background: url(https://s2.music.126.net/style/web2/img/frame/playbar.png?df3773a39a36c6e6d58ee5e447510644) -80px -130px no-repeat;
+                        margin-right: 8px;
+                        margin-top: 5px;
+
+                        &:hover {
+                            background-position: -110px -130px;
+                        }
+                    }
+                }
+
+                .center {
+                    .song-info {
+                        display: flex;
+                        position: relative;
+
+                        .img-wrap {
+                            position: relative;
+                            width: 34px;
+                            height: 34px;
+                            margin: 6px 15px 0 0;
+
+                            img {
+                                width: 34px;
+                                height: 34px;
+                            }
+
+                            .mask {
+                                background: url(https://s2.music.126.net/style/web2/img/frame/playbar.png?df3773a39a36c6e6d58ee5e447510644) 0 -80px no-repeat;
+                                position: absolute;
+                                top: 0px;
+                                left: 0px;
+                                display: block;
+                                width: 34px;
+                                height: 35px;
+                            }
+                        }
+
+                        .song-detail {
+                            font-size: 12px;
+
+                            .song-name {
+                                color: #e8e8e8;
+                                display: inline-block;
+                                margin-top: 8px;
+                            }
+
+                            .song-artist {
+                                margin-left: 15px;
+                                color: #9b9b9b;
+                                display: inline-block;
+                                margin-top: 8px;
+
+                            }
+
+                            .icon-mv {
+                                cursor: pointer;
+                                display: inline-block;
+                                width: 19px;
+                                height: 17px;
+                                margin: 0 0 -4px 3px;
+                                background: url(https://s2.music.126.net/style/web2/img/frame/playbar.png?df3773a39a36c6e6d58ee5e447510644) 0 -57px no-repeat;
+
+                                &:hover {
+                                    background-position: -20px -57px;
+                                }
+
+                            }
+
+                            .progress {
+                                width: 466px;
+                                position: relative;
+                                height: 9px;
+                                margin-top: 7px;
+                                background: url(https://s2.music.126.net/style/web2/img/frame/statbar.png?43695e38f836f931678b12ee1d7fee9b) right 0 no-repeat;
+
+
+                                .rdy {
+                                    position: absolute;
+                                    width: 100%;
+                                    height: 100%;
+                                    background: url(https://s2.music.126.net/style/web2/img/frame/statbar.png?43695e38f836f931678b12ee1d7fee9b) right -30px no-repeat;
+                                }
+
+                                .cur {
+                                    position: absolute;
+                                    width: 100%;
+                                    height: 100%;
+                                    background: url(https://s2.music.126.net/style/web2/img/frame/statbar.png?43695e38f836f931678b12ee1d7fee9b) left -66px no-repeat;
+
+                                    .icon-drag {
+                                        position: absolute;
+                                        top: -7px;
+                                        right: -13px;
+                                        width: 22px;
+                                        height: 24px;
+                                        cursor: pointer;
+                                        margin-left: -11px;
+                                        background: url(https://s2.music.126.net/style/web2/img/iconall.png?b2b4b287a3562deeae8069ad4b2c4e96) 0 -250px no-repeat;
+
+                                        &:hover {
+                                            background-position: 0 -280px;
+                                        }
+                                    }
+
+                                }
+                            }
+                        }
+
+                        .song-time {
+                            position: absolute;
+                            top: -3px;
+                            right: -84px;
+                            color: #797979;
+                            text-shadow: 0 1px 0 #121212;
+                            font-size: 12px;
+                            margin-top: 26px;
+
+                            em {
+                                color: #a1a1a1;
+                            }
+                        }
+                    }
+                }
+
+                .right {
+                    margin-left: 110px;
+                    display: flex;
+
+                    .icon {
+                        float: left;
+                        width: 25px;
+                        height: 25px;
+                        margin: 11px 2px 0 0;
+                        text-indent: -9999px;
+                        cursor: pointer;
+                    }
+
+                    .icon-draw {
+                        background: url(https://p1.music.126.net/DLVi_1eymwAX8gDunfd2bg==/109951165524394991) 0 0 no-repeat;
+
+                        &:hover {
+                            background-position-y: -25px;
+                        }
+
+                    }
+
+                    .icon-fold {
+                        background: url(https://s2.music.126.net/style/web2/img/frame/playbar.png?df3773a39a36c6e6d58ee5e447510644) -88px -163px no-repeat;
+
+                        &:hover {
+                            background-position: -88px -189px;
+                        }
+
+                    }
+
+                    .icon-share {
+                        background: url(https://s2.music.126.net/style/web2/img/frame/playbar.png?df3773a39a36c6e6d58ee5e447510644) -114px -163px no-repeat;
+
+                        &:hover {
+                            background-position: -114px -189px;
+                        }
+
+                    }
+
+                    .bar {
+                        position: relative;
+                        z-index: 10;
+                        height: 36px;
+                        width: 113px;
+                        padding-left: 13px;
+                        background: url(https://s2.music.126.net/style/web2/img/frame/playbar.png?df3773a39a36c6e6d58ee5e447510644) -147px -238px no-repeat;
+
+
+                        .voice-control {
+                            position: absolute;
+                            top: -113px;
+                            left: 9px;
+                            clear: both;
+                            width: 32px;
+                            height: 113px;
+                            z-index: 9;
+
+                            .bg {
+                                position: absolute;
+                                top: 0;
+                                left: 0;
+                                width: 32px;
+                                height: 113px;
+                                background: url(https://s2.music.126.net/style/web2/img/frame/playbar.png?df3773a39a36c6e6d58ee5e447510644) 0 -503px no-repeat;
+                            }
+
+                            .vbg {
+                                padding: 4px 0;
+                                top: 7px;
+                                height: 93px;
+                                position: absolute;
+                                position: absolute;
+                                top: auto;
+                                left: 14px;
+                                bottom: 8px;
+                                width: 4px;
+                                height: 93px;
+
+                                .voice-cur {
+                                    overflow: hidden;
+                                    background: #c20c0c;
+                                    position: absolute;
+                                    top: auto;
+                                    bottom: 4px;
+                                    width: 4px;
+                                    height: 93px;
+                                }
+
+                                .voice-drag {
+                                    position: absolute;
+                                    top: 0;
+                                    left: -7px;
+                                    display: block;
+                                    width: 18px;
+                                    height: 20px;
+                                    cursor: pointer;
+                                    background: url(https://s2.music.126.net/style/web2/img/iconall.png?b2b4b287a3562deeae8069ad4b2c4e96) -40px -250px no-repeat;
+
+                                    &:hover {
+                                        background-position: -40px -280px;
+                                    }
+
+                                }
+                            }
+                        }
+                    }
+                }
+
+                .icon-voice {
+                    background: url(https://s2.music.126.net/style/web2/img/frame/playbar.png?df3773a39a36c6e6d58ee5e447510644) -2px -248px no-repeat;
+
+                    &:hover {
+                        background-position: -31px -248px;
+                    }
+                }
+
+                .icon-one {
+                    background: url(https://s2.music.126.net/style/web2/img/frame/playbar.png?df3773a39a36c6e6d58ee5e447510644) -66px -344px no-repeat;
+
+                    &:hover {
+                        background-position: -93px -344px;
+                    }
+                }
+
+                .icon-list {
+                    width: 38px;
+                    padding-left: 32px;
+                    line-height: 27px;
+                    text-align: center;
+                    color: #666;
+                    text-shadow: 0 1px 0 #080707;
+                    text-indent: 0 !important;
+                    font-size: 12px;
+                    overflow: hidden;
+                    background: url(https://s2.music.126.net/style/web2/img/frame/playbar.png?df3773a39a36c6e6d58ee5e447510644) -42px -68px no-repeat;
+
+                    &:hover {
+                        background-position: -42px -98px;
+                    }
+                }
+            }
+        }
+    }
+}

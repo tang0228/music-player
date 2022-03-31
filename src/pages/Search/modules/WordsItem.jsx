@@ -1,11 +1,13 @@
 import React, { useState, useCallback } from 'react';
 import "./wordsItem.less";
+import { Toast } from '@douyinfe/semi-ui';
 import { IconPlayCircle, IconPlus, IconFolder, IconForward, IconDownload, IconChevronUp, IconChevronDown } from "@douyinfe/semi-icons"
 import utils from '../../../utils';
 import { Link} from "react-router-dom";
 import { getMusicPlayUrl } from '../../../services/apis';
 import { connect } from 'react-redux';
 import { addSongAction } from '../../../store/actions/song';
+import { setCurSongIdAction } from "@/store/actions/curSongId";
 
 const mapStateToProps = (state) => {
     return {
@@ -15,11 +17,12 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         addSong: (...args) => dispatch(addSongAction(...args)),
+        setCurSongId: (...args) => dispatch(setCurSongIdAction(...args))
     }
 }
 
 function WordsItem(props) {
-    const { addSong} = props;
+    const { addSong, setCurSongId} = props;
     const [open, setOpen] = useState(false); // 是否展开
     const handleClick = useCallback(
         () => {
@@ -30,9 +33,14 @@ function WordsItem(props) {
 
     const play = async (id) => {
         const res = await getMusicPlayUrl({id});
-        if(res.code === 200) {
-            addSong(res.data[0].url);
-            localStorage.setItem("song_url", JSON.stringify(res.data[0].url));
+        setCurSongId(id);
+        if (res.code === 200 && res.data[0].url) {
+            addSong(res.data);
+        } else {
+            Toast.error({
+                content: "无权限",
+                duration: 2
+            })
         }
     }
     return (
