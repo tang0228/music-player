@@ -9,7 +9,10 @@ export default (state = initialState, { type, payload }) => {
     switch (type) {
         case SETSONGID:
             localStorage.setItem('cur-song-id', JSON.stringify(payload));
-            localStorage.setItem('is-play', 1);
+            const audio = document.getElementById("my-audio");
+            if (audio) {
+                audio.autoplay = true;
+            }
             return payload;
         default:
             return state;

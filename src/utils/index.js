@@ -71,9 +71,14 @@ const utils = {
         let top = dom.offsetTop;
         window.scrollTo(0, top);
     },
+    // 对象数组去重，根据id
     unique(arr) {
         const res = new Map();
         return arr.filter((arr) => !res.has(arr.id) && res.set(arr.id, 1))
+    },
+    // 获取给定范围的随机整数
+    getRandomIntNumber(min, max) {
+        return Math.floor(Math.random() * (max - min + 1) + min);
     }
 };
 

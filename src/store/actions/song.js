@@ -17,7 +17,7 @@ export function deleteAllSongAction() {
 }
 
 // 删除一首歌曲, 传歌曲ID
-export function deleteOneSong(id) {
+export function deleteOneSongAction(id) {
     return {
         type: DELETEONESONG,
         payload: id

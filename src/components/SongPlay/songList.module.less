@@ -124,12 +124,14 @@
             height: 260px;
             overflow: hidden;
             background-repeat: repeat-y;
+            display: flex;
             background: url(https://s2.music.126.net/style/web2/img/frame/playlist_bg.png?045042a5acfe04afba5df81b1ee35c85) -1014px 0;
 
             .list-wrap {
                 width: 553px;
                 height: 100%;
                 overflow-y: auto;
+                flex-shrink: 0;
 
                 .list {
                     // overflow-y: auto;
@@ -142,10 +144,15 @@
                         font-size: 12px;
                         padding-left: 10px;
                         box-sizing: border-box;
+                        cursor: pointer;
 
                         &:hover {
                             background-color: rgba(0, 0, 0, 0.4);
                             color: #fff;
+
+                            .icon-del {
+                                display: block;
+                            }
                         }
 
                         .pdl10 {
@@ -163,6 +170,7 @@
 
                         .name {
                             width: 266px;
+                            flex: 1;
                         }
 
                         .artist {
@@ -174,8 +182,19 @@
 
                         .dt {
                             width: 35px;
-                            flex-shrink: 1;
                             text-align: right;
+                            padding-right: 10px;
+                        }
+
+                        .icon-del {
+                            display: none;
+                            height: 16px;
+                            margin: 1px 6px 0 0;
+                            width: 13px;
+                            background: url(https://s2.music.126.net/style/web2/img/frame/playlist.png?2bbeede35191338240441cc762f830e3) -51px 0 no-repeat;
+                            &:hover {
+                                background-position: -51px -20px;
+                            }
                         }
                     }
                 }
@@ -189,6 +208,22 @@
                 height: 260px;
                 background: #000;
                 opacity: .5;
+            }
+
+            .word-wrap {
+                overflow-y: auto;
+                height: 260px;
+                flex: 1;
+
+                .lyric {
+                    white-space: pre-wrap;
+                    font-size: 12px;
+                    line-height: 32px;
+                    word-break: break-all;
+                    color: #e2e2e2;
+                    text-align: center;
+                    padding: 40px 0;
+                }
             }
         }
     }

@@ -1,26 +1,34 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import style from "./index.module.less";
 import { Link } from "react-router-dom";
 import utils from '../../utils';
 import { setCurSongIdAction } from "@/store/actions/curSongId";
+import { deleteOneSongAction, deleteAllSongAction } from '../../store/actions/song';
+import { setVolumnAndTypeAction } from '../../store/actions/volumn';
 import SongList from "./SongList";
 
 const mapStateToProps = (state) => {
 	return {
 		songs: state.songs,
 		curSongId: state.curSongId,
+		volAndType: state.volAndType
 	};
 };
 
 const mapDispatchToProps = (dispatch) => {
 	return {
-		setCurSongId: (...args) => dispatch(setCurSongIdAction(...args))
+		setCurSongId: (...args) => dispatch(setCurSongIdAction(...args)),
+		setVolAndType: (...args) => dispatch(setVolumnAndTypeAction(...args)),
+		delOneSong: (...args) => dispatch(deleteOneSongAction(...args)),
+		delAllSong: (...args) => dispatch(deleteAllSongAction(...args)),
 	};
 };
 
+let flag = 1;
+
 function SongPlay(props) {
-	const { songs, curSongId, setCurSongId } = props;
+	const { songs, curSongId, setCurSongId, volAndType, setVolAndType, delOneSong, delAllSong } = props;
 	const [isPlay, setIsPlay] = useState(false); // 是否正在播放音乐
 	const [showVoiceControl, setShowVoiceControl] = useState(false); // 是否显示控制音量
 	const [curHeight, setCurHeight] = useState(93);
@@ -28,26 +36,55 @@ function SongPlay(props) {
 	const [curWidth, setCurWidth] = useState(0);
 	const [curTime, setCurTime] = useState(0); // 歌曲当前播放的时间
 	const [showList, setShowList] = useState(false);
+	let [playType, setPlayType] = useState(0); // 0:单曲循环；1：随机播放；2：顺序播放
 
 	const playIngSong = songs.find(s => s.id == curSongId) || songs[0];
+	useEffect(() => {
+		if (!songs.length) {
+			return false;
+		}
+		const audio = document.getElementById("my-audio");
+		let rect = document.querySelector('.vbg').getBoundingClientRect();
+		setCurHeight(parseInt(rect.height * volAndType.vol) > 93 ? 93 : parseInt(rect.height * volAndType.vol));
+		setDragTop(93 - parseInt(rect.height * volAndType.vol));
+		audio.volume = volAndType.vol;
+		setPlayType(volAndType.type);
+		return () => {
+		}
+	}, [volAndType, showVoiceControl])
+
+	useEffect(() => {
+		++flag;
+		if (flag === 2) {
+			return;
+		}
+		setIsPlay(true);
+		return () => {
+		}
+	}, [curSongId])
+
+
+
 	// 播放音乐
 	const play = () => {
 		if (!playIngSong) {
 			return;
 		}
+		setIsPlay(!isPlay);
 		const audio = document.getElementById("my-audio");
-		audio.autoplay = false;
+		// audio.autoplay = false;
 		if (isPlay) {
-			setIsPlay(false);
 			audio.pause();
 		} else {
-			setIsPlay(true);
 			audio.play();
 		}
 	}
 
 	// 点击进度条
 	const dragSetCurTime = (width) => {
+		if (!playIngSong) {
+			return false;
+		}
 		const audio = document.getElementById("my-audio");
 		audio.currentTime = width / 100 * audio.duration;
 	}
@@ -55,8 +92,20 @@ function SongPlay(props) {
 	// 调节音量
 	const setVoice = (height) => {
 		let volume = (height / 93) > 1 ? 1 : (height / 93) < 0 ? 0 : (height / 93);
-		const audio = document.getElementById("my-audio");
-		audio.volume = volume;
+		setVolAndType({
+			vol: volume,
+		})
+	}
+
+	// 歌曲播放完
+	const songEnded = () => {
+		if (playType === 0) { // 单曲播放
+		} else if (playType === 1) { // 随机播放
+			let index = utils.getRandomIntNumber(0, songs.length - 1);
+			setCurSongId(songs[index].id);
+		} else { // 顺序播放
+			next();
+		}
 	}
 
 	// 上一首
@@ -114,8 +163,11 @@ function SongPlay(props) {
 								{playIngSong ? <>
 									<Link to={"/find/song?id=" + curSongId} className="song-name">{songs.length && playIngSong.song.name}</Link>
 									{playIngSong.song.mv ? <Link to={"/find/mv?id=" + playIngSong.song.mv} className='icon-mv'></Link> : null}
-									<Link to={"/find/artist?id=" + playIngSong.song.ar[0].id} className="song-artist">{songs.length && playIngSong.song.ar[0].name}</Link>
-
+									<span className="song-artist">
+										{playIngSong && playIngSong.song.ar.map((a, i) => (
+											<Link key={a.id} to={"/find/artist?id=" + a.id}>{i === 0 ? '' : '/'}{a.name}</Link>
+										))}
+									</span>
 								</> :
 									<><Link to="/" className="song-name"></Link>
 										<Link to="/" className="song-artist"></Link></>
@@ -166,24 +218,31 @@ function SongPlay(props) {
 							<i className="icon icon-voice" onClick={() => {
 								setShowVoiceControl(!showVoiceControl)
 							}}></i>
-							<i className="icon icon-one"></i>
+							<i className={playType === 0 ? "icon icon-one" : playType === 1 ? "icon icon-random" : "icon icon-loop"} onClick={() => {
+								setVolAndType({
+									type: ++playType % 3,
+								})
+							}}></i>
 							<i className="icon icon-list" onClick={() => {
 								setShowList(!showList)
 							}}>{songs.length}</i>
 							{showList ? <SongList onClose={() => {
 								setShowList(false);
-							}} songs={songs} curSong={playIngSong} curSongId={curSongId} /> : null}
+							}} songs={songs} curSong={playIngSong} curSongId={curSongId} itemClickPlay={(id) => {
+								setCurSongId(id);
+							}} deleteOneSong={(id) => {
+								delOneSong(id);
+							}} deleteAllSong={() => {
+								delAllSong();
+							}} /> : null}
 						</div>
 					</div>
 				</div>
-				{songs.length ? <audio id="my-audio" src={playIngSong.url} onTimeUpdate={() => {
+				{songs.length ? <audio id="my-audio" src={playIngSong.url} loop={volAndType.type === 0} onTimeUpdate={() => {
 					const audio = document.getElementById('my-audio');
 					setCurTime(audio.currentTime);
 					setCurWidth(audio.currentTime / audio.duration * 100);
-				}} onEnded={() => {
-					console.log(123)
-					setIsPlay(false);
-				}}></audio> : null}
+				}} onEnded={songEnded}></audio> : null}
 
 			</div>
 		</div>

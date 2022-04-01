@@ -6,17 +6,18 @@ const initialState = song;
 // eslint-disable-next-line import/no-anonymous-default-export
 export default (state = initialState, { type, payload }) => {
     switch (type) {
-    case ADDSONG:
-        let songs = utils.unique([...state, ...payload]);
-        localStorage.setItem("songs", JSON.stringify(songs));
-        let audio = document.getElementById('my-audio');
-        audio.autoplay = true;
-        return songs;
-    case DELETEONESONG:
-        return state.filter(song => song.id !== payload.id);
-    case DELETEALLSONG:
-        return [];
-    default:
-        return state
+        case ADDSONG:
+            let songs = utils.unique([...state, ...payload]);
+            localStorage.setItem("songs", JSON.stringify(songs));
+            return songs;
+        case DELETEONESONG:
+            let list = state.filter(song => song.id !== payload)
+            localStorage.setItem("songs", JSON.stringify(list));
+            return list;
+        case DELETEALLSONG:
+            localStorage.setItem("songs", JSON.stringify([]));
+            return [];
+        default:
+            return state
     }
 }
