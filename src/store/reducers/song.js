@@ -1,4 +1,4 @@
-import { ADDSONG, DELETEALLSONG, DELETEONESONG } from "../actions/song";
+import { ADDSONG, DELETEALLSONG, DELETEONESONG, ADDSONGLIST } from "../actions/song";
 import utils from "@/utils";
 const song = JSON.parse(localStorage.getItem("songs")) || [];
 const initialState = song;
@@ -10,6 +10,9 @@ export default (state = initialState, { type, payload }) => {
             let songs = utils.unique([...state, ...payload]);
             localStorage.setItem("songs", JSON.stringify(songs));
             return songs;
+        case ADDSONGLIST:
+            localStorage.setItem("songs", JSON.stringify(payload));
+            return payload;
         case DELETEONESONG:
             let list = state.filter(song => song.id !== payload)
             localStorage.setItem("songs", JSON.stringify(list));

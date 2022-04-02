@@ -194,7 +194,12 @@ function SongPlay(props) {
 						</div>
 					</div>
 					<div className="right">
-						<i className="icon icon-draw" title='画中画歌词'>画中画歌词</i>
+						<i className="icon icon-draw" title='画中画歌词' onClick={() => {
+							const audio = document.getElementById("my-audio");
+							audio.requestPictureInPicture().then(res => {
+								console.log(res)
+							})
+						}}>画中画歌词</i>
 						<i className="icon icon-fold" title="收藏">收藏</i>
 						<i className="icon icon-share" title="分享">分享</i>
 						<div className="bar">
@@ -231,6 +236,11 @@ function SongPlay(props) {
 							}} songs={songs} curSong={playIngSong} curSongId={curSongId} itemClickPlay={(id) => {
 								setCurSongId(id);
 							}} deleteOneSong={(id) => {
+								if (curSongId === id) {
+									let delIndex = songs.findIndex(s => s.id === id);
+									let nenxtId = songs[++delIndex % songs.length].id;
+									setCurSongId(nenxtId);
+								}
 								delOneSong(id);
 							}} deleteAllSong={() => {
 								delAllSong();

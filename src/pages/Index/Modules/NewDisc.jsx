@@ -6,8 +6,27 @@ import LazyLoad from "react-lazyload";
 import { Link } from "react-router-dom";
 import { IconChevronLeft, IconChevronRight } from "@douyinfe/semi-icons";
 import loadingUrl from "@/assets/loading.svg";
+import { getAlbum } from "@/services/apis";
+import { addSongListAction } from "../../../store/actions/song";
+import { setCurSongIdAction } from "../../../store/actions/curSongId";
+import { connect } from "react-redux";
+import { Toast } from "@douyinfe/semi-ui";
 
-export default function NewDisc() {
+const mapStateToProps = (state) => {
+    return {
+        curSongId: state.curSongId,
+    };
+};
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        setCurSongId: (...args) => dispatch(setCurSongIdAction(...args)),
+        addSongs: (...args) => dispatch(addSongListAction(...args))
+    };
+};
+
+function NewDisc(props) {
+    const { setCurSongId, addSongs } = props;
     const [albums, setAlbums] = useState([]);
     const [status, setStatus] = useState("prev");
     useEffect(() => {
@@ -19,6 +38,25 @@ export default function NewDisc() {
         return () => {
         }
     }, [])
+
+    // 添加新碟到播放列表
+    const addSongList = (id) => {
+        getAlbum({ id }).then(res => {
+            if (res.code === 200) {
+                Toast.success({
+                    content: "成功添加新碟到播放列表",
+                    duration: 2,
+                });
+                const list = res.songs.map(s => ({
+                    id: s.id,
+                    url: "https://music.163.com/song/media/outer/url?id=" + s.id,
+                    song: s
+                }));
+                addSongs(list);
+                setCurSongId(list[0].id);
+            }
+        })
+    }
     return (
         <div className={style['new-disc']}>
             <ItemNav navItem={{
@@ -34,8 +72,7 @@ export default function NewDisc() {
                                 </LazyLoad>
                                 <span className="disc-mask"></span>
                             </Link>
-                            <i className="icon-play"></i>
-                            
+                            <i className="icon-play" onClick={addSongList.bind(null, al.id)}></i>
                         </div>
                         <Link to={'/find/album?id=' + al.id} className="album-name">{al.name}</Link>
                         <Link to={'/find/artist?id=' + al.artist.id} className="singer-name">{al.artist.name}</Link>
@@ -52,3 +89,6 @@ export default function NewDisc() {
         </div>
     )
 }
+
+export default connect(mapStateToProps, mapDispatchToProps)(NewDisc);
+

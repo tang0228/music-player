@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from "react";
 import style from "./albums.module.less";
-import { getArtistAlbums } from "../../../services/apis";
-import { Pagination, Empty } from "@douyinfe/semi-ui";
+import { getArtistAlbums, getAlbum } from "../../../services/apis";
+import { Pagination, Empty, Toast } from "@douyinfe/semi-ui";
 import utils from "../../../utils";
 import { IconPlayCircle } from "@douyinfe/semi-icons";
 import LazyLoad from "react-lazyload";
@@ -11,9 +11,25 @@ import {
 	IllustrationConstructionDark,
 } from "@douyinfe/semi-illustrations";
 import loadingUrl from "@/assets/loading.svg";
+import { addSongListAction } from "@/store/actions/song";
+import { setCurSongIdAction } from "@/store/actions/curSongId";
+import { connect } from "react-redux";
 
-export default function Albums(props) {
-	const { total, id } = props;
+const mapStateToProps = (state) => {
+    return {
+        curSongId: state.curSongId,
+    };
+};
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        setCurSongId: (...args) => dispatch(setCurSongIdAction(...args)),
+        addSongs: (...args) => dispatch(addSongListAction(...args))
+    };
+};
+
+function Albums(props) {
+	const { total, id, setCurSongId, addSongs } = props;
 	const [albums, setAlbums] = useState([]); // 专辑
 	const [limit, setLimit] = useState(12); // 页容量
 	const [page, setPage] = useState(1); // 页码
@@ -43,6 +59,25 @@ export default function Albums(props) {
 	const handleLimitChange = useCallback((val) => {
 		setLimit(val);
 	}, []);
+
+    // 添加新碟到播放列表
+    const addSongList = (id) => {
+        getAlbum({ id }).then(res => {
+            if (res.code === 200) {
+                Toast.success({
+                    content: "成功添加新碟到播放列表",
+                    duration: 2,
+                });
+                const list = res.songs.map(s => ({
+                    id: s.id,
+                    url: "https://music.163.com/song/media/outer/url?id=" + s.id,
+                    song: s
+                }));
+                addSongs(list);
+                setCurSongId(list[0].id);
+            }
+        })
+    }
 	return (
 		<>
 			{albums ? (
@@ -56,7 +91,7 @@ export default function Albums(props) {
 										<Link className="mask" to={"/find/album?id=" + m.id}></Link>
 									</LazyLoad>
 									<span className="play">
-										<IconPlayCircle size="extra-large" />
+										<IconPlayCircle size="extra-large" onClick={addSongList.bind(null, m.id)} />
 									</span>
 								</div>
 								<Link to={"/find/album?id=" + m.id} className="name">
@@ -91,3 +126,5 @@ export default function Albums(props) {
 		</>
 	);
 }
+
+export default connect(mapStateToProps, mapDispatchToProps)(Albums);

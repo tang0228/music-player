@@ -1,11 +1,21 @@
 export const ADDSONG = Symbol("add-song");
 export const DELETEALLSONG = Symbol("delete-all-song");
 export const DELETEONESONG = Symbol("delete-one-song");
+export const ADDSONGLIST = Symbol("add-song-list");
+
 // 添加一首歌播放
 export function addSongAction(song) {
     return {
         type: ADDSONG,
         payload: song
+    }
+}
+
+// 添加歌单播放
+export function addSongListAction(songs) {
+    return {
+        type: ADDSONGLIST,
+        payload: songs
     }
 }
 
