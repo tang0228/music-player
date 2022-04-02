@@ -5,6 +5,7 @@ import utils from "../../../../../utils";
 import { IconPlayCircle } from "@douyinfe/semi-icons";
 import LazyLoad from "react-lazyload";
 import { Link } from "react-router-dom";
+import { Toast } from "@douyinfe/semi-ui";
 
 export default function DJRecommend() {
     const [list, setList] = useState([]);
@@ -29,7 +30,11 @@ export default function DJRecommend() {
                         <LazyLoad>
                             <img title="播放" src={d.program.coverUrl} alt="" />
                         </LazyLoad>
-                        <IconPlayCircle />
+                        <IconPlayCircle onClick={() => {
+                            Toast.warning({
+                                content: "暂不支持播放电台",
+                            })
+                        }} />
                     </div>
                     {/* listenerCount  likedCount*/}
                     <Link to={"/find/djradio/program?id=" + d.program.id} className="desc" title={d.program.name} >{d.program.name}</Link>

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { getDjProgramById } from "../../../../../services/dj";
 import style from "./left.module.less";
 import { Link } from "react-router-dom";
-import { Button, Space, Pagination, Spin } from "@douyinfe/semi-ui";
+import { Button, Space, Pagination, Spin, Toast } from "@douyinfe/semi-ui";
 import { IconPlayCircle, IconForward, IconPlus, IconDownload } from "@douyinfe/semi-icons";
 import utils from "../../../../../utils";
 
@@ -73,7 +73,11 @@ export default function DjLeft(props) {
                         list && list.length ? list.map(l => <li className={utils.isEven(l.serialNum) ? 'list-item even' : 'list-item'} key={l.id}>
                             <div className="col-1">
                                 <span className="index">{l.serialNum}</span>
-                                <IconPlayCircle />
+                                <IconPlayCircle onClick={() => {
+                                    Toast.warning({
+                                        content: "暂不支持播放电台",
+                                    })
+                                }} />
                             </div>
                             <div className="col-2">
                                 <Link to={'/find/djradio/program?id=' + l.id} className="name">{l.name}</Link>

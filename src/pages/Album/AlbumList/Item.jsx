@@ -34,7 +34,7 @@ function Item(props) {
                 });
                 const list = res.songs.map(s => ({
                     id: s.id,
-                    url: "https://music.163.com/song/media/outer/url?id=" + s.id,
+                    url: "https://music.163.com/song/media/outer/url?id=" + s.id +'.mp3',
                     song: s
                 }));
                 addSongs(list);

@@ -34,7 +34,7 @@ function ListItem(props) {
                 });
                 const list = res.playlist.tracks.map(t => ({
                     id: t.id,
-                    url: 'https://music.163.com/song/media/outer/url?id=' + t.id,
+                    url: 'https://music.163.com/song/media/outer/url?id=' + t.id + '.mp3',
                     song: t
                 }));
                 addSongs(list);

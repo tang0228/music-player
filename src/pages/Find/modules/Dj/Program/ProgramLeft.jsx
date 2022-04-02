@@ -126,7 +126,11 @@ export default function ProgramLeft(props) {
             </div>
             <div className="operates">
                 <Space>
-                    <Button icon={<IconPlayCircle />}>播放{utils.formatTime(detail.duration)}</Button>
+                    <Button onClick={() => {
+                        Toast.warning({
+                            content: "暂不支持播放电台",
+                        })
+                    }} icon={<IconPlayCircle />}>播放{utils.formatTime(detail.duration)}</Button>
                     <Button type="tertiary" icon={<IconLikeThumb />}>
                         ({detail.likedCount})
                     </Button>

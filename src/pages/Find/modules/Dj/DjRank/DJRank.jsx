@@ -5,7 +5,7 @@ import { Popover } from "@douyinfe/semi-ui";
 import LazyLoad from 'react-lazyload';
 import { Link } from 'react-router-dom';
 import { IconPlayCircle, IconArrowUp, IconArrowDown, IconInfoCircle } from "@douyinfe/semi-icons";
-import { Progress } from "@douyinfe/semi-ui";
+import { Progress, Toast } from "@douyinfe/semi-ui";
 import utils from "../../../../../utils";
 
 export default function DJRank() {
@@ -49,7 +49,11 @@ export default function DJRank() {
                         <LazyLoad>
                             <img title="播放" src={d.program.coverUrl} alt="" />
                         </LazyLoad>
-                        <IconPlayCircle />
+                        <IconPlayCircle onClick={() => {
+                            Toast.warning({
+                                content: "暂不支持播放电台",
+                            })
+                        }} />
                     </div>
                     <Link to={"/find/djradio/program?id=" + d.program.id} className="desc" title={d.program.name} >{d.program.name}</Link>
                     <Link to={"/find/djradio/detail?id=" + d.program.radio.id} className="name" title={d.program.dj.brand}>{d.program.dj.brand}</Link>

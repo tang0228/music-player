@@ -6,18 +6,20 @@ import LazyLoad from "react-lazyload";
 import { Link } from "react-router-dom";
 import utils from "../../../../../utils";
 import loadingUrl from "@/assets/loading.svg";
+import { Toast } from "@douyinfe/semi-ui";
 
-export default function DjRecommend() {
+function DjRecommend() {
     const [djRadios, setDjRadios] = useState([]);
     useEffect(() => {
         getProgramRecommend().then(res => {
-            if(res.code === 200) {
+            if (res.code === 200) {
                 setDjRadios(res.programs);
             }
         })
         return () => {
         }
     }, [])
+
     return (
         <div className={style['dj-recommend']}>
             <Header title="推荐节目" url="/find/djradio/recommend" />
@@ -27,7 +29,11 @@ export default function DjRecommend() {
                         <LazyLoad height={40} debounce={500} placeholder={<img src={loadingUrl} />}>
                             <img title="播放" src={d.coverUrl} alt="" />
                         </LazyLoad>
-                        <i className="icon-dj-play"></i>
+                        <i className="icon-dj-play" onClick={() => {
+                            Toast.warning({
+                                content: "暂不支持播放电台",
+                            })
+                        }}></i>
                     </div>
                     <div className="detail">
                         <Link to={"/find/djradio/program?id=" + d.id} className="desc" title={d.name} >{d.name}</Link>
@@ -39,3 +45,5 @@ export default function DjRecommend() {
         </div>
     )
 }
+
+export default DjRecommend;

@@ -139,14 +139,14 @@ function SongPlay(props) {
 	return (
 		<div className={style["b-bottom"]}>
 			<div className='song-play'>
-				<div className="song-lock">
+				{/* <div className="song-lock">
 					<div className="left">
 						<i className="icon-lock"></i>
 					</div>
 					<div className="right"></div>
-				</div>
+				</div> */}
 				<div className="bg"></div>
-				<div className="hand"></div>
+				{/* <div className="hand"></div> */}
 				<div className="song-content">
 					<div className="left">
 						<i className='icon icon-prev' title='上一首' onClick={prev}>下一首</i>
