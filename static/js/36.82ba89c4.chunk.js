@@ -1,0 +1,2 @@
+(this["webpackJsonpmusic-player"]=this["webpackJsonpmusic-player"]||[]).push([[36],{1375:function(e,t,n){"use strict";n.r(t),n.d(t,"default",(function(){return i}));n(1);var r=n(10);function i(){return Object(r.jsx)("div",{style:{height:"calc(100vh - 145px)",width:980,border:"1px solid #d3d3d3",borderTop:"none",boxSizing:"border-box",borderBottom:"none",margin:"0 auto",display:"flex",alignItems:"center",justifyContent:"center"},children:"MyMusic"})}}}]);
+//# sourceMappingURL=36.82ba89c4.chunk.js.map

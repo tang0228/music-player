@@ -1,0 +1,2 @@
+(this["webpackJsonpmusic-player"]=this["webpackJsonpmusic-player"]||[]).push([[32],{1376:function(t,e,i){"use strict";i.r(e),i.d(e,"default",(function(){return c}));i(1);var s=i(40),n=i(1246),r=i(10);function c(){return Object(r.jsx)("div",{style:{height:600,display:"flex",alignItems:"center",justifyContent:"center"},children:Object(r.jsx)(s.f,{image:Object(r.jsx)(n.IllustrationNotFound,{style:{width:150,height:150}}),darkModeImage:Object(r.jsx)(n.IllustrationNotFoundDark,{style:{width:150,height:150}})})})}}}]);
+//# sourceMappingURL=32.7de87fac.chunk.js.map
