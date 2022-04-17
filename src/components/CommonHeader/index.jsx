@@ -53,7 +53,7 @@ function CommonHeader(props) {
 		history.push(`/search?keywords=${keyword}`);
 	}, [keyword, history]);
 	//   退出登录
-	const handleLogout = useCallback(async () => {
+	const handleLogout = async () => {
 		const res = await logout();
 		if (res.code === 200) {
 			history.push("/find"); // 退出登录回到首页
@@ -69,14 +69,7 @@ function CommonHeader(props) {
 				duration: 2,
 			});
 		}
-	}, []);
-	// 去用户主页
-	const toUserHome = useCallback(
-		() => {
-			history.push(`/user/home?uid=${user.userId}`)
-		},
-		[],
-	)
+	};
 
 	const lis = navList.map((nav) => (
 		<NavLink to={nav.url} key={nav.url} className="nav-link">
@@ -141,13 +134,16 @@ function CommonHeader(props) {
 						</Dropdown>
 					</div>
 				) : (
-					<Button
+					<div style={{
+						marginLeft: 30,
+						cursor: 'pointer'
+					}}
 						onClick={() => {
 							setVisible(true);
 						}}
 					>
 						登录
-					</Button>
+					</div>
 				)}
 			</div>
 			{showSubNav ? <SubNav /> : <div className="sub-nav"></div>}

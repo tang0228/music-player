@@ -75,7 +75,7 @@ export async function getPlayListCat() {
 };
 
 // 获取用户信息,传userId
-export async function getUserDetail({ uid, timestamp }) {
+export async function getUserDetail({ uid, timestamp = Date.now() }) {
     const res = await ins.get('/user/detail', {
         params: {
             uid,

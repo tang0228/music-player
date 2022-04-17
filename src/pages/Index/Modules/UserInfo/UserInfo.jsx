@@ -19,7 +19,6 @@ function UserInfo(props) {
         if(user) {
             const res = await getUserDetail({
                 uid: user.userId,
-                timestamp: Date.now(),
             });
             if(res.code === 200) {
                 setUserInfo(res)
