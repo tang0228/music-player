@@ -136,6 +136,19 @@ function SongPlay(props) {
 			audio.autoplay = true;
 		}
 	}
+	// 播放类型的文本
+	const getPlayTypeText = (val) => {
+		switch (val) {
+			case 0:
+				return "单曲循环"
+			case 1:
+				return "随机"
+			case 2:
+				return "循环"
+			default:
+				break;
+		}
+	}
 	return (
 		<div className={style["b-bottom"]}>
 			<div className='song-play'>
@@ -223,12 +236,12 @@ function SongPlay(props) {
 							<i className="icon icon-voice" onClick={() => {
 								setShowVoiceControl(!showVoiceControl)
 							}}></i>
-							<i className={playType === 0 ? "icon icon-one" : playType === 1 ? "icon icon-random" : "icon icon-loop"} onClick={() => {
+							<i title={getPlayTypeText(playType)} className={playType === 0 ? "icon icon-one" : playType === 1 ? "icon icon-random" : "icon icon-loop"} onClick={() => {
 								setVolAndType({
 									type: ++playType % 3,
 								})
 							}}></i>
-							<i className="icon icon-list" onClick={() => {
+							<i title='播放列表' className="icon icon-list" onClick={() => {
 								setShowList(!showList)
 							}}>{songs.length}</i>
 							{showList ? <SongList onClose={() => {

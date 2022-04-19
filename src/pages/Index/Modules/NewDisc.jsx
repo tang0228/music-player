@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import ItemNav from './ItemNav';
-import { getAlbumNewest } from '../../../services/apis';
+import { getAlbumNewest, getAlbum } from '@/services/apis';
 import style from "./newDisc.module.less";
 import LazyLoad from "react-lazyload";
 import { Link } from "react-router-dom";
 import { IconChevronLeft, IconChevronRight } from "@douyinfe/semi-icons";
 import loadingUrl from "@/assets/loading.svg";
-import { getAlbum } from "@/services/apis";
 import { addSongListAction } from "../../../store/actions/song";
 import { setCurSongIdAction } from "../../../store/actions/curSongId";
 import { connect } from "react-redux";

@@ -1,7 +1,6 @@
 import React from "react";
 import "./videoItem.less";
 import utils from "../../../utils";
-import { IconUserCardVideo } from "@douyinfe/semi-icons";
 import LazyLoad from "react-lazyload";
 import { Link } from "react-router-dom";
 import loadingUrl from "@/assets/loading.svg";
@@ -16,7 +15,8 @@ export default function VideoItem(props) {
 						<img src={v.coverUrl} alt="" />
 					</LazyLoad>
 					<div className="play-nums">
-						<IconUserCardVideo />
+						<i className="icon-video"></i>
+						{/* <IconUserCardVideo /> */}
 						<span className="nums">
 							{Number(v.playTime / 10000).toFixed(1)}万
 						</span>

@@ -9,6 +9,19 @@
         padding: 0 16px;
         box-sizing: border-box;
 
+        .list-play {
+            display: inline-block;
+            margin-right: 4px;
+            cursor: pointer;
+            background: url(https://s2.music.126.net/style/web2/img/table.png?a1241121ee10759715ce6c49551b8b42) 0 -103px no-repeat;
+            width: 17px;
+            height: 17px;
+
+            &:hover {
+                background-position: 0 -128px;
+            }
+        }
+
         &.even {
             background: rgb(247, 247, 247);
         }
@@ -50,6 +63,7 @@
             text-decoration: none;
             color: #333;
             font-size: 12px;
+
             &:hover {
                 text-decoration: underline;
             }

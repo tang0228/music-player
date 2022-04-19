@@ -3,7 +3,7 @@ import style from "./right.module.less";
 import utils from '../../../../utils';
 import { Button, Space, Toast, Pagination, Spin } from "@douyinfe/semi-ui";
 import {
-    //   IconPlayCircle,
+    IconPlayCircle,
     IconPlus,
     IconForward,
     IconDownload,
@@ -15,15 +15,31 @@ import Commit from "../../../../components/Commit";
 import CommitList from "../../../../components/CommitList/CommitList";
 import { comment, likeComment } from "../../../../services/comment";
 import { getPlayListCommit } from "../../../../services/apis";
+import { addSongListAction } from "@/store/actions/song";
+import { setCurSongIdAction } from "@/store/actions/curSongId";
+import { connect } from "react-redux";
 
-export default function RightContent(props) {
+const mapStateToProps = (state) => {
+    return {
+        curSongId: state.curSongId,
+    };
+};
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        setCurSongId: (...args) => dispatch(setCurSongIdAction(...args)),
+        addSongs: (...args) => dispatch(addSongListAction(...args))
+    };
+};
+
+function RightContent(props) {
     const [comments, setComments] = useState([]); // 评论列表
     const [hotComments, setHotComments] = useState([]); // 热门评论列表
     const [page, setPage] = useState(1); // 评论列表
     const [limit, setLimit] = useState(20); // 页容量
     const [total, setTotal] = useState(0); // 总评论数
     const [loading, setLoading] = useState(false); // loading
-    const {detail, id, text} = props;
+    const { detail, id, text, setCurSongId, addSongs } = props;
 
     // 提交评论
     const playListCommit = useCallback(async (val) => {
@@ -120,6 +136,22 @@ export default function RightContent(props) {
             getComments();
         }
     }
+
+    // 添加歌单到播放列表
+    const addSongList = id => {
+        Toast.success({
+            content: "成功添加歌单到播放列表",
+            duration: 2
+        });
+        const list = detail.tracks.map(t => ({
+            id: t.id,
+            url: 'https://music.163.com/song/media/outer/url?id=' + t.id + '.mp3',
+            song: t
+        }));
+        addSongs(list);
+        setCurSongId(list[0].id);
+    }
+
     return (
         <div className={style['right-content']}>
             <div className="top-content">
@@ -136,7 +168,9 @@ export default function RightContent(props) {
                     </div>
                     <div className="operates">
                         <Space>
-                            {/* <Button icon={<IconPlayCircle />}>播放</Button> */}
+                            <Button onClick={() => {
+                                addSongList();
+                            }} icon={<IconPlayCircle />}>播放</Button>
                             <Button type="tertiary" icon={<IconPlus />}>
                                 ({detail.subscribedCount})
                             </Button>
@@ -209,3 +243,5 @@ export default function RightContent(props) {
         </div>
     )
 }
+
+export default connect(mapStateToProps, mapDispatchToProps)(RightContent);

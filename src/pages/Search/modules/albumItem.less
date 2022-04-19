@@ -6,6 +6,7 @@
 
     .album-item {
         width: 130px;
+        height: 178px;
         padding: 0 0 30px 50px;
         padding-left: 56px;
         display: flex;
@@ -13,10 +14,27 @@
 
         .album-img {
             position: relative;
+            width: 130px;
+            height: 130px;
             &:hover {
-                .semi-icon-play_circle {
+                .album-play {
                     display: block;
                 }
+            }
+            
+            .album-play {
+                cursor: pointer;
+                position: absolute;
+                left: 94px;
+                bottom: 8px;
+                width: 28px;
+                height: 28px;
+                background: url(https://s2.music.126.net/style/web2/img/iconall.png?ef315ba593b94fd5ea495fc5d393d962) 0 -140px no-repeat;
+            
+                &:hover {
+                    background-position: 0 -170px;
+                }
+            
             }
         }
 

@@ -1,5 +1,6 @@
 .words-container {
     font-size: 12px;
+
     .words-item {
 
         .words-header {
@@ -15,6 +16,19 @@
                 flex: 1;
                 align-items: center;
 
+                .word-play {
+                    display: inline-block;
+                    margin-right: 4px;
+                    cursor: pointer;
+                    background: url(https://s2.music.126.net/style/web2/img/table.png?a1241121ee10759715ce6c49551b8b42) 0 -103px no-repeat;
+                    width: 17px;
+                    height: 17px;
+
+                    &:hover {
+                        background-position: 0 -128px;
+                      }
+                }
+
                 .ml8 {
                     margin-left: 8px;
                 }
@@ -26,6 +40,7 @@
 
             .operates {
                 display: none;
+
                 .semi-icon {
                     display: inline-block;
                     margin-right: 4px;
@@ -51,7 +66,7 @@
                 span {
                     cursor: pointer;
                 }
-                
+
             }
 
             .alnum {
@@ -79,5 +94,5 @@
         }
     }
 
-    
+
 }

@@ -1,7 +1,6 @@
 import React from "react";
 import utils from "../../../utils";
 import {
-	IconPlayCircle,
 	IconPlus,
 	IconFolder,
 	IconForward,
@@ -10,15 +9,53 @@ import "./playList.less";
 import LazyLoad from "react-lazyload";
 import { Link } from "react-router-dom";
 import loadingUrl from "@/assets/loading.svg";
+import { getPlayListDetail } from "@/services/apis";
+import { Toast } from "@douyinfe/semi-ui";
+import { addSongListAction } from "@/store/actions/song";
+import { setCurSongIdAction } from "@/store/actions/curSongId";
+import { connect } from "react-redux";
 
-export default function PlayList(props) {
-	const playlist = props.playlist;
+const mapStateToProps = (state) => {
+    return {
+        curSongId: state.curSongId,
+    };
+};
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        setCurSongId: (...args) => dispatch(setCurSongIdAction(...args)),
+        addSongs: (...args) => dispatch(addSongListAction(...args))
+    };
+};
+
+function PlayList(props) {
+	const {playlist, addSongs, setCurSongId} = props;
+
+	// 添加歌单到播放列表
+	const addSongList = id => {
+		getPlayListDetail({ id }).then(res => {
+			if (res.code === 200) {
+				Toast.success({
+					content: "成功添加歌单到播放列表",
+					duration: 2
+				});
+				const list = res.playlist.tracks.map(t => ({
+					id: t.id,
+					url: 'https://music.163.com/song/media/outer/url?id=' + t.id + '.mp3',
+					song: t
+				}));
+				addSongs(list);
+				setCurSongId(list[0].id);
+			}
+		})
+	}
+
 	const items = playlist.map((p, i) => (
 		<li
 			className={utils.isEven(i + 1) ? "play-item" : "play-item even"}
 			key={p.id}
 		>
-			<IconPlayCircle />
+			<i className="list-play" onClick={addSongList.bind(null, p.id)}></i>
 			<Link to={"/find/playlist/detail?id=" + p.id} >
 				<div className="img-wrap">
 					<LazyLoad height={50} debounce={500} placeholder={<img width="50px" height="50px" src={loadingUrl} />}>
@@ -26,7 +63,6 @@ export default function PlayList(props) {
 						<span className="mask"></span>
 					</LazyLoad>
 				</div>
-
 			</Link>
 			<Link to={"/find/playlist/detail?id=" + p.id} className="name">
 				{p.name}
@@ -44,3 +80,5 @@ export default function PlayList(props) {
 	));
 	return <ul className="playlist-wrap">{items}</ul>;
 }
+
+export default connect(mapStateToProps, mapDispatchToProps)(PlayList);

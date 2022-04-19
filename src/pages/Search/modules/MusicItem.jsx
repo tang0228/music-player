@@ -1,5 +1,5 @@
 import React from 'react';
-import { IconPlayCircle, IconDownload, IconFolder, IconPlus, IconForward } from "@douyinfe/semi-icons"
+import { IconDownload, IconFolder, IconPlus, IconForward } from "@douyinfe/semi-icons"
 import { Toast } from '@douyinfe/semi-ui';
 import "./musicItem.less";
 import utils from '../../../utils';
@@ -40,10 +40,13 @@ function MusicItem(props) {
     const songs = props.songs;
     const items = songs.map((song, index) => (
         <li key={song.id} className={`${utils.isEven(index + 1) ? 'search-item' : 'search-item even'}`}>
-            <IconPlayCircle onClick={() => {
-                playMusic(song.id);
-            }} />
-            <Link to={'/find/song?id=' + song.id} className="name">{song.name}</Link>
+            <i className="music-play" onClick={() => {
+                playMusic(song.id)
+            }}></i>
+            <div className='song-wrap' style={{flex: '1'}}>
+                <Link to={'/find/song?id=' + song.id} className="name">{song.name}</Link>
+                {song.mvid ? <Link to={`/find/mv?id=` + song.mvid} className="music-mv"></Link> : null}
+            </div>
             <div className="operates">
                 <IconPlus />
                 <IconFolder />

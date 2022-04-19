@@ -8,6 +8,33 @@
   font-size: 12px;
   color: #333;
 
+  .music-play {
+    display: inline-block;
+    margin-right: 4px;
+    cursor: pointer;
+    background: url(https://s2.music.126.net/style/web2/img/table.png?a1241121ee10759715ce6c49551b8b42) 0 -103px no-repeat;
+    width: 17px;
+    height: 17px;
+    &:hover {
+      background-position: 0 -128px;
+    }
+  }
+
+  .song-wrap {
+    display: flex;
+    align-items: center;
+  }
+
+  .music-mv {
+    width: 23px;
+    height: 17px;
+    display: inline-block;
+    background: url(https://s2.music.126.net/style/web2/img/table.png?a1241121ee10759715ce6c49551b8b42) 0 -151px no-repeat;
+
+    &:hover {
+      background-position: -30px -151px;
+    }
+  }
   .semi-icon {
     display: inline-block;
     margin-right: 4px;
@@ -20,8 +47,7 @@
   }
 
   .name {
-    margin-left: 8px;
-    flex: 1;
+    margin: 0 8px;
     color: #333;
     text-decoration: none;
     &:hover {

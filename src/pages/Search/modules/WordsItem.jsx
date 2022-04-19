@@ -1,7 +1,7 @@
 import React, { useState, useCallback } from 'react';
 import "./wordsItem.less";
 import { Toast } from '@douyinfe/semi-ui';
-import { IconPlayCircle, IconPlus, IconFolder, IconForward, IconDownload, IconChevronUp, IconChevronDown } from "@douyinfe/semi-icons"
+import { IconPlus, IconFolder, IconForward, IconDownload, IconChevronUp, IconChevronDown } from "@douyinfe/semi-icons"
 import utils from '../../../utils';
 import { Link} from "react-router-dom";
 import { getMusicPlayUrl } from '../../../services/apis';
@@ -47,9 +47,9 @@ function WordsItem(props) {
         <div className="words-item" key={props.id}>
             <div className={`${utils.isEven(props.index + 1) ? 'words-header' : 'words-header even'}`}>
                 <div className="name">
-                    <IconPlayCircle onClick={() => {
+                    <i className="word-play" onClick={() => {
                         play(props.id)
-                    }} />
+                    }}></i>
                     <Link to={'/find/song?id=' + props.id} className="ml8">{props.name}</Link>
                 </div>
                 <div className="operates">
