@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import qs from "query-string";
 import { useLocation, useHistory } from "react-router-dom";
 import MusicItem from "./modules/MusicItem";
@@ -49,17 +49,17 @@ export default function Search() {
 
   const [total, setTotal] = useState(0); // 歌曲总数
   // 页码变化
-  const handlePageChange = useCallback((val) => {
+  const handlePageChange = (val) => {
     setPage(val);
-  }, []);
+  };
   // 页容量变化
-  const handleLimitChange = useCallback((val) => {
+  const handleLimitChange = (val) => {
     setLimit(val);
-  }, []);
+  };
   // tab切换
-  const tabChange = useCallback((key) => {
+  const tabChange = (key) => {
     setType(key);
-  }, []);
+  };
 
   const inpSearch = async () => {
     setLoading(true);

@@ -32,7 +32,7 @@ export default function Desc(props) {
           darkModeImage={
             <IllustrationConstructionDark style={{ width: 150, height: 150 }} />
           }
-          description={"信息丢失"}
+          description={"暂时没有哦"}
           style={{ padding: 30 }}
         />
       )}

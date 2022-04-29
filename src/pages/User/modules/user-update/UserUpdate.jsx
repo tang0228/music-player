@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { useState } from "react";
 import "./userUpdate.less";
 import { connect } from "react-redux";
 import {
@@ -51,12 +51,12 @@ function UserUpdate(props) {
 		setSex(e.target.value);
 	};
 	// 日期改变
-	const dateChange = useCallback((date, dateStr) => {
+	const dateChange = (date, dateStr) => {
 		const time = new Date(dateStr).getTime();
 		setBirth(time);
-	}, []);
+	};
 	// 保存
-	const save = useCallback(async () => {
+	const save = async () => {
 		const res = await updateUserInfo({
 			gender: sex,
 			nickname: name,
@@ -79,7 +79,7 @@ function UserUpdate(props) {
 				localStorage.setItem("user", JSON.stringify(r.profile));
 			}
 		}
-	}, [sex, name, birth, intro, uid]);
+	};
 	const tabpanes = tabs.map((tab) => (
 		<TabPane key={tab.key} tab={tab.text} itemKey={tab.key}></TabPane>
 	));

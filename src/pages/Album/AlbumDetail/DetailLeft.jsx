@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback } from "react";
+import React, { useEffect, useState } from "react";
 import style from "./detailLeft.module.less";
 import { getAlbumCommit } from "../../../services/apis";
 import { comment } from "../../../services/comment";
@@ -39,7 +39,7 @@ function DetailLeft(props) {
 	const [hotComments, setHotComments] = useState([]); // 热门评论列表
 	const [loading, setLoading] = useState(false); // loading
 	//评论专辑
-	const albumCommit = useCallback(async (val) => {
+	const albumCommit = async (val) => {
 		const res = await comment({
 			t: 1,
 			type: 3,
@@ -53,15 +53,15 @@ function DetailLeft(props) {
 			});
 			getCommits();
 		}
-	}, []);
+	};
 	// 页码变化
-	const handlePageChange = useCallback((page) => {
+	const handlePageChange = (page) => {
 		setPage(page);
-	}, []);
+	};
 	// 页容量变化
-	const handleLimitChange = useCallback((limit) => {
+	const handleLimitChange = (limit) => {
 		setLimit(limit);
-	}, []);
+	};
 	// 获取评论
 	const getCommits = async () => {
 		setLoading(true);

@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback} from 'react';
+import React, { useEffect, useState } from 'react';
 import "./category.less";
 import { getPlayListCat } from "../../../services/apis";
 import CatSelect from './CatSelect';
@@ -34,12 +34,9 @@ export default function Category() {
         }
     }, []);
 
-    const catChange = useCallback(
-        (name) => {
-            setCat(name);
-        },
-        [],
-    )
+    const catChange = (name) => {
+        setCat(name);
+    };
     return (
         <div className="cat-container">
             <div className="cat-select">

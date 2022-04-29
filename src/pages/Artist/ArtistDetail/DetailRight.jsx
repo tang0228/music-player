@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import style from "./detailRight.module.less";
 import { getSimiArtist } from "../../../services/apis";
 import { Link } from "react-router-dom";
-import { artistTabs } from '../../../common/tabs';
 
 export default function DetailRight(props) {
     const {id} = props;

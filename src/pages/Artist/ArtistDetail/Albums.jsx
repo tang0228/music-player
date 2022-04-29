@@ -1,15 +1,10 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect } from "react";
 import style from "./albums.module.less";
 import { getArtistAlbums, getAlbum } from "../../../services/apis";
-import { Pagination, Empty, Toast } from "@douyinfe/semi-ui";
+import { Pagination, Toast } from "@douyinfe/semi-ui";
 import utils from "../../../utils";
-import { IconPlayCircle } from "@douyinfe/semi-icons";
 import LazyLoad from "react-lazyload";
 import { Link } from "react-router-dom";
-import {
-	IllustrationConstruction,
-	IllustrationConstructionDark,
-} from "@douyinfe/semi-illustrations";
 import loadingUrl from "@/assets/loading.svg";
 import { addSongListAction } from "@/store/actions/song";
 import { setCurSongIdAction } from "@/store/actions/curSongId";
@@ -52,13 +47,13 @@ function Albums(props) {
 	}, [id, limit, page]);
 
 	// 页码变化
-	const handlePageChange = useCallback((val) => {
+	const handlePageChange = (val) => {
 		setPage(val);
-	}, []);
+	};
 	// 页容量变化
-	const handleLimitChange = useCallback((val) => {
+	const handleLimitChange = (val) => {
 		setLimit(val);
-	}, []);
+	};
 
     // 添加新碟到播放列表
     const addSongList = (id) => {
@@ -90,9 +85,7 @@ function Albums(props) {
 										<img src={m.picUrl} alt="" />
 										<Link className="mask" to={"/find/album?id=" + m.id}></Link>
 									</LazyLoad>
-									<span className="play">
-										<IconPlayCircle size="extra-large" onClick={addSongList.bind(null, m.id)} />
-									</span>
+									<i className="icon-play" onClick={addSongList.bind(null, m.id)}></i>
 								</div>
 								<Link to={"/find/album?id=" + m.id} className="name">
 									{m.name}
@@ -111,18 +104,7 @@ function Albums(props) {
 						></Pagination>
 					</div>
 				</div>
-			) : (
-				<Empty
-					image={
-						<IllustrationConstruction style={{ width: 150, height: 150 }} />
-					}
-					darkModeImage={
-						<IllustrationConstructionDark style={{ width: 150, height: 150 }} />
-					}
-					description={"信息丢失"}
-					style={{ padding: 30 }}
-				/>
-			)}
+			) : '空'}
 		</>
 	);
 }

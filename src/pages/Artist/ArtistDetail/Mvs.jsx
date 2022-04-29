@@ -1,14 +1,9 @@
-import React, { useState, useCallback, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import style from "./mvs.module.less";
-import { Pagination, Empty } from "@douyinfe/semi-ui";
+import { Pagination } from "@douyinfe/semi-ui";
 import { getArtistMv } from "../../../services/apis";
 import LazyLoad from "react-lazyload";
 import { Link } from "react-router-dom";
-import { IconPlayCircle } from "@douyinfe/semi-icons";
-import {
-	IllustrationConstruction,
-	IllustrationConstructionDark,
-} from "@douyinfe/semi-illustrations";
 import loadingUrl from "@/assets/loading.svg";
 
 export default function Mvs(props) {
@@ -36,13 +31,13 @@ export default function Mvs(props) {
 	}, [id, limit, page]);
 
 	// 页码变化
-	const handlePageChange = useCallback((val) => {
+	const handlePageChange = (val) => {
 		setPage(val);
-	}, []);
+	};
 	// 页容量变化
-	const handleLimitChange = useCallback((val) => {
+	const handleLimitChange = (val) => {
 		setLimit(val);
-	}, []);
+	};
 	return (
 		<>
 			{mvs ? (
@@ -55,9 +50,7 @@ export default function Mvs(props) {
 										<img src={m.imgurl} alt="" />
 									</LazyLoad>
 									<Link className="mask" to={"/find/mv?id=" + m.id}></Link>
-									<Link className="play" to={"/find/mv?id=" + m.id}>
-										<IconPlayCircle size="extra-large" />
-									</Link>
+									<Link className="icon-play" to={"/find/mv?id=" + m.id}></Link>
 								</div>
 								<Link to={"/find/mv?id=" + m.id} className="name">
 									{m.name}
@@ -75,18 +68,7 @@ export default function Mvs(props) {
 						></Pagination>
 					</div>
 				</div>
-			) : (
-				<Empty
-					image={
-						<IllustrationConstruction style={{ width: 150, height: 150 }} />
-					}
-					darkModeImage={
-						<IllustrationConstructionDark style={{ width: 150, height: 150 }} />
-					}
-					description={"信息丢失"}
-					style={{ padding: 30 }}
-				/>
-			)}
+			) : null}
 		</>
 	);
 }

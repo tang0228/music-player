@@ -14,8 +14,8 @@
                     height: 120px;
                     position: relative;
                     img {
-                        width: 100%;
-                        height: 100%;
+                        width: 120px;
+                        height: 120px;
                     }
                     .mask {
                         position: absolute;
@@ -25,18 +25,25 @@
                         height: 120px;
                         background: url(https://s2.music.126.net/style/web2/img/coverall.png?765fc596386c9395f2d0d66c79dbe24b) -170px -850px no-repeat;
                     }
-                    .play {
-                        position: absolute;
-                        right: 12px;
-                        bottom: 12px;
-                        color: #ddd;
-                        z-index: 10;
+                    .icon-play {
                         display: none;
+                        width: 28px;
+                        height: 28px;
+                        position: absolute;
+                        right: 10px;
+                        bottom: 5px;
                         cursor: pointer;
+                        background: url(https://s2.music.126.net/style/web2/img/iconall.png?72093b92e7f20c6c504d8d7fdb2ac29d) 0 -140px no-repeat;
+                    
+                        &:hover {
+                            background-position: 0 -170px;
+                        }
+                    
                     }
                     &:hover {
-                        .play {
+                        .icon-play {
                             display: block;
+                            
                         }
                     }
                 }

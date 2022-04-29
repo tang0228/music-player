@@ -1,9 +1,9 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState } from 'react';
 import "./wordsItem.less";
 import { Toast } from '@douyinfe/semi-ui';
 import { IconPlus, IconFolder, IconForward, IconDownload, IconChevronUp, IconChevronDown } from "@douyinfe/semi-icons"
 import utils from '../../../utils';
-import { Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import { getMusicPlayUrl } from '../../../services/apis';
 import { connect } from 'react-redux';
 import { addSongAction } from '../../../store/actions/song';
@@ -22,17 +22,14 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 function WordsItem(props) {
-    const { addSong, setCurSongId} = props;
+    const { addSong, setCurSongId } = props;
     const [open, setOpen] = useState(false); // 是否展开
-    const handleClick = useCallback(
-        () => {
-            setOpen(!open)
-        },
-        [open],
-    );
+    const handleClick = () => {
+        setOpen(!open)
+    };
 
     const play = async (id) => {
-        const res = await getMusicPlayUrl({id});
+        const res = await getMusicPlayUrl({ id });
         setCurSongId(id);
         if (res.code === 200 && res.data[0].url) {
             addSong(res.data);

@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import style from "./detailLeft.module.less";
 import { Tabs, TabPane, Empty } from "@douyinfe/semi-ui";
 import { artistTabs } from "../../../common/tabs";
@@ -50,9 +50,9 @@ export default function DetailLeft(props) {
     return () => {};
   }, [tab, id]);
   // 切花tab
-  const tabChange = useCallback((val) => {
+  const tabChange = (val) => {
     setTab(val);
-  }, []);
+  };
   const tabpanes = artistTabs.map((tab) => (
     <TabPane key={tab.key} tab={tab.text} itemKey={tab.key}></TabPane>
   ));

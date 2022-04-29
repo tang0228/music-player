@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from "react-router-dom";
 import style from "./left.module.less";
 import { Button, Space, Spin, Pagination, Toast } from '@douyinfe/semi-ui';
@@ -54,36 +54,33 @@ export default function ProgramLeft(props) {
         setPage(page)
     };
     // 点赞评论
-    const like = useCallback(
-        async (cid, liked) => {
-            const res = await likeComment({
-                id,
-                cid,
-                t: liked ? 0 : 1,
-                type: 2,
-                timestamp: Date.now(),
-            });
-            if (res.code === 200) {
-                if (liked) {
-                    Toast.success({
-                        content: "取消赞成功",
-                        duration: 2,
-                    })
-                } else {
-                    Toast.success({
-                        content: "赞成功",
-                        duration: 2,
-                    })
-                }
-                getComments();
+    const like = async (cid, liked) => {
+        const res = await likeComment({
+            id,
+            cid,
+            t: liked ? 0 : 1,
+            type: 2,
+            timestamp: Date.now(),
+        });
+        if (res.code === 200) {
+            if (liked) {
+                Toast.success({
+                    content: "取消赞成功",
+                    duration: 2,
+                })
             } else {
-                Toast.error({
-                    content: "操作失败"
+                Toast.success({
+                    content: "赞成功",
+                    duration: 2,
                 })
             }
-        },
-        [],
-    );
+            getComments();
+        } else {
+            Toast.error({
+                content: "操作失败"
+            })
+        }
+    };
 
     // 删除评论
     const del = async (cid) => {

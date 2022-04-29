@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback } from "react";
+import React, { useEffect, useState } from "react";
 import { getPlaylist } from "../../../services/apis";
 import { useLocation } from "react-router-dom";
 import Item from "./Item";
@@ -36,13 +36,13 @@ export default function PlayList() {
 		return () => { };
 	}, [page, limit, cat]);
 	// 页码变化
-	const handlePageChange = useCallback((val) => {
+	const handlePageChange = (val) => {
 		setPage(val);
-	}, []);
+	};
 	// 页容量变化
-	const handleLimitChange = useCallback((val) => {
+	const handleLimitChange = (val) => {
 		setLimit(val);
-	}, []);
+	};
 	// 每一个歌单元素
 	const lis = list.map((l) => <Item key={l.id} {...l}></Item>);
 	return (

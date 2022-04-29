@@ -54,7 +54,7 @@ function Songs(props) {
                     </Space>
                 </div>
                 <div className="select">
-                    <Select placeholder='请选择' style={{ width: 102, fontSize: '12px' }} optionList={list}>
+                    <Select placeholder='请选择' defaultValue={"1"} style={{ width: 102, fontSize: '12px' }} optionList={list}>
                     </Select>
                 </div>
             </div>

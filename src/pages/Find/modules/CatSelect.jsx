@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { useState } from "react";
 import { useHistory, useLocation } from "react-router-dom";
 import qs from "query-string";
 import {
@@ -26,23 +26,20 @@ export default function CatSelect(props) {
   const location = useLocation();
   const cat = qs.parse(location.search).cat;
   const [showSelect, setShowSelect] = useState(false); // 是否打开下拉框
-  const openSelect = useCallback(() => {
+  const openSelect = () => {
     setShowSelect(!showSelect);
-  }, [showSelect]);
+  };
 
-  const handleCatClick = useCallback(
-      (e) => {
-          let name = e.target.outerText;
-          if(name === "全部风格") {
-            props.catChange && props.catChange("");
-            history.push(`/find/playlist`)
-          } else {
-            props.catChange && props.catChange(name);
-            history.push(`/find/playlist?cat=${window.encodeURIComponent(name)}`)
-          }
-      },
-      [],
-  )
+  const handleCatClick = (e) => {
+    let name = e.target.outerText;
+    if (name === "全部风格") {
+      props.catChange && props.catChange("");
+      history.push(`/find/playlist`)
+    } else {
+      props.catChange && props.catChange(name);
+      history.push(`/find/playlist?cat=${window.encodeURIComponent(name)}`)
+    }
+  };
 
   const items =
     Array.isArray(categories) &&

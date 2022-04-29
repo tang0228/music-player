@@ -40,7 +40,7 @@ export default function SearchSuggest(props) {
                         <em>歌单</em>
                     </h3>
                     <ul className='cb bg'>
-                        {data.playlists.map(p => <li key={p.id}><Link to={"/find/playlist?id=" + p.id}>{p.name}</Link></li>)}
+                        {data.playlists.map(p => <li key={p.id}><Link to={"/find/playlist/detail?id=" + p.id}>{p.name}</Link></li>)}
                     </ul>
                 </div> : null}
 

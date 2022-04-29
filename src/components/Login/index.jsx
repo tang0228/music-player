@@ -1,4 +1,4 @@
-import React, {useState, useCallback} from 'react';
+import React, { useState } from 'react';
 import { Modal, Button, Form, Row, Toast } from '@douyinfe/semi-ui';
 import { phoneLogin } from "../../services/apis"
 import { connect } from "react-redux";
@@ -17,51 +17,45 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 function Login(props) {
-    const {addUser} = props;
+    const { addUser } = props;
     const [phone, setPhone] = useState("");
     const [password, setPassword] = useState("");
-    const closeModal = useCallback(
-        () => {
-            props.closeModal && props.closeModal(false);
-        },
-        [props],
-    );
+    const closeModal = () => {
+        props.closeModal && props.closeModal(false);
+    };
 
-    const handleOk = useCallback(
-        async () => {
-            if(!phone || !password) {
-                return false;
-            }
-            const res = await phoneLogin({
-                phone,
-                password
+    const handleOk = async () => {
+        if (!phone || !password) {
+            return false;
+        }
+        const res = await phoneLogin({
+            phone,
+            password
+        });
+        console.log(res);
+        if (res.code === 200) {
+            Toast.success({
+                content: `欢迎${res.profile.nickname}回家`,
+                duration: 2,
+            })
+            closeModal();
+            addUser(res.profile);
+            localStorage.setItem('user', JSON.stringify(res.profile));
+            utils.setCookie('token', JSON.stringify(res.token));
+        } else {
+            Toast.error({
+                content: res.msg,
+                duration: 2
             });
-            console.log(res);
-            if(res.code === 200) {
-                Toast.success({
-                    content: `欢迎${res.profile.nickname}回家`,
-                    duration: 2,
-                })
-                closeModal();
-                addUser(res.profile);
-                localStorage.setItem('user', JSON.stringify(res.profile));
-                utils.setCookie('token', JSON.stringify(res.token));
-            } else {
-                Toast.error({
-                    content: res.msg,
-                    duration: 2
-                });
-            }
-        },
-        [password, phone],
-    );
+        }
+    };
 
     const handlePassChange = (val) => {
-            setPassword(val)
+        setPassword(val)
     };
 
     const handlePhoneChange = (val) => {
-            setPhone(val)
+        setPhone(val)
     };
 
     return (
@@ -72,7 +66,7 @@ function Login(props) {
                 onOk={handleOk}
                 onCancel={closeModal}
                 centered
-                bodyStyle={{height: 200}}
+                bodyStyle={{ height: 200 }}
                 footer={
                     <>
                         <Button type="tertiary" onClick={closeModal}>取消</Button>

@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import style from "./detailLeft.module.less";
 import { Link } from "react-router-dom";
 import { Tag, Button, Space, Toast, Pagination, Spin } from "@douyinfe/semi-ui";
@@ -29,7 +29,7 @@ function DetailLeft(props) {
 	const [open, setOpen] = useState(false);// 是否展开
 	const { detail, id } = props;
 	// 提交评论
-	const playListCommit = useCallback(async (val) => {
+	const playListCommit = async (val) => {
 		const res = await comment({
 			t: 1,
 			type: 2,
@@ -44,15 +44,15 @@ function DetailLeft(props) {
 			});
 			getComments();
 		}
-	}, []);
+	};
 	// 页码变化
-	const handlePageChange = useCallback((page) => {
+	const handlePageChange = (page) => {
 		setPage(page);
-	}, []);
+	};
 	// 页容量变化
-	const handleLimitChange = useCallback((limit) => {
+	const handleLimitChange = (limit) => {
 		setLimit(limit);
-	}, []);
+	};
 	const getComments = async () => {
 		setLoading(true);
 		const res = await getPlayListCommit({
@@ -75,36 +75,33 @@ function DetailLeft(props) {
 	}, [id, limit, page]);
 
 	// 点赞评论
-	const like = useCallback(
-		async (cid, liked) => {
-			const res = await likeComment({
-				id,
-				cid,
-				t: liked ? 0 : 1,
-				type: 2,
-				timestamp: Date.now(),
-			});
-			if (res.code === 200) {
-				if (liked) {
-					Toast.success({
-						content: "取消赞成功",
-						duration: 2,
-					})
-				} else {
-					Toast.success({
-						content: "赞成功",
-						duration: 2,
-					})
-				}
-				getComments();
+	const like = async (cid, liked) => {
+		const res = await likeComment({
+			id,
+			cid,
+			t: liked ? 0 : 1,
+			type: 2,
+			timestamp: Date.now(),
+		});
+		if (res.code === 200) {
+			if (liked) {
+				Toast.success({
+					content: "取消赞成功",
+					duration: 2,
+				})
 			} else {
-				Toast.error({
-					content: "操作失败"
+				Toast.success({
+					content: "赞成功",
+					duration: 2,
 				})
 			}
-		},
-		[],
-	);
+			getComments();
+		} else {
+			Toast.error({
+				content: "操作失败"
+			})
+		}
+	};
 
 	// 删除评论
 	const del = async (cid) => {

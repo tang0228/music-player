@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import style from "./right.module.less";
 import utils from '../../../../utils';
 import { Button, Space, Toast, Pagination, Spin } from "@douyinfe/semi-ui";
@@ -42,7 +42,7 @@ function RightContent(props) {
     const { detail, id, text, setCurSongId, addSongs } = props;
 
     // 提交评论
-    const playListCommit = useCallback(async (val) => {
+    const playListCommit = async (val) => {
         const res = await comment({
             t: 1,
             type: 2,
@@ -57,15 +57,15 @@ function RightContent(props) {
             });
             getComments();
         }
-    }, []);
+    };
     // 页码变化
-    const handlePageChange = useCallback((page) => {
+    const handlePageChange = (page) => {
         setPage(page);
-    }, []);
+    };
     // 页容量变化
-    const handleLimitChange = useCallback((limit) => {
+    const handleLimitChange = (limit) => {
         setLimit(limit);
-    }, []);
+    };
     const getComments = async () => {
         setLoading(true);
         const res = await getPlayListCommit({
@@ -88,36 +88,33 @@ function RightContent(props) {
     }, [id, limit, page]);
 
     // 点赞评论
-    const like = useCallback(
-        async (cid, liked) => {
-            const res = await likeComment({
-                id,
-                cid,
-                t: liked ? 0 : 1,
-                type: 2,
-                timestamp: Date.now(),
-            });
-            if (res.code === 200) {
-                if (liked) {
-                    Toast.success({
-                        content: "取消赞成功",
-                        duration: 2,
-                    })
-                } else {
-                    Toast.success({
-                        content: "赞成功",
-                        duration: 2,
-                    })
-                }
-                getComments();
+    const like = async (cid, liked) => {
+        const res = await likeComment({
+            id,
+            cid,
+            t: liked ? 0 : 1,
+            type: 2,
+            timestamp: Date.now(),
+        });
+        if (res.code === 200) {
+            if (liked) {
+                Toast.success({
+                    content: "取消赞成功",
+                    duration: 2,
+                })
             } else {
-                Toast.error({
-                    content: "操作失败"
+                Toast.success({
+                    content: "赞成功",
+                    duration: 2,
                 })
             }
-        },
-        [],
-    );
+            getComments();
+        } else {
+            Toast.error({
+                content: "操作失败"
+            })
+        }
+    };
 
     // 删除评论
     const del = async (cid) => {

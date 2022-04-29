@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import style from "./detailLeft.module.less";
 import { Link } from "react-router-dom";
 import { getLyric } from "../../../services/apis";
@@ -59,7 +59,7 @@ function DetailLeft(props) {
 		}
 	}, [id])
 	// 提交评论
-	const songCommit = useCallback(async (val) => {
+	const songCommit = async (val) => {
 		const res = await comment({
 			t: 1,
 			type: 0,
@@ -74,15 +74,15 @@ function DetailLeft(props) {
 			});
 			getComments();
 		}
-	}, []);
+	};
 	// 页码变化
-	const handlePageChange = useCallback((page) => {
+	const handlePageChange = (page) => {
 		setPage(page);
-	}, []);
+	};
 	// 页容量变化
-	const handleLimitChange = useCallback((limit) => {
+	const handleLimitChange = (limit) => {
 		setLimit(limit);
-	}, []);
+	};
 	// 获取评论
 	const getComments = async () => {
 		setLoading(true)
