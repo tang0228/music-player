@@ -1,9 +1,9 @@
-import React, { useState, useCallback } from "react";
+import React, { useEffect, useState } from "react";
 import { withRouter, useHistory, useLocation } from "react-router-dom";
 import navList from "../../common/navList";
 import "./index.less";
 import { NavLink, Link } from "react-router-dom";
-import { Dropdown, Avatar, Input, Toast, Button } from "@douyinfe/semi-ui";
+import { Dropdown, Avatar, Input, Toast } from "@douyinfe/semi-ui";
 import {
 	IconSearch,
 	IconUser,
@@ -17,8 +17,10 @@ import {
 import { delUserAction } from "../../store/actions/user";
 import { connect } from "react-redux";
 import { logout } from "../../services/apis";
+import { searchSuggest } from "@/services/search";
 import Login from "../Login";
 import SubNav from "../SubNav";
+import SearchSuggest from "./SearchSuggest";
 const mapStateToProps = (state) => {
 	return {
 		user: state.user,
@@ -38,11 +40,49 @@ function CommonHeader(props) {
 	let showSubNav = location.pathname.startsWith('/find'); // 路径是否以 /find 开头
 	const [keyword, setKeyword] = useState(""); // 搜索的关键词
 	const [visible, setVisible] = useState(false);
-	const keywordChange = useCallback((val) => {
-		setKeyword(val);
-	}, []);
+	const [suggest, setSuggest] = useState(null);
+	const [showSS, setShowSS] = useState(false);
 
-	const searchMusic = useCallback(async () => {
+	// 点击文档下拉搜索推荐隐藏
+	useEffect(() => {
+		document.addEventListener('click', handleClick)
+		return () => {
+			document.removeEventListener('click', handleClick)
+		}
+	}, [])
+
+	const handleClick = e => {
+		setShowSS(false);
+	}
+
+	// 搜索框内容变化时
+	const keywordChange = (val) => {
+		if (!val) {
+			setShowSS(false);
+			setKeyword(val);
+			return;
+		}
+		setShowSS(true);
+		setKeyword(val);
+		getSearchSuggest(val);
+	};
+
+	// 获取搜索建议
+	const getSearchSuggest = (keywords) => {
+		searchSuggest({ keywords }).then(res => {
+			if (res.code === 200) {
+				setSuggest(res.result);
+			}
+		})
+	}
+
+	const handleFocus = () => {
+		if (keyword) {
+			setShowSS(true);
+		}
+	}
+
+	const searchMusic = async () => {
 		if (!keyword) {
 			Toast.warning({
 				content: "请输入 音乐/视频/电台/用户 等关键字",
@@ -51,7 +91,7 @@ function CommonHeader(props) {
 			return;
 		}
 		history.push(`/search?keywords=${keyword}`);
-	}, [keyword, history]);
+	};
 	//   退出登录
 	const handleLogout = async () => {
 		const res = await logout();
@@ -86,18 +126,26 @@ function CommonHeader(props) {
 				</div>
 				<ul className="nav-list">{lis}</ul>
 				<div className="nav-search">
-					<Input
-						style={{
-							background: "#fff",
-							outline: "none",
-						}}
-						onEnterPress={searchMusic}
-						placeholder="音乐/视频/电台/用户"
-						prefix={<IconSearch />}
-						value={keyword}
-						onChange={keywordChange}
-						showClear
-					></Input>
+					<div onClick={e => {
+						e.stopPropagation()
+					}}>
+						<Input
+							style={{
+								background: "#fff",
+								outline: "none",
+							}}
+							onEnterPress={searchMusic}
+							placeholder="音乐/视频/电台/用户"
+							prefix={<IconSearch />}
+							value={keyword}
+							onChange={keywordChange}
+							onFocus={handleFocus}
+							showClear
+						></Input>
+					</div>
+					{showSS && suggest ? <div className="search-suggest">
+						<SearchSuggest data={suggest} />
+					</div> : null}
 				</div>
 				{user ? (
 					<div className="nav-user">

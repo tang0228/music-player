@@ -149,6 +149,20 @@ function SongPlay(props) {
 				break;
 		}
 	}
+
+	// 点击文档音量和播放列表隐藏
+	useEffect(() => {
+		document.addEventListener('click', handleClick)
+		return () => {
+			document.removeEventListener('click', handleClick)
+		}
+	}, [])
+
+	const handleClick = () => {
+		setShowList(false);
+		setShowVoiceControl(false);
+	}
+
 	return (
 		<div className={style["b-bottom"]}>
 			<div className='song-play'>
@@ -207,15 +221,12 @@ function SongPlay(props) {
 						</div>
 					</div>
 					<div className="right">
-						<i className="icon icon-draw" title='画中画歌词' onClick={() => {
-							const audio = document.getElementById("my-audio");
-							audio.requestPictureInPicture().then(res => {
-								console.log(res)
-							})
-						}}>画中画歌词</i>
+						<i className="icon icon-draw" title='画中画歌词'>画中画歌词</i>
 						<i className="icon icon-fold" title="收藏">收藏</i>
 						<i className="icon icon-share" title="分享">分享</i>
-						<div className="bar">
+						<div className="bar" onClick={e => {
+							e.stopPropagation();
+						}}>
 							<div className="voice-control" style={{
 								visibility: showVoiceControl ? 'visible' : 'hidden'
 							}}>
@@ -257,6 +268,8 @@ function SongPlay(props) {
 								delOneSong(id);
 							}} deleteAllSong={() => {
 								delAllSong();
+							}} onClick={(e) => {
+								e.stopPropagation();
 							}} /> : null}
 						</div>
 					</div>
@@ -266,7 +279,6 @@ function SongPlay(props) {
 					setCurTime(audio.currentTime);
 					setCurWidth(audio.currentTime / audio.duration * 100);
 				}} onEnded={songEnded}></audio> : null}
-
 			</div>
 		</div>
 	)

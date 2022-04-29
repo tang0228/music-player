@@ -1,0 +1,73 @@
+.suggest {
+    font-size: 12px;
+
+    :global {
+        .content {
+            .item {
+                .hd {
+                    float: left;
+                    width: 52px;
+                    margin-right: -100px;
+                    padding: 10px 0 0 10px;
+                    border-right: 1px solid #e2e2e2;
+                    line-height: 17px;
+                    font-weight: normal;
+                    color: #333;
+                    display: flex;
+
+                    .icon {
+                        display: inline-block;
+                        width: 14px;
+                        height: 15px;
+                        margin-right: 4px;
+                    }
+
+                    .icon-songs {
+                        background: url(https://s2.music.126.net/style/web2/img/icon.png?68f683ea74b61d088af88c3a9aa4411b) -35px -300px no-repeat;
+                    }
+
+                    .icon-artist {
+                        background: url(https://s2.music.126.net/style/web2/img/icon.png?68f683ea74b61d088af88c3a9aa4411b) -50px -300px no-repeat;
+                    }
+
+                    .icon-album {
+                        background: url(https://s2.music.126.net/style/web2/img/icon.png?68f683ea74b61d088af88c3a9aa4411b) -35px -320px no-repeat;
+                    }
+
+                    .icon-list {
+                        background: url(https://s2.music.126.net/style/web2/img/icon.png?68f683ea74b61d088af88c3a9aa4411b) -50px -320px no-repeat;
+                    }
+                }
+
+                .cb {
+                    margin-left: 62px;
+                    margin-top: -1px;
+                    padding: 6px 0 5px;
+                    border-top: 1px solid #e2e2e2;
+                    border-left: 1px solid #e2e2e2;
+
+                    &.bg {
+                        background-color: #f9f8f8;
+                    }
+
+
+                    li {
+                        text-indent: 12px;
+                        line-height: 24px;
+                        white-space: nowrap;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+
+                        a {
+                            color: #333;
+                        }
+
+                        &:hover {
+                            background-color: #e3e5e7;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
