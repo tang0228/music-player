@@ -1,15 +1,9 @@
 import React, { useState } from 'react';
 import style from "./songList.module.less";
 import {
-    IconPlayCircle,
-    IconLikeThumb,
-    IconForward,
-    IconDownload,
-    IconComment,
     IconChevronUp,
     IconChevronDown,
 } from "@douyinfe/semi-icons";
-import utils from "../../../../../utils";
 import Item from "./Item";
 
 export default function SongList(props) {
@@ -28,7 +22,7 @@ export default function SongList(props) {
                 </div>
             </div>
             {open ? <ul className='list-wrap'>
-                {list.map((t, i) => (
+                {list.filter(l => l.name).map((t, i) => (
                     <Item showAlbum={true} key={t.id} index={i + 1} item={t} />
                 ))}
             </ul> : null}

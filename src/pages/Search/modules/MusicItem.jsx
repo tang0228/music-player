@@ -1,6 +1,4 @@
 import React from 'react';
-import { IconDownload, IconFolder, IconPlus, IconForward } from "@douyinfe/semi-icons"
-import { Toast } from '@douyinfe/semi-ui';
 import "./musicItem.less";
 import utils from '../../../utils';
 import { getMusicPlayUrl } from "../../../services/apis";
@@ -29,11 +27,6 @@ function MusicItem(props) {
         setCurSongId(id);
         if (res.code === 200 && res.data[0].url) {
             addSong(res.data);
-        } else {
-            Toast.error({
-                content: "无权限",
-                duration: 2
-            })
         }
     };
 
@@ -43,15 +36,15 @@ function MusicItem(props) {
             <i className="music-play" onClick={() => {
                 playMusic(song.id)
             }}></i>
-            <div className='song-wrap' style={{flex: '1'}}>
+            <div className='song-wrap' style={{ flex: '1' }}>
                 <Link to={'/find/song?id=' + song.id} className="name">{song.name}</Link>
                 {song.mvid ? <Link to={`/find/mv?id=` + song.mvid} className="music-mv"></Link> : null}
             </div>
             <div className="operates">
-                <IconPlus />
-                <IconFolder />
-                <IconForward />
-                <IconDownload />
+                <i className="icon icon-add"></i>
+                <i className="icon icon-fav"></i>
+                <i className="icon icon-share"></i>
+                <i className="icon icon-down"></i>
             </div>
             <div className="singers">
                 {song.artists && song.artists.map((item, i) => <Link className="singer-name" to={'/find/artist?id=' + item.id} key={item.id}>{i === 0 ? item.name : `/${item.name}`}</Link>)}

@@ -1,0 +1,152 @@
+.table-item {
+    display: flex;
+    height: 30px;
+    font-size: 12px;
+    color: #333;
+
+    &.even {
+        background: rgb(247, 247, 247);
+    }
+
+    &:hover {
+        background: rgb(247, 247, 247);
+    }
+
+    &:hover {
+        .time {
+            display: none;
+        }
+
+        .duration .btns {
+            display: block;
+        }
+    }
+
+
+
+        .ellipsis-1 {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .play-num {
+            width: 74px;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+
+            .icon-play {
+                width: 17px;
+                height: 17px;
+                cursor: pointer;
+                background: url(https://s2.music.126.net/style/web2/img/table.png?d3de0e45f5036e587ba7f96b210c7135) 0 -103px no-repeat;
+
+                &:hover {
+                    background-position: 0 -128px;
+                }
+            }
+
+        }
+
+        .title {
+            flex: 1;
+            display: flex;
+
+            .mv-play {
+                color: #f93920;
+                display: flex;
+                align-items: center;
+            }
+        }
+
+        .duration {
+            width: 111px;
+            position: relative;
+            height: 100%;
+
+            .time {
+                position: absolute;
+                top: 0;
+                left: 10px;
+            }
+
+            .btns {
+                position: absolute;
+                top: 4px;
+                left: 10px;
+                display: none;
+
+                .icon {
+                    display: inline-block;
+                    cursor: pointer;
+                    width: 18px;
+                    height: 16px;
+                    margin: 2px 0 0 4px;
+                }
+
+                .icon-add {
+                    margin: 0 0 3px 0;
+                    width: 13px;
+                    height: 13px;
+                    background: url(https://s2.music.126.net/style/web2/img/icon.png?68f683ea74b61d088af88c3a9aa4411b) 0 -700px no-repeat;
+
+                    &:hover {
+                        background-position: -22px -700px;
+                    }
+                }
+
+                .icon-fav {
+                    background: url(https://s2.music.126.net/style/web2/img/table.png?d3de0e45f5036e587ba7f96b210c7135) 0 -174px no-repeat;
+
+                    &:hover {
+                        background-position: -20px -174px;
+                    }
+                }
+
+                .icon-share {
+                    background: url(https://s2.music.126.net/style/web2/img/table.png?d3de0e45f5036e587ba7f96b210c7135) 0 -195px no-repeat;
+
+                    &:hover {
+                        background-position: -20px -195px;
+                    }
+
+                }
+
+                .icon-down {
+                    background: url(https://s2.music.126.net/style/web2/img/table.png?d3de0e45f5036e587ba7f96b210c7135) -81px -174px no-repeat;
+
+                    &:hover {
+                        background-position: -104px -174px;
+                    }
+                }
+            }
+
+        }
+
+        .name {
+            width: 14%;
+        }
+
+        .album {
+            width: 20%;
+        }
+
+        .bd {
+            height: 100%;
+            line-height: 30px;
+            padding-left: 10px;
+            box-sizing: border-box;
+
+            a {
+                text-decoration: none;
+                color: #333;
+
+                &:hover {
+                    text-decoration: underline;
+                }
+            }
+        }
+
+
+}

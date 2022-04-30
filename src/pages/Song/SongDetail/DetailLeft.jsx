@@ -158,11 +158,6 @@ function DetailLeft(props) {
 		setCurSongId(id);
 		if (res.code === 200 && res.data[0].url) {
 			addSong(res.data);
-		} else {
-			Toast.error({
-				content: "无权限",
-				duration: 2
-			})
 		}
 	};
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import style from "./songs.module.less";
-import { Button, Space, Select, Toast } from "@douyinfe/semi-ui";
-import { IconPlayCircle, IconPlus, IconCopyAdd, IconDownload, IconForward, IconFolder, IconVideo } from "@douyinfe/semi-icons";
+import { Button, Space, Select } from "@douyinfe/semi-ui";
+import { IconPlayCircle, IconPlus, IconCopyAdd } from "@douyinfe/semi-icons";
 import utils from "../../../utils";
 import { Link } from "react-router-dom";
 import { getMusicPlayUrl } from '../../../services/apis';
@@ -36,11 +36,6 @@ function Songs(props) {
         setCurSongId(id);
         if(res.code === 200 && res.data[0].url) {
             addSong(res.data);
-        } else {
-            Toast.error({
-                content: "无权限",
-                duration: 2
-            })
         }
     }
     return (
@@ -62,24 +57,24 @@ function Songs(props) {
                 {songs.map((s, i) => <li className={utils.isEven(i) ? 'item even' : 'item'} key={s.id}>
                     <div className="li-index">
                         <span className="index">{i+1}</span>
-                        <IconPlayCircle onClick={() => {
+                        <i className="icon-play" onClick={() => {
                             play(s.id)
-                        }}/>
+                        }}></i>
                     </div>
                     <div className="name">
                         <Link to={'/find/song?id=' + s.id} className="singer-name">{s.name}</Link>
                         {s.alia && s.alia.length ?
                             <span className="mv-name">-{s.alia.map(a=> a)}</span>
                             : null }
-                        {s.mv ? <Link className="mv-play" to={'/find/mv?id=' + s.mv}><IconVideo /></Link> : null}
+                        {s.mv ? <Link className="icon-mv" to={'/find/mv?id=' + s.mv}></Link> : null}
                     </div>
                     <div className="option">
                         <span className="dt">{utils.formatTime(s.dt)}</span>
                         <div className="btns">
-                            <IconPlus />
-                            <IconFolder />
-                            <IconForward />
-                            <IconDownload />
+                            <i className="icon icon-add"></i>
+                            <i className="icon icon-fav"></i>
+                            <i className="icon icon-share"></i>
+                            <i className="icon icon-down"></i>
                         </div>
                     </div>
                     <Link to={'/find/album?id=' + s.al.id} className="album">{s.al.name}</Link>

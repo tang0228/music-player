@@ -73,18 +73,19 @@ export default function DjLeft(props) {
                         list && list.length ? list.map(l => <li className={utils.isEven(l.serialNum) ? 'list-item even' : 'list-item'} key={l.id}>
                             <div className="col-1">
                                 <span className="index">{l.serialNum}</span>
-                                <IconPlayCircle onClick={() => {
+                                <i className="icon-play" onClick={() => {
                                     Toast.warning({
                                         content: "暂不支持播放电台",
                                     })
-                                }} />
+                                }}>
+                                </i>
                             </div>
                             <div className="col-2">
                                 <Link to={'/find/djradio/program?id=' + l.id} className="name">{l.name}</Link>
                                 <div className="btns">
-                                    <IconPlus />
-                                    <IconForward />
-                                    <IconDownload />
+                                    <i className="icon icon-add"></i>
+                                    <i className="icon icon-share"></i>
+                                    <i className="icon icon-down"></i>
                                 </div>
                             </div>
                             <div className="col-3">播放{l.listenerCount > 100000 ? parseInt(l.listenerCount / 10000) + '万' : l.listenerCount}</div>

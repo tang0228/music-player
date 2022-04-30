@@ -25,12 +25,12 @@ export default function SongList(props) {
         }}>
             <div className="list-header">
                 <h4 className='title'>播放列表({songs.length})</h4>
-                <a onClick={e => e.preventDefault()} className='add-all'>
+                <a href='javascript:;' onClick={e => e.preventDefault()} className='add-all'>
                     <i className="icon-add"></i>
                     <span>收藏全部</span>
                 </a>
                 <span className="line"></span>
-                <a className='del' onClick={(e) => {
+                <a className='del' href='javascript:;' onClick={(e) => {
                     e.preventDefault();
                     props.deleteAllSong();
                 }}>

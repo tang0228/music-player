@@ -1,10 +1,5 @@
 import React from "react";
 import utils from "../../../utils";
-import {
-	IconPlus,
-	IconFolder,
-	IconForward,
-} from "@douyinfe/semi-icons";
 import "./playList.less";
 import LazyLoad from "react-lazyload";
 import { Link } from "react-router-dom";
@@ -16,20 +11,20 @@ import { setCurSongIdAction } from "@/store/actions/curSongId";
 import { connect } from "react-redux";
 
 const mapStateToProps = (state) => {
-    return {
-        curSongId: state.curSongId,
-    };
+	return {
+		curSongId: state.curSongId,
+	};
 };
 
 const mapDispatchToProps = (dispatch) => {
-    return {
-        setCurSongId: (...args) => dispatch(setCurSongIdAction(...args)),
-        addSongs: (...args) => dispatch(addSongListAction(...args))
-    };
+	return {
+		setCurSongId: (...args) => dispatch(setCurSongIdAction(...args)),
+		addSongs: (...args) => dispatch(addSongListAction(...args))
+	};
 };
 
 function PlayList(props) {
-	const {playlist, addSongs, setCurSongId} = props;
+	const { playlist, addSongs, setCurSongId } = props;
 
 	// 添加歌单到播放列表
 	const addSongList = id => {
@@ -68,9 +63,9 @@ function PlayList(props) {
 				{p.name}
 			</Link>
 			<div className="operates">
-				<IconPlus />
-				<IconFolder />
-				<IconForward />
+				<i className="icon icon-add"></i>
+				<i className="icon icon-fav"></i>
+				<i className="icon icon-share"></i>
 			</div>
 			<span className="count">{p.trackCount} 首</span>
 			<span className="creator">by <Link className="name" to={'/user/home?uid=' + p.creator.userId}>{p.creator.nickname}</Link></span>

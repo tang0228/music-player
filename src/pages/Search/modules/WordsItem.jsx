@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import "./wordsItem.less";
-import { Toast } from '@douyinfe/semi-ui';
-import { IconPlus, IconFolder, IconForward, IconDownload, IconChevronUp, IconChevronDown } from "@douyinfe/semi-icons"
+import { IconChevronUp, IconChevronDown } from "@douyinfe/semi-icons"
 import utils from '../../../utils';
 import { Link } from "react-router-dom";
 import { getMusicPlayUrl } from '../../../services/apis';
@@ -33,11 +32,6 @@ function WordsItem(props) {
         setCurSongId(id);
         if (res.code === 200 && res.data[0].url) {
             addSong(res.data);
-        } else {
-            Toast.error({
-                content: "无权限",
-                duration: 2
-            })
         }
     }
     return (
@@ -50,10 +44,10 @@ function WordsItem(props) {
                     <Link to={'/find/song?id=' + props.id} className="ml8">{props.name}</Link>
                 </div>
                 <div className="operates">
-                    <IconPlus />
-                    <IconFolder />
-                    <IconForward />
-                    <IconDownload />
+                    <i className="icon icon-add"></i>
+                    <i className="icon icon-fav"></i>
+                    <i className="icon icon-share"></i>
+                    <i className="icon icon-down"></i>
                 </div>
                 <div className="singers">
                     {props.artists.map((a, i) => <Link to={'/find/artist?id=' + a.id} key={a.id}>{i === 0 ? a.name : '/' + a.name}</Link>)}
