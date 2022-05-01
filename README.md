@@ -1,6 +1,6 @@
 # music-player,
 
-## api提供：感谢 https://github.com/tang0228/NeteaseCloudMusicApi
+## api提供：感谢 https://github.com/Binaryify/NeteaseCloudMusicApi
 ---
 ## 技术栈：react react-router-dom semi-design redux react-redux less axios
 ---
