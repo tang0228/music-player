@@ -21,8 +21,7 @@ export default function PlaylistDetail(props) {
         setLoading(false);
         setDetail(res.playlist);
       }
-    })();
-    return () => {};
+    })()
   }, [id]);
   return (
     <>

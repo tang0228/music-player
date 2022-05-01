@@ -4,19 +4,6 @@ import ins from "./request";
  * 接口统一规范，通过对象的方式传入
  */
 
-// 搜索
-export async function search({ keywords = "", type = 1, limit = 20, offset = 0 }) {
-    const res = await ins.get("/search", {
-        params: {
-            keywords,
-            type,
-            limit,
-            offset
-        }
-    });
-    return res;
-};
-
 // 手机号登录
 export async function phoneLogin({ phone, password }) {
     const res = await ins.get("/login/cellphone", {
@@ -107,12 +94,13 @@ export async function getUserRecord({ uid, type = 1 }) {
 };
 
 //获取用户歌单
-export async function getUserPlayList({ uid, offset = 0, limit = 30 }) {
+export async function getUserPlayList({ uid, offset = 0, limit = 30, timestamp = Date.now() }) {
     const res = await ins.get("/user/playlist", {
         params: {
             uid,
             limit,
             offset,
+            timestamp,
         }
     });
     return res;
@@ -175,16 +163,6 @@ export async function getSongUrl({ id }) {
     });
     return res;
 }
-
-// 检查歌曲是否可以播放
-export async function checkMusic({ id }) {
-    const res = await ins.get("/check/music", {
-        params: {
-            id
-        }
-    });
-    return res;
-};
 
 // 获取歌单详情
 export async function getPlayListDetail({ id }) {

@@ -24,7 +24,7 @@ import {
 } from "@douyinfe/semi-illustrations";
 import { IconSearch } from "@douyinfe/semi-icons";
 import "./index.less";
-import { search } from "../../services/apis";
+import { search } from "../../services/search";
 import { searchTabs } from "../../common/tabs";
 import SearchNote from "./modules/SearchNote";
 

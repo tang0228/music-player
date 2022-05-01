@@ -1,0 +1,139 @@
+.left-item {
+
+    :global {
+        .item-header {
+            padding: 0 10px 12px 15px;
+            font-size: 14px;
+            color: #000;
+
+            .wrap {
+                cursor: pointer;
+
+                .icon {
+                    display: inline-block;
+                    vertical-align: middle;
+                    margin: 0 2px 0 5px;
+                    cursor: pointer;
+                    font-size: 0;
+                    height: 0;
+                    line-height: 0;
+                }
+
+                .icon-arrow-down {
+                    border-color: #ccc transparent transparent;
+                    border-style: solid dashed dashed;
+                    border-width: 8px 7px 0;
+                }
+
+                .icon-arrow-left {
+                    border: 8px solid #ccc;
+                    border-color: transparent transparent transparent #ccc;
+                    border-style: dashed dashed dashed solid;
+                    margin-right: 0;
+                }
+            }
+
+            .add-btn {
+                cursor: pointer;
+                width: 52px;
+                height: 22px;
+                display: inline-block;
+                color: #333;
+                background: url(https://s2.music.126.net/style/web2/img/button.png?f84cecde1baef312091802276d4ebf1b) 0 -96px no-repeat;
+                float: right;
+                margin-top: -4px;
+
+                i {
+                    display: inline-block;
+                    line-height: 22px;
+                    overflow: hidden;
+                    padding-left: 20px;
+                    color: #515151;
+                    font-size: 12px;
+                    font-weight: normal;
+                }
+            }
+        }
+
+        .item-list {
+            .list-item {
+                position: relative;
+                height: 42px;
+                padding: 6px 0 6px 20px;
+                cursor: pointer;
+
+                &:hover {
+                    background-color: #f4f2f2;
+
+                    .options {
+                        display: block;
+                    }
+                }
+
+                &.active {
+                    background-color: #e6e6e6;
+                }
+
+                .wrap {
+                    display: flex;
+                    &:hover {
+                        text-decoration: none;
+                    }
+
+                    img {
+                        width: 40px;
+                        height: 40px;
+                        margin-right: 10px;
+                    }
+
+                    .info {
+                        font-size: 12px;
+
+                        .ell {
+                            overflow: hidden;
+                            white-space: nowrap;
+                            text-overflow: ellipsis;
+                        }
+
+                        .name {
+                            width: 150px;
+                            margin-top: 2px;
+                            margin-bottom: 8px;
+                        }
+
+                        .num {
+                            width: 120px;
+                            color: #999;
+                        }
+                    }
+                }
+
+                .options {
+                    position: absolute;
+                    right: 0;
+                    bottom: 7px;
+                    display: none;
+
+                    .icon {
+                        width: 13px;
+                        display: inline-block;
+                        margin-right: 10px;
+                    }
+
+                    .icon-edit {
+                        height: 13px;
+                        background: url(https://s2.music.126.net/style/web2/img/icon.png?68f683ea74b61d088af88c3a9aa4411b) 0 -270px no-repeat;
+                    }
+
+                    .icon-del {
+                        height: 14px;
+                        background: url(https://s2.music.126.net/style/web2/img/icon.png?68f683ea74b61d088af88c3a9aa4411b) 0 -284px no-repeat;
+
+                    }
+                }
+
+            }
+        }
+
+    }
+}

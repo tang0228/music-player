@@ -35,7 +35,7 @@ const SingerCat = lazy(() => import("./pages/Find/modules/Singers/SingerCat"));
 const Download = lazy(() => import("./pages/Other/Download"));
 const Mall = lazy(() => import("./pages/Other/Mall"));
 const Musician = lazy(() => import("./pages/Other/Musician"));
-const MyMusic = lazy(() => import("./pages/Other/MyMusic"));
+const MyMusic = lazy(() => import("./pages/MyMusic/MyMusic"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
 function App() {
