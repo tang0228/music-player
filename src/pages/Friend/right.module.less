@@ -1,0 +1,82 @@
+.right-wrap {
+    :global {
+        .user-wrap {
+            width: 100%;
+            height: 193px;
+            padding-top: 40px;
+            background: #eee;
+            box-shadow: 0 1px 1px #aaa;
+            box-sizing: border-box;
+
+            .user-top {
+                display: flex;
+
+                .img-wrap {
+                    width: 66px;
+                    height: 66px;
+                    border: 1px solid #ddd;
+                    margin-left: 20px;
+
+                    img {
+                        width: 62px;
+                        height: 62px;
+                        margin: 2px;
+                    }
+                }
+
+                .user-detail {
+                    margin-left: 18px;
+                    .name {
+                        width: 115px;
+                        font-weight: bold;
+                        font-size: 14px;
+                        color: #333;
+                        text-overflow: ellipsis;
+                        white-space: nowrap;
+                        overflow: hidden;
+                        padding: 5px 0;
+                    }
+
+                    .desc {
+                        height: 38px;
+                        line-height: 19px;
+                        color: #888;
+                        margin-top: 8px;
+                        font-size: 12px;
+                    }
+                }
+            }
+
+            .user-nums {
+                display: flex;
+                margin-left: 20px;
+                margin-top: 22px;
+
+                .box {
+                    height: 40px;
+                    border-right: 1px solid #e4e4e4;
+                    padding: 0 18px;
+                    font-size: 16px;
+                    color: #666;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: flex-start;
+                    justify-content: space-between;
+                    cursor: pointer;
+
+                    &:first-child {
+                        padding: 0 18px 0 0;
+                    }
+
+                    &:last-child {
+                        border-right: none;
+                    }
+
+                    &:hover {
+                        color: skyblue;
+                    }
+                }
+            }
+        }
+    }
+}
