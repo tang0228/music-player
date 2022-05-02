@@ -1,0 +1,85 @@
+.share-modal {
+
+    .song-box {
+        height: 46px;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        padding: 0 10px;
+        border: 1px solid #f9f9f9;
+
+        &:hover {
+            background-color: #f9f9f9;
+        }
+
+        .icon-img {
+            width: 30px;
+            height: 30px;
+            margin: 8px 8px 0 0;
+            background: url(https://s2.music.126.net/style/web2/img/icon2.png?78744c80d6abc783b952bf9bd11342b4) 0 -340px no-repeat;
+        }
+
+        .text {
+            font-size: 14px;
+            flex: 1;
+        }
+
+        .icon-add {
+            width: 12px;
+            height: 17px;
+            background: url(https://s2.music.126.net/style/web2/img/icon2.png?78744c80d6abc783b952bf9bd11342b4) -40px -338px no-repeat;
+        }
+
+        .icon-arrow {
+            width: 10px;
+            height: 17px;
+            background: url(https://s2.music.126.net/style/web2/img/icon2.png?78744c80d6abc783b952bf9bd11342b4) -40px -354px no-repeat;
+        }
+    }
+
+    .list-wrap {
+        margin-top: 4px;
+        height: 196px;
+        overflow: auto;
+        overflow-x: hidden;
+        border: 1px solid #d9d9d9;
+        border-radius: 2px;
+
+        .list-item {
+            height: 28px;
+            display: flex;
+            align-items: center;
+            font-size: 12px;
+            color: #333;
+
+            &:hover {
+                background-color: #e1e1e2;
+            }
+
+            &.even {
+                background-color: #f2f2f2;
+            }
+
+            .icon-play {
+                margin: 0 15px;
+                width: 14px;
+                height: 14px;
+                background: url(https://s2.music.126.net/style/web2/img/icon2.png?217708b32e70e0698e9d1b403dada21a) no-repeat -80px -340px;
+            }
+
+            .ell {
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+
+            .song-name {
+                width: 230px;
+            }
+
+            .artist-name {
+                width: 130px;
+            }
+        }
+    }
+}

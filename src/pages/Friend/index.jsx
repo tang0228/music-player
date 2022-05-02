@@ -9,23 +9,29 @@ export default function Friend() {
     const [event, setEvent] = useState([]); // 动态
     const [loading, setLoading] = useState(false);
     useEffect(() => {
-        (async () => {
-            setLoading(true);
-            const res = await getFriend({});
-            if (res.code === 200) {
-                setLoading(false);
-                const list = res.event.map(e => ({
-                    ...e,
-                    json: JSON.parse(e.json)
-                }))
-                setEvent(list);
-            }
-        })();
+        getEvent();
     }, [])
+
+    const getEvent = async () => {
+        setLoading(true);
+        const res = await getFriend({});
+        if (res.code === 200) {
+            setLoading(false);
+            const list = res.event.map(e => ({
+                ...e,
+                json: JSON.parse(e.json)
+            }))
+            setEvent(list);
+        }
+    }
+
+    const shareSuccess = () => {
+        getEvent();
+    }
     return (
         <div className={style["friend-container"]}>
             <div className="left">
-                <Left list={event} />
+                <Left list={event} shareSuccess={shareSuccess} />
             </div>
             <div className="right">
                 <Right />
