@@ -164,7 +164,6 @@ function DetailLeft(props) {
 	// 下载歌曲
 	const download = async () => {
 		const res = await getSongUrl({ id });
-		console.log(res);
 	};
 	return (
 		<div className={style["detail-left"]}>

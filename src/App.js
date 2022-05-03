@@ -1,5 +1,6 @@
 import React, { lazy, Suspense } from "react";
-import { Switch, HashRouter as Router, Route, Redirect } from "react-router-dom"
+import { Switch, Route, Redirect } from "react-router-dom"
+import RouterGuard from "./Hoc/RouterGuard";
 import "./app.less";
 import { Layout, BackTop } from '@douyinfe/semi-ui';
 import CommonHeader from "./components/CommonHeader";
@@ -38,10 +39,21 @@ const Musician = lazy(() => import("./pages/Other/Musician"));
 const MyMusic = lazy(() => import("./pages/MyMusic/MyMusic"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
+import white from "@/common/white"
+import { Toast } from "@douyinfe/semi-ui"
+
 function App() {
     const { Header, Footer, Content } = Layout;
     return (
-        <Router>
+        <RouterGuard onBeforeRouter={(prev, cur, action, msg, cb) => {
+            const user = JSON.parse(localStorage.getItem('user')) || "";
+            if(white.includes(cur.pathname) && !user) {
+                Toast.warning("你还没有登录哦！");
+                cb(false);
+            } else {
+                cb(true);
+            }
+        }}>
             <Suspense fallback={<Spinner />}>
                 <Layout className="components-layout-demo">
                     <Header>
@@ -98,7 +110,7 @@ function App() {
                     <SongPlay />
                 </Layout>
             </Suspense>
-        </Router>
+        </RouterGuard>
     );
 }
 

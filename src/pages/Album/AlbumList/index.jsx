@@ -29,15 +29,7 @@ export default function AlbumList() {
             if (res.code === 200) {
                 setAlbums(res.albums.splice(0, 10));
             }
-        }, err => {
-            console.log(err, 123)
-            Toast.error({
-                content: err,
-                duration: 2
-            })
         })
-        return () => {
-        }
     }, []);
 
     // 获取分类光碟列表

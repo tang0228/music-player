@@ -177,7 +177,7 @@ function DetailLeft(props) {
 							</Button>
 						</Space>
 					</div>
-					<div className="tags">
+					{detail.tags.length ? <div className="tags">
 						标签：
 						<Space>
 							{detail.tags.map((t) => (
@@ -188,7 +188,7 @@ function DetailLeft(props) {
 								</Tag>
 							))}
 						</Space>
-					</div>
+					</div> : null}
 					{
 						detail.description ? <div className="desc">
 							介绍：{open ? detail.description : detail.description.split("\n").splice(0, 5).join("\n") + '...'}
@@ -260,3 +260,4 @@ function DetailLeft(props) {
 }
 
 export default DetailLeft;
+

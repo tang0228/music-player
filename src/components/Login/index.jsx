@@ -32,7 +32,6 @@ function Login(props) {
             phone,
             password
         });
-        console.log(res);
         if (res.code === 200) {
             Toast.success({
                 content: `欢迎${res.profile.nickname}回家`,

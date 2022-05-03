@@ -30,7 +30,6 @@ export default function Left(props) {
     const [songs, setSongs] = useState([]); // 伸缩的歌曲列表
     const [msg, setMsg] = useState("");
     const { list } = props;
-    console.log(list)
 
     const shareNew = () => {
         share({ id: song.id, msg }).then(res => {
