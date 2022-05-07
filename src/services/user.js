@@ -1,10 +1,10 @@
 import ins from "./request";
 
 // 我的消息
-export async function getUserEvent() {
+export async function getUserEvent({ uid, limit, lasttime, timestamp = Date.now() }) {
     const res = await ins.get('/event', {
         params: {
-            timestamp: Date.now()
+            uid, limit, lasttime, timestamp
         }
     });
     return res;

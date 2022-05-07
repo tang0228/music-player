@@ -43,11 +43,12 @@ export async function getPlaylist({ cat = "", limit = 20, offset, order = "hot" 
  * offset, 第二页的话，offset是 1 * limit
  * limit 页容量
  */
-export async function getFriend({ offset = "0", limit = 20 }) {
+export async function getFriend({ offset = 0, limit = 20, timestamp = Date.now()}) {
     const res = await ins.get("/event/list", {
         params: {
             offset,
-            limit
+            limit,
+            timestamp
         }
     });
     return res;

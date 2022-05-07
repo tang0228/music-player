@@ -2,11 +2,11 @@ import React, { useState } from 'react'
 import style from "./left.module.less"
 import "./modal.less"
 import { Link } from "react-router-dom"
-import { Empty, Modal, TextArea, Toast, Input, Button } from '@douyinfe/semi-ui'
+import { Empty, Modal, TextArea, Toast, Input, Button, Popconfirm } from '@douyinfe/semi-ui'
 import { IconSearch } from '@douyinfe/semi-icons'
 import { search } from "@/services/search"
 import utils from "@/utils"
-import { share } from "@/services/user"
+import { share, delEvent } from "@/services/user"
 
 const SHARE_MAP = {
     '18': "分享单曲",
@@ -22,18 +22,21 @@ const SHARE_MAP = {
     '21': "分享视频",
 }
 
-export default function Left(props) {
+function Left(props) {
     const [visible, setVisible] = useState(false);
+    const [show, setShow] = useState(false);
+
     const [song, setSong] = useState(null);// 选中的单曲
     const [isChooseSong, setIsChooseSOng] = useState(false); // 是否正在选择歌曲
     const [word, setWord] = useState(""); // 搜索框的关键词
     const [songs, setSongs] = useState([]); // 伸缩的歌曲列表
     const [msg, setMsg] = useState("");
-    const { list } = props;
+
+    const { list, user } = props;
 
     const shareNew = () => {
         share({ id: song.id, msg }).then(res => {
-            if(res.code === 200) {
+            if (res.code === 200) {
                 props.shareSuccess && props.shareSuccess();
             }
         })
@@ -51,9 +54,15 @@ export default function Left(props) {
             return;
         }
         shareNew();
-        setVisible(false)
+        setVisible(false);
+        setMsg("");
+        setSong(null);
     }
     const handleCancel = () => {
+        if (msg || song) {
+            setShow(true);
+            return;
+        }
         setVisible(false)
     }
 
@@ -87,6 +96,18 @@ export default function Left(props) {
         setSong(s);
         setIsChooseSOng(false);
     }
+
+    // 删除动态
+    const deleteEvent = (id) => {
+        delEvent({ evId: id }).then(res => {
+            if (res.code === 200) {
+                Toast.success("删除成功");
+                props.shareSuccess && props.shareSuccess();
+            }
+        })
+    }
+
+
     return (
         <div className={style['left-wrap']}>
             <div className="list-header">
@@ -100,7 +121,14 @@ export default function Left(props) {
             </div>
             {list.length ? <ul className="list-wrap">
                 {list.map(l => <li key={l.id} className="list-item">
-                    <i className="icon-arrow"></i>
+                    {user.userId === l.user.userId ? <Popconfirm
+                        title="提示"
+                        content="你确定要删除该动态吗？"
+                        onConfirm={deleteEvent.bind(null, l.id)}
+                        onCancel={() => { }}
+                    >
+                        <span className="icon-arrow">删除</span>
+                    </Popconfirm> : null}
                     <Link to={'/user/home?uid=' + l.user.userId}>
                         <img className='avatar' src={l.user.avatarUrl} alt="" />
                     </Link>
@@ -111,21 +139,22 @@ export default function Left(props) {
                         </div>
                         <div className="time">{utils.formatDate(l.showTime)}</div>
                         <div className="share-text">{l.json.msg}</div>
-                        <div className="flag">
+                        {l.json.song ? <div className="flag">
                             <div className="img-wrap">
-                                <img src={l.json.song.img80x80 || l.json.song.xInfo.img80x80} alt="" />
+                                <img src={l.json.song.img80x80 || "http://s4.music.126.net/style/web2/img/default/default_avatar.jpg?param=50y50"} alt="" />
                                 <i className="icon-play"></i>
                             </div>
                             <div className="song-info">
                                 <p className='song-name'><Link to={'/find/song?id=' + l.json.song.id}>{l.json.song.name}</Link></p>
                                 <p className="artist-name"><Link to={'/find/artist?id=' + l.json.song.artists[0].id}>{l.json.song.artists[0].name}</Link></p>
                             </div>
-                        </div>
+                        </div> : null}
                     </div>
                 </li>)}
             </ul> : <Empty
                 title="暂时还没有动态"
             />}
+
             <Modal
                 title={isChooseSong ? '添加音乐' : '分享'}
                 visible={visible}
@@ -138,7 +167,7 @@ export default function Left(props) {
                         返回
                     </Button> :
                         <>
-                            <Button type="primary" onClick={handleOk}>
+                            <Button type="primary" onClick={handleOk} disabled={!msg || !song}>
                                 分享
                             </Button>
                             <Button type="tertiary" onClick={handleCancel}>
@@ -177,6 +206,24 @@ export default function Left(props) {
                     </ul>
                 </>}
             </Modal >
+            <Modal
+                title="提示"
+                visible={show}
+                onOk={() => {
+                    setShow(false);
+                    setVisible(false);
+                    setMsg("");
+                    setSong(null);
+                }}
+                onCancel={() => {
+                    setShow(false);
+                }}
+                mask={false}
+            >
+                是否退出本次编辑？
+            </Modal>
         </div >
     )
-} 
+}
+
+export default React.memo(Left);

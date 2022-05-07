@@ -79,6 +79,18 @@ const utils = {
     // 获取给定范围的随机整数
     getRandomIntNumber(min, max) {
         return Math.floor(Math.random() * (max - min + 1) + min);
+    },
+    throttle(callback, delay) {
+        var lastTime = Date.now();
+        return function () {
+            var content = this
+            var args = arguments;
+            var now = Date.now();
+            if (now - lastTime > delay) {
+                callback.apply(content, args);
+                lastTime = now;
+            }
+        }
     }
 };
 
