@@ -43,7 +43,7 @@ export async function getPlaylist({ cat = "", limit = 20, offset, order = "hot" 
  * offset, 第二页的话，offset是 1 * limit
  * limit 页容量
  */
-export async function getFriend({ offset = 0, limit = 20, timestamp = Date.now()}) {
+export async function getFriend({ offset = 0, limit = 20, timestamp = Date.now() }) {
     const res = await ins.get("/event/list", {
         params: {
             offset,
@@ -142,11 +142,6 @@ export async function getUserBindInfo({ uid }) {
 
 // 获取歌曲播放链接
 export async function getMusicPlayUrl({ id }) {
-    // const res = await ins.get("/song/url", {
-    //     params: {
-    //         id: id + '.mp3',
-    //     }
-    // });
     const res = await getSongDetail({ ids: id });
     let song;
     if (res.code === 200) {
@@ -156,6 +151,16 @@ export async function getMusicPlayUrl({ id }) {
     let url = "https://music.163.com/song/media/outer/url?id="
     return { code: 200, data: [{ id, url: `${url}${id}.mp3`, song }] };
 };
+
+// 检查歌曲是否可用
+export async function checkSong({ id }) {
+    const res = await ins.get("/check/music", {
+        params: {
+            id
+        }
+    });
+    return res;
+}
 
 // 获取歌曲下载url
 export async function getSongUrl({ id }) {

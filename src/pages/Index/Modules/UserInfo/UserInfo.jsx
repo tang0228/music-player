@@ -27,7 +27,7 @@ function UserInfo(props) {
     }
     useEffect(() => {
         getUserInfo();
-    }, []);
+    }, [user]);
     const [visible, setVisible] = useState(false);
 
     // 签到

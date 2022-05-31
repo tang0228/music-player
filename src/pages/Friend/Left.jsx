@@ -37,7 +37,7 @@ function Left(props) {
     const shareNew = () => {
         share({ id: song.id, msg }).then(res => {
             if (res.code === 200) {
-                props.shareSuccess && props.shareSuccess();
+                props.shareSuccess && props.shareSuccess(res.event);
             }
         })
     }
@@ -102,7 +102,7 @@ function Left(props) {
         delEvent({ evId: id }).then(res => {
             if (res.code === 200) {
                 Toast.success("删除成功");
-                props.shareSuccess && props.shareSuccess();
+                props.delSuccess && props.delSuccess(id);
             }
         })
     }

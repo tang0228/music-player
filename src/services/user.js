@@ -19,10 +19,11 @@ export async function share({ id, type = 'song', msg }) {
 }
 
 // 删除用户动态
-export async function delEvent({ evId }) {
+export async function delEvent({ evId, timestamp = Date.now() }) {
     const res = await ins.get('/event/del', {
         params: {
-            evId
+            evId,
+            timestamp
         }
     });
     return res;

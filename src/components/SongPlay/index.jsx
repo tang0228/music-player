@@ -7,6 +7,7 @@ import { setCurSongIdAction } from "@/store/actions/curSongId";
 import { deleteOneSongAction, deleteAllSongAction } from '../../store/actions/song';
 import { setVolumnAndTypeAction } from '../../store/actions/volumn';
 import SongList from "./SongList";
+import { checkSong } from "@/services/apis"
 
 const mapStateToProps = (state) => {
 	return {
@@ -62,6 +63,14 @@ function SongPlay(props) {
 		return () => {
 		}
 	}, [curSongId])
+
+	useEffect(() => {
+		checkSong({id: curSongId}).then(res => {
+			console.log(res)
+		})
+		
+	}, [curSongId])
+
 
 
 
